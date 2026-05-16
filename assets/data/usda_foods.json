@@ -1,0 +1,3474 @@
+[
+  {
+    "id": "usda_001",
+    "description": "Chicken Breast, raw",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 120,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 22.5,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 0.0,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 2.6,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 0,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_002",
+    "description": "Chicken Breast, cooked",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 165,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 31.0,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 0.0,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 3.6,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 0,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_003",
+    "description": "Ground Beef 80/20, raw",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 254,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 17.2,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 0.0,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 20.0,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 0,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_004",
+    "description": "Ground Beef lean 95%, raw",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 137,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 21.4,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 0.0,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 5.5,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 0,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_005",
+    "description": "Beef Steak sirloin, raw",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 158,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 26.1,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 0.0,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 5.4,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 0,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_006",
+    "description": "Salmon Atlantic, raw",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 208,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 20.4,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 0.0,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 13.4,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 0,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_007",
+    "description": "Tuna, canned in water",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 116,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 25.5,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 0.0,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 1.0,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 0,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_008",
+    "description": "Tuna, fresh raw",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 144,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 23.3,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 0.0,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 4.9,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 0,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_009",
+    "description": "Shrimp, raw",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 85,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 20.1,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 0.0,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 0.5,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 0,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_010",
+    "description": "Eggs, whole raw",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 143,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 12.6,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 0.7,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 9.5,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 0,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_011",
+    "description": "Egg Whites, raw",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 52,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 10.9,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 0.7,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 0.2,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 0,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_012",
+    "description": "Turkey Breast, raw",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 104,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 17.5,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 0.0,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 3.6,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 0,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_013",
+    "description": "Pork Loin, raw",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 143,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 21.8,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 0.0,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 5.7,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 0,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_014",
+    "description": "Lamb leg, raw",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 206,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 17.8,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 0.0,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 14.5,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 0,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_015",
+    "description": "Tofu, firm",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 76,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 8.1,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 1.9,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 4.2,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 0.3,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_016",
+    "description": "Tilapia, raw",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 96,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 20.1,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 0.0,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 1.7,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 0,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_017",
+    "description": "Cod, raw",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 82,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 17.8,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 0.0,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 0.7,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 0,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_018",
+    "description": "Chicken Thigh, raw",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 177,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 18.3,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 0.0,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 11.0,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 0,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_019",
+    "description": "Sardines, canned in oil",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 208,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 24.6,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 0.0,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 11.5,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 0,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_020",
+    "description": "Whole Milk",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 61,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 3.2,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 4.8,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 3.3,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 0,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_021",
+    "description": "Skim Milk",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 34,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 3.4,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 5.0,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 0.2,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 0,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_022",
+    "description": "Greek Yogurt 0% fat",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 59,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 10.2,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 3.6,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 0.4,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 0,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_023",
+    "description": "Greek Yogurt 2% fat",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 73,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 9.9,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 3.8,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 2.0,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 0,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_024",
+    "description": "Cheddar Cheese",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 403,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 24.9,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 1.3,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 33.1,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 0,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_025",
+    "description": "Mozzarella Cheese",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 280,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 28.1,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 2.2,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 17.1,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 0,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_026",
+    "description": "Cottage Cheese 2% fat",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 90,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 11.1,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 3.4,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 2.5,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 0,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_027",
+    "description": "Butter, unsalted",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 717,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 0.9,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 0.1,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 81.1,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 0,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_028",
+    "description": "Heavy Cream",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 345,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 2.9,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 2.8,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 37.0,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 0,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_029",
+    "description": "Whey Protein Powder",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 375,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 80.0,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 8.3,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 4.2,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 0,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_030",
+    "description": "White Rice, cooked",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 130,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 2.7,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 28.2,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 0.3,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 0.4,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_031",
+    "description": "Brown Rice, cooked",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 112,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 2.6,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 23.5,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 0.9,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 1.8,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_032",
+    "description": "Oats, rolled dry",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 379,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 13.2,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 67.7,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 6.5,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 10.1,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_033",
+    "description": "Pasta, cooked",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 131,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 5.0,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 25.0,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 1.1,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 1.8,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_034",
+    "description": "White Bread",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 265,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 9.0,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 49.0,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 3.2,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 2.7,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_035",
+    "description": "Whole Wheat Bread",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 247,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 13.0,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 41.0,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 3.4,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 7.0,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_036",
+    "description": "Quinoa, cooked",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 120,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 4.4,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 21.3,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 1.9,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 2.8,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_037",
+    "description": "Sweet Potato, raw",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 86,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 1.6,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 20.1,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 0.1,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 3.0,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_038",
+    "description": "White Potato, raw",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 77,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 2.0,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 17.5,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 0.1,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 2.2,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_039",
+    "description": "Corn, cooked",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 96,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 3.4,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 21.0,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 1.5,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 2.0,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_040",
+    "description": "Flour Tortilla",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 296,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 7.8,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 49.0,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 7.0,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 2.5,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_041",
+    "description": "Bagel, plain",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 270,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 10.5,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 52.0,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 1.7,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 2.1,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_042",
+    "description": "Pita Bread",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 275,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 9.1,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 55.7,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 1.2,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 2.2,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_043",
+    "description": "Broccoli, raw",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 34,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 2.8,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 6.6,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 0.4,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 2.6,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_044",
+    "description": "Spinach, raw",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 23,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 2.9,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 3.6,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 0.4,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 2.2,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_045",
+    "description": "Kale, raw",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 49,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 4.3,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 8.8,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 0.9,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 3.6,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_046",
+    "description": "Carrot, raw",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 41,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 0.9,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 9.6,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 0.2,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 2.8,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_047",
+    "description": "Tomato, raw",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 18,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 0.9,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 3.9,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 0.2,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 1.2,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_048",
+    "description": "Cucumber, raw",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 15,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 0.7,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 3.6,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 0.1,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 0.5,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_049",
+    "description": "Bell Pepper red, raw",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 31,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 1.0,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 6.0,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 0.3,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 2.1,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_050",
+    "description": "Avocado",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 160,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 2.0,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 8.5,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 14.7,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 6.7,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_051",
+    "description": "Onion, raw",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 40,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 1.1,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 9.3,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 0.1,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 1.7,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_052",
+    "description": "Mushrooms, raw",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 22,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 3.1,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 3.3,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 0.3,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 1.0,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_053",
+    "description": "Romaine Lettuce",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 17,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 1.2,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 3.3,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 0.3,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 2.1,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_054",
+    "description": "Green Beans, raw",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 31,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 1.8,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 7.0,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 0.2,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 2.7,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_055",
+    "description": "Banana",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 89,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 1.1,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 23.0,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 0.3,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 2.6,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_056",
+    "description": "Apple, raw",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 52,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 0.3,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 13.8,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 0.2,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 2.4,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_057",
+    "description": "Orange",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 47,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 0.9,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 11.8,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 0.1,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 2.4,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_058",
+    "description": "Strawberries, raw",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 32,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 0.7,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 7.7,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 0.3,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 2.0,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_059",
+    "description": "Blueberries, raw",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 57,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 0.7,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 14.5,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 0.3,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 2.4,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_060",
+    "description": "Mango, raw",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 60,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 0.8,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 15.0,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 0.4,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 1.6,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_061",
+    "description": "Grapes",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 69,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 0.7,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 18.1,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 0.2,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 0.9,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_062",
+    "description": "Watermelon",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 30,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 0.6,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 7.6,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 0.2,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 0.4,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_063",
+    "description": "Pineapple, raw",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 50,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 0.5,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 13.1,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 0.1,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 1.4,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_064",
+    "description": "Peach, raw",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 39,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 0.9,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 9.5,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 0.3,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 1.5,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_065",
+    "description": "Lentils, cooked",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 116,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 9.0,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 20.1,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 0.4,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 7.9,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_066",
+    "description": "Chickpeas, cooked",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 164,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 8.9,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 27.4,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 2.6,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 7.6,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_067",
+    "description": "Black Beans, cooked",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 132,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 8.9,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 23.7,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 0.5,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 8.7,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_068",
+    "description": "Kidney Beans, cooked",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 127,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 8.7,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 22.8,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 0.5,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 7.4,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_069",
+    "description": "Edamame, cooked",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 121,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 11.9,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 8.9,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 5.2,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 5.2,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_070",
+    "description": "Almonds, raw",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 579,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 21.2,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 21.6,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 49.9,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 12.5,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_071",
+    "description": "Peanut Butter, creamy",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 588,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 25.1,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 20.1,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 50.4,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 6.0,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_072",
+    "description": "Walnuts",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 654,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 15.2,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 13.7,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 65.2,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 6.7,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_073",
+    "description": "Cashews, raw",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 553,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 18.2,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 30.2,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 43.8,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 3.3,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_074",
+    "description": "Peanuts, dry roasted",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 585,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 23.7,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 21.5,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 49.7,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 8.5,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_075",
+    "description": "Olive Oil",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 884,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 0.0,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 0.0,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 100.0,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 0,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_076",
+    "description": "Coconut Oil",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 862,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 0.0,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 0.0,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 100.0,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 0,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_077",
+    "description": "Beef Burger patty plain",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 295,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 20.0,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 0.0,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 23.0,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 0,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_078",
+    "description": "Beef Burger with Bun",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 310,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 17.0,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 27.0,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 14.0,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 1.2,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_079",
+    "description": "Cheeseburger with Bun",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 360,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 18.0,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 27.0,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 19.0,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 1.2,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_080",
+    "description": "French Fries medium",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 312,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 3.4,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 41.0,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 15.0,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 3.8,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_081",
+    "description": "Pizza cheese slice",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 272,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 12.0,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 33.6,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 9.8,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 2.3,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_082",
+    "description": "Pizza pepperoni slice",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 313,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 13.7,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 33.0,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 13.8,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 2.2,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_083",
+    "description": "Fried Chicken Breast",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 246,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 28.0,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 11.0,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 10.0,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 0.4,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_084",
+    "description": "Chicken Nuggets",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 297,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 14.0,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 18.0,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 19.0,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 0.5,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_085",
+    "description": "Hot Dog with Bun",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 290,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 11.0,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 24.0,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 16.0,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 0.9,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_086",
+    "description": "Chicken Shawarma Wrap",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 230,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 17.0,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 27.0,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 6.0,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 2.0,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_087",
+    "description": "Falafel",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 333,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 13.3,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 31.8,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 17.8,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 4.9,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_088",
+    "description": "Hummus",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 177,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 7.9,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 20.1,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 8.6,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 6.0,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_089",
+    "description": "Sushi Rice",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 175,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 3.0,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 38.5,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 0.5,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 0.3,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_090",
+    "description": "Salmon Sushi Roll (piece)",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 36,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 1.7,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 5.0,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 0.7,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 0.1,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_091",
+    "description": "Potato Chips",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 536,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 7.0,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 53.0,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 35.0,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 4.4,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_092",
+    "description": "Granola Bar",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 471,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 9.8,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 64.0,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 19.6,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 4.0,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_093",
+    "description": "Dark Chocolate 70%",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 598,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 7.8,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 45.9,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 42.6,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 10.9,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_094",
+    "description": "Milk Chocolate",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 535,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 7.7,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 59.4,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 29.7,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 3.4,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_095",
+    "description": "Crackers, whole wheat",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 416,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 10.0,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 68.0,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 12.0,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 6.0,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_096",
+    "description": "Popcorn, air-popped",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 387,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 12.9,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 78.1,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 4.5,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 14.5,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_097",
+    "description": "Rice Cakes, plain",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 387,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 8.2,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 81.5,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 2.8,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 3.5,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_098",
+    "description": "Orange Juice",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 45,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 0.7,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 10.4,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 0.2,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 0.2,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_099",
+    "description": "Coffee, black",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 2,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 0.3,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 0.0,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 0.0,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 0,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_100",
+    "description": "Sports Drink",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 26,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 0.0,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 7.0,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 0.0,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 0,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_101",
+    "description": "Pancake, plain",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 227,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 6.4,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 38.0,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 5.4,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 1.3,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_102",
+    "description": "Waffle, plain",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 291,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 8.0,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 43.0,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 9.6,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 1.4,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_103",
+    "description": "Granola, dry",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 471,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 10.0,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 64.0,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 20.0,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 5.0,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_104",
+    "description": "Ketchup",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 112,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 1.3,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 28.4,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 0.1,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 0.3,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_105",
+    "description": "Mayonnaise",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 680,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 1.0,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 2.5,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 74.9,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 0,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_106",
+    "description": "Soy Sauce",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 60,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 5.6,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 8.3,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 0.1,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 0.8,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_107",
+    "description": "Ice Cream, vanilla",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 207,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 3.5,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 23.6,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 11.0,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 0.7,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_108",
+    "description": "Cheesecake",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 321,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 5.5,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 25.5,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 22.5,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 0.4,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_109",
+    "description": "Chicken Fried Rice",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 163,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 6.9,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 22.0,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 5.5,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 0.9,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_110",
+    "description": "Omelette 2-egg with cheese",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 229,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 16.5,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 1.5,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 17.5,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 0,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_111",
+    "description": "Protein Bar (avg)",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 368,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 30.0,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 38.0,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 10.0,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 5.0,
+        "unitName": "g"
+      }
+    ]
+  },
+  {
+    "id": "usda_112",
+    "description": "Caesar Salad no dressing",
+    "foodNutrients": [
+      {
+        "nutrientName": "Energy",
+        "value": 25,
+        "unitName": "kcal"
+      },
+      {
+        "nutrientName": "Protein",
+        "value": 2.0,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Carbohydrate, by difference",
+        "value": 2.5,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Total lipid (fat)",
+        "value": 0.5,
+        "unitName": "g"
+      },
+      {
+        "nutrientName": "Fiber, total dietary",
+        "value": 1.5,
+        "unitName": "g"
+      }
+    ]
+  }
+]

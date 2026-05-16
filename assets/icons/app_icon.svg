@@ -1,0 +1,21 @@
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="1024" height="1024" rx="230" fill="#38BDF8"/>
+
+  <!-- Barbell Icon -->
+  <g transform="translate(512, 512)">
+    <!-- Left weight plates -->
+    <rect x="-400" y="-120" width="90" height="240" rx="12" fill="white"/>
+    <rect x="-340" y="-150" width="60" height="300" rx="8" fill="white"/>
+
+    <!-- Long bar -->
+    <rect x="-280" y="-30" width="560" height="60" rx="30" fill="white"/>
+
+    <!-- Right weight plates -->
+    <rect x="310" y="-120" width="90" height="240" rx="12" fill="white"/>
+    <rect x="280" y="-150" width="60" height="300" rx="8" fill="white"/>
+
+    <!-- Center grip texture -->
+    <rect x="-60" y="-36" width="120" height="72" rx="6" fill="white" opacity="0.25"/>
+  </g>
+</svg>
