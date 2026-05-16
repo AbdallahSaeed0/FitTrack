@@ -4,7 +4,7 @@ import '../../data/models/github_release_model.dart';
 
 class UpdateService {
   // ⚠️  Replace with your GitHub username/repo before publishing
-  static const String githubRepo = 'YOUR_USERNAME/fittrack';
+  static const String githubRepo = 'AbdallahSaeed0/FitTrack';
   static const String _apiUrl =
       'https://api.github.com/repos/$githubRepo/releases/latest';
 
