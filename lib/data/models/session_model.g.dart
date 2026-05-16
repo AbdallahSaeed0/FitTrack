@@ -2,6 +2,10 @@
 
 part of 'session_model.dart';
 
+// **************************************************************************
+// TypeAdapterGenerator
+// **************************************************************************
+
 class LoggedSetModelAdapter extends TypeAdapter<LoggedSetModel> {
   @override
   final int typeId = 3;
@@ -18,7 +22,7 @@ class LoggedSetModelAdapter extends TypeAdapter<LoggedSetModel> {
       reps: fields[2] as int,
       actualRestSeconds: fields[3] as int,
       notes: fields[4] as String?,
-      loggedAt: fields[5] as DateTime,
+      loggedAt: fields[5] as DateTime?,
     );
   }
 
@@ -64,7 +68,7 @@ class LoggedExerciseModelAdapter extends TypeAdapter<LoggedExerciseModel> {
     return LoggedExerciseModel(
       exerciseId: fields[0] as String,
       exerciseName: fields[1] as String,
-      sets: (fields[2] as List).cast<LoggedSetModel>(),
+      sets: (fields[2] as List?)?.cast<LoggedSetModel>(),
     );
   }
 
@@ -108,7 +112,7 @@ class WorkoutSessionModelAdapter extends TypeAdapter<WorkoutSessionModel> {
       startTime: fields[3] as DateTime,
       endTime: fields[4] as DateTime?,
       durationMinutes: fields[5] as int,
-      exercises: (fields[6] as List).cast<LoggedExerciseModel>(),
+      exercises: (fields[6] as List?)?.cast<LoggedExerciseModel>(),
       completed: fields[7] as bool,
     );
   }

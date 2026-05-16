@@ -2,6 +2,10 @@
 
 part of 'user_profile_model.dart';
 
+// **************************************************************************
+// TypeAdapterGenerator
+// **************************************************************************
+
 class UserProfileModelAdapter extends TypeAdapter<UserProfileModel> {
   @override
   final int typeId = 6;
@@ -20,13 +24,14 @@ class UserProfileModelAdapter extends TypeAdapter<UserProfileModel> {
       useKg: fields[4] as bool,
       isFirstLaunch: fields[5] as bool,
       photoPath: fields[6] as String?,
+      fitnessGoal: fields[7] as String?,
     );
   }
 
   @override
   void write(BinaryWriter writer, UserProfileModel obj) {
     writer
-      ..writeByte(7)
+      ..writeByte(8)
       ..writeByte(0)
       ..write(obj.name)
       ..writeByte(1)
@@ -40,7 +45,9 @@ class UserProfileModelAdapter extends TypeAdapter<UserProfileModel> {
       ..writeByte(5)
       ..write(obj.isFirstLaunch)
       ..writeByte(6)
-      ..write(obj.photoPath);
+      ..write(obj.photoPath)
+      ..writeByte(7)
+      ..write(obj.fitnessGoal);
   }
 
   @override

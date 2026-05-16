@@ -2,6 +2,10 @@
 
 part of 'program_model.dart';
 
+// **************************************************************************
+// TypeAdapterGenerator
+// **************************************************************************
+
 class ProgramModelAdapter extends TypeAdapter<ProgramModel> {
   @override
   final int typeId = 2;
@@ -16,13 +20,13 @@ class ProgramModelAdapter extends TypeAdapter<ProgramModel> {
       id: fields[0] as String,
       name: fields[1] as String,
       isActive: fields[2] as bool,
-      days: (fields[3] as List).cast<WorkoutDayModel>(),
+      days: (fields[3] as List?)?.cast<WorkoutDayModel>(),
       splitType: fields[4] as String,
       goal: fields[5] as String,
       experienceLevel: fields[6] as String,
-      techniques: (fields[7] as List).cast<String>(),
+      techniques: (fields[7] as List?)?.cast<String>(),
       currentDayIndex: fields[8] as int,
-      createdAt: fields[9] as DateTime,
+      createdAt: fields[9] as DateTime?,
     );
   }
 

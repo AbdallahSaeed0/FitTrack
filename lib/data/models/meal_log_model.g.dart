@@ -2,6 +2,10 @@
 
 part of 'meal_log_model.dart';
 
+// **************************************************************************
+// TypeAdapterGenerator
+// **************************************************************************
+
 class MealLogAdapter extends TypeAdapter<MealLog> {
   @override
   final int typeId = 8;

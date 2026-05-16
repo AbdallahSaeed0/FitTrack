@@ -4,6 +4,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 import '../../core/services/update_service.dart';
+import '../../core/utils/photo_utils.dart';
+import '../../data/services/hive_service.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_theme.dart';
 import '../../data/models/user_profile_model.dart';
@@ -14,6 +16,7 @@ import '../../shared/widgets/update_dialog.dart';
 import '../nutrition/nutrition_provider.dart';
 import '../../core/services/water_reminder_service.dart';
 import 'progress_photos_screen.dart';
+import 'weight_history_screen.dart';
 
 class ProfileScreen extends ConsumerStatefulWidget {
   const ProfileScreen({super.key});
@@ -50,9 +53,11 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
       imageQuality: 85,
     );
     if (picked != null) {
+      // Copy to permanent app storage so the path survives cache clears
+      final permanentPath = await copyToAppDocuments(picked.path);
       final profile = ref.read(userProfileProvider);
       await ref.read(userProfileProvider.notifier).update(
-            profile.copyWith(photoPath: picked.path),
+            profile.copyWith(photoPath: permanentPath),
           );
     }
   }
@@ -216,6 +221,29 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
               onTap: () => Navigator.of(context).push(
                 MaterialPageRoute<void>(
                   builder: (_) => const ProgressPhotosScreen(),
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(height: 8),
+          Card(
+            child: ListTile(
+              leading: Container(
+                width: 40,
+                height: 40,
+                decoration: BoxDecoration(
+                  color: AppColors.activeDark.withAlpha(20),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: const Icon(Icons.history_rounded, color: AppColors.activeDark, size: 20),
+              ),
+              title: const Text('Weight History',
+                  style: TextStyle(fontWeight: FontWeight.w600)),
+              subtitle: const Text('All your logged sets & weights'),
+              trailing: const Icon(Icons.arrow_forward_ios_rounded, size: 14, color: Color(0xFF8899AA)),
+              onTap: () => Navigator.of(context).push(
+                MaterialPageRoute<void>(
+                  builder: (_) => const WeightHistoryScreen(),
                 ),
               ),
             ),
@@ -593,6 +621,7 @@ class _WaterReminderToggle extends ConsumerWidget {
         value: enabled,
         onChanged: (v) {
           ref.read(waterReminderEnabledProvider.notifier).state = v;
+          HiveService.settings.put('waterReminderEnabled', v);
           WaterReminderService().toggleReminders(v);
         },
         activeTrackColor: AppColors.activeDark,

@@ -2,6 +2,10 @@
 
 part of 'exercise_model.dart';
 
+// **************************************************************************
+// TypeAdapterGenerator
+// **************************************************************************
+
 class ExerciseModelAdapter extends TypeAdapter<ExerciseModel> {
   @override
   final int typeId = 0;
@@ -22,11 +26,11 @@ class ExerciseModelAdapter extends TypeAdapter<ExerciseModel> {
       restTime: fields[6] as String,
       technique: fields[7] as String,
       isNew: fields[8] as bool,
-      targetMuscles: (fields[9] as List).cast<String>(),
-      secondaryMuscles: (fields[10] as List).cast<String>(),
-      bodyParts: (fields[11] as List).cast<String>(),
-      equipments: (fields[12] as List).cast<String>(),
-      instructions: (fields[13] as List).cast<String>(),
+      targetMuscles: (fields[9] as List?)?.cast<String>(),
+      secondaryMuscles: (fields[10] as List?)?.cast<String>(),
+      bodyParts: (fields[11] as List?)?.cast<String>(),
+      equipments: (fields[12] as List?)?.cast<String>(),
+      instructions: (fields[13] as List?)?.cast<String>(),
     );
   }
 

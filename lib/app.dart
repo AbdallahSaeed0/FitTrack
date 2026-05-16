@@ -19,8 +19,10 @@ import 'features/profile/profile_screen.dart';
 import 'features/programs/create_program_flow.dart';
 import 'features/programs/program_detail_screen.dart';
 import 'features/programs/programs_screen.dart';
+import 'features/onboarding/onboarding_flow.dart';
 import 'features/workout/live_workout_screen.dart';
 import 'features/workout/workout_screen.dart';
+import 'shared/providers/user_profile_provider.dart';
 
 final _router = GoRouter(
   initialLocation: '/home',
@@ -107,6 +109,22 @@ class _FitTrackAppState extends ConsumerState<FitTrackApp> {
   @override
   Widget build(BuildContext context) {
     final themeMode = ref.watch(themeModeProvider);
+    final profile = ref.watch(userProfileProvider);
+
+    // Show onboarding on first launch; once markOnboarded() is called the
+    // provider state updates and this rebuilds automatically into the main app.
+    if (profile.isFirstLaunch) {
+      return MaterialApp(
+        title: 'FitTrack',
+        debugShowCheckedModeBanner: false,
+        theme: lightTheme(),
+        darkTheme: darkTheme(),
+        themeMode: themeMode,
+        scaffoldMessengerKey: scaffoldMessengerKey,
+        home: const OnboardingFlow(),
+      );
+    }
+
     return MaterialApp.router(
       title: 'FitTrack',
       debugShowCheckedModeBanner: false,

@@ -41,6 +41,27 @@ class SessionRepository {
     return HiveService.sessions.get(id);
   }
 
+  /// Returns the last [limit] completed sessions that contain [exerciseName],
+  /// each as the list of sets logged for that exercise.
+  List<({DateTime date, List<LoggedSetModel> sets})> getExerciseHistory(
+    String exerciseName, {
+    int limit = 5,
+  }) {
+    final result = <({DateTime date, List<LoggedSetModel> sets})>[];
+    for (final session in getAll().where((s) => s.completed)) {
+      for (final ex in session.exercises) {
+        if (ex.exerciseName.toLowerCase().trim() ==
+                exerciseName.toLowerCase().trim() &&
+            ex.sets.isNotEmpty) {
+          result.add((date: session.startTime, sets: ex.sets));
+          break;
+        }
+      }
+      if (result.length >= limit) break;
+    }
+    return result;
+  }
+
   int getConsecutiveWeeks() {
     final now = DateTime.now();
     int streak = 0;

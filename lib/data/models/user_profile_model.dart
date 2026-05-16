@@ -25,6 +25,9 @@ class UserProfileModel extends HiveObject {
   @HiveField(6)
   String? photoPath;
 
+  @HiveField(7)
+  String? fitnessGoal; // 'muscle', 'fat_loss', 'recomp', 'maintenance'
+
   UserProfileModel({
     this.name = 'Abdallah',
     this.age = 25,
@@ -33,6 +36,7 @@ class UserProfileModel extends HiveObject {
     this.useKg = true,
     this.isFirstLaunch = true,
     this.photoPath,
+    this.fitnessGoal,
   });
 
   UserProfileModel copyWith({
@@ -44,6 +48,7 @@ class UserProfileModel extends HiveObject {
     bool? isFirstLaunch,
     String? photoPath,
     bool clearPhoto = false,
+    String? fitnessGoal,
   }) {
     return UserProfileModel(
       name: name ?? this.name,
@@ -53,6 +58,7 @@ class UserProfileModel extends HiveObject {
       useKg: useKg ?? this.useKg,
       isFirstLaunch: isFirstLaunch ?? this.isFirstLaunch,
       photoPath: clearPhoto ? null : (photoPath ?? this.photoPath),
+      fitnessGoal: fitnessGoal ?? this.fitnessGoal,
     );
   }
 }

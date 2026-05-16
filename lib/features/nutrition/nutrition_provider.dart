@@ -41,8 +41,11 @@ final dailyNutritionGoalsProvider = StateProvider<NutritionGoals>(
   (ref) => const NutritionGoals(),
 );
 
-// Water reminder toggle
-final waterReminderEnabledProvider = StateProvider<bool>((ref) => true);
+// Water reminder toggle — persisted to Hive settings
+final waterReminderEnabledProvider = StateProvider<bool>((ref) {
+  final box = Hive.box('settings');
+  return box.get('waterReminderEnabled', defaultValue: true) as bool;
+});
 
 // Notifier for adding/removing meal logs
 class MealLogsNotifier extends Notifier<void> {

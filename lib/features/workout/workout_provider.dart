@@ -167,6 +167,15 @@ class WorkoutNotifier extends Notifier<WorkoutState> {
         await Vibration.vibrate(pattern: [0, 400, 200, 400]);
       }
     } catch (_) {}
+
+    // Auto-advance to next exercise when all sets for the current one are done
+    if (state.currentDay != null) {
+      final currentEx = state.currentDay!.exercises[state.currentExerciseIndex];
+      final logged = completedSetsForExercise(state.currentExerciseIndex);
+      if (logged >= currentEx.sets) {
+        nextExercise();
+      }
+    }
   }
 
   void skipRest() {
