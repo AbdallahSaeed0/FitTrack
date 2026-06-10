@@ -4,10 +4,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import 'package:url_launcher/url_launcher.dart';
 import '../../core/theme/app_theme.dart';
 import '../../core/utils/photo_utils.dart';
-import '../../shared/providers/api_key_provider.dart';
 import '../../shared/providers/user_profile_provider.dart';
 
 // ─── Page indices ─────────────────────────────────────────────────────────────
@@ -15,8 +13,7 @@ import '../../shared/providers/user_profile_provider.dart';
 const _kWelcome3 = 2;
 const _kPersonalInfo = 3;
 const _kPhoto = 4;
-const _kApiKey = 5;
-const _kTotal = 7;
+const _kTotal = 6;
 
 // ─── Main flow controller ─────────────────────────────────────────────────────
 
@@ -38,7 +35,6 @@ class _OnboardingFlowState extends ConsumerState<OnboardingFlow> {
   final _weightCtrl = TextEditingController();
   bool _useKg = true;
   String? _photoPath;
-  final _apiKeyCtrl = TextEditingController();
   String? _selectedGoal;
 
   bool _saving = false;
@@ -54,7 +50,6 @@ class _OnboardingFlowState extends ConsumerState<OnboardingFlow> {
     _useKg = profile.useKg;
     _photoPath = profile.photoPath;
     _selectedGoal = profile.fitnessGoal;
-    _apiKeyCtrl.text = ref.read(apiKeyProvider);
   }
 
   @override
@@ -64,7 +59,6 @@ class _OnboardingFlowState extends ConsumerState<OnboardingFlow> {
     _ageCtrl.dispose();
     _heightCtrl.dispose();
     _weightCtrl.dispose();
-    _apiKeyCtrl.dispose();
     super.dispose();
   }
 
@@ -111,11 +105,6 @@ class _OnboardingFlowState extends ConsumerState<OnboardingFlow> {
       isFirstLaunch: false,
     );
     await ref.read(userProfileProvider.notifier).update(updated);
-
-    final apiKey = _apiKeyCtrl.text.trim();
-    if (apiKey.isNotEmpty) {
-      await ref.read(apiKeyProvider.notifier).save(apiKey);
-    }
 
     if (mounted) setState(() => _saving = false);
     // State change causes FitTrackApp to rebuild → routes to main app automatically
@@ -181,7 +170,6 @@ class _OnboardingFlowState extends ConsumerState<OnboardingFlow> {
                     photoPath: _photoPath,
                     onPhotoChanged: (p) => setState(() => _photoPath = p),
                   ),
-                  _ApiKeyPage(controller: _apiKeyCtrl),
                   _GoalsPage(
                     selected: _selectedGoal,
                     onSelected: (g) => setState(() => _selectedGoal = g),
@@ -314,7 +302,7 @@ class _NavBar extends StatelessWidget {
   bool get _isWelcome => currentPage < _kPersonalInfo;
   bool get _isLast => currentPage == _kTotal - 1;
   bool get _canSkip =>
-      currentPage == _kPhoto || currentPage == _kApiKey;
+      currentPage == _kPhoto;
 
   @override
   Widget build(BuildContext context) {
@@ -695,178 +683,7 @@ class _PhotoPageState extends State<_PhotoPage> {
   }
 }
 
-// ─── PAGE 5: API Key ──────────────────────────────────────────────────────────
-
-class _ApiKeyPage extends StatefulWidget {
-  final TextEditingController controller;
-  const _ApiKeyPage({required this.controller});
-
-  @override
-  State<_ApiKeyPage> createState() => _ApiKeyPageState();
-}
-
-class _ApiKeyPageState extends State<_ApiKeyPage> {
-  bool _showInstructions = false;
-  bool _obscure = true;
-
-  @override
-  Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      padding: const EdgeInsets.fromLTRB(24, 24, 24, 8),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text('WorkoutX API Key',
-              style: Theme.of(context)
-                  .textTheme
-                  .headlineLarge
-                  ?.copyWith(fontWeight: FontWeight.w800)),
-          const SizedBox(height: 6),
-          Text(
-            'Optional — enables animated GIFs for exercises. Completely free.',
-            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                color: Theme.of(context).textTheme.bodySmall?.color),
-          ),
-          const SizedBox(height: 24),
-
-          // Key input
-          TextField(
-            controller: widget.controller,
-            obscureText: _obscure,
-            decoration: InputDecoration(
-              labelText: 'API Key',
-              hintText: 'wx_your_key_here',
-              prefixIcon: const Icon(Icons.vpn_key_rounded),
-              suffixIcon: IconButton(
-                icon: Icon(
-                  _obscure
-                      ? Icons.visibility_rounded
-                      : Icons.visibility_off_rounded,
-                  size: 20,
-                ),
-                onPressed: () => setState(() => _obscure = !_obscure),
-              ),
-            ),
-          ),
-          const SizedBox(height: 20),
-
-          // Collapsible instructions
-          GestureDetector(
-            onTap: () =>
-                setState(() => _showInstructions = !_showInstructions),
-            child: Container(
-              padding: const EdgeInsets.all(14),
-              decoration: BoxDecoration(
-                color: steelBlue.withAlpha(15),
-                borderRadius: BorderRadius.circular(12),
-                border: Border.all(color: steelBlue.withAlpha(50)),
-              ),
-              child: Row(
-                children: [
-                  const Icon(Icons.help_outline_rounded,
-                      color: steelBlue, size: 18),
-                  const SizedBox(width: 10),
-                  Expanded(
-                    child: Text(
-                      'How to get a free API key',
-                      style: TextStyle(
-                        color: steelBlue,
-                        fontWeight: FontWeight.w700,
-                        fontSize: 14,
-                      ),
-                    ),
-                  ),
-                  Icon(
-                    _showInstructions
-                        ? Icons.keyboard_arrow_up_rounded
-                        : Icons.keyboard_arrow_down_rounded,
-                    color: steelBlue,
-                  ),
-                ],
-              ),
-            ),
-          ),
-
-          if (_showInstructions) ...[
-            const SizedBox(height: 10),
-            Container(
-              padding: const EdgeInsets.all(14),
-              decoration: BoxDecoration(
-                color: Theme.of(context).cardTheme.color,
-                borderRadius: BorderRadius.circular(12),
-                border: Border.all(
-                    color: Theme.of(context).dividerColor.withAlpha(60)),
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  ...[
-                    'Visit dashboard.workoutxapp.com',
-                    'Click "Get Started Free"',
-                    'Create your free account',
-                    'Copy your API key from the dashboard',
-                    'Paste it in the field above',
-                  ].asMap().entries.map(
-                    (e) => Padding(
-                      padding: const EdgeInsets.only(bottom: 10),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            width: 22,
-                            height: 22,
-                            margin: const EdgeInsets.only(top: 1, right: 10),
-                            decoration: const BoxDecoration(
-                              color: steelBlue,
-                              shape: BoxShape.circle,
-                            ),
-                            child: Center(
-                              child: Text(
-                                '${e.key + 1}',
-                                style: const TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 11,
-                                    fontWeight: FontWeight.w700),
-                              ),
-                            ),
-                          ),
-                          Expanded(
-                            child: Text(e.value,
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyMedium),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 4),
-                  SizedBox(
-                    width: double.infinity,
-                    child: OutlinedButton.icon(
-                      onPressed: () => launchUrl(
-                        Uri.parse('https://dashboard.workoutxapp.com'),
-                        mode: LaunchMode.externalApplication,
-                      ),
-                      icon: const Icon(Icons.open_in_new_rounded, size: 16),
-                      label: const Text('Open WorkoutX Dashboard'),
-                      style: OutlinedButton.styleFrom(
-                        foregroundColor: steelBlue,
-                        side: BorderSide(color: steelBlue.withAlpha(80)),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ],
-      ),
-    );
-  }
-}
-
-// ─── PAGE 6: Fitness goals ────────────────────────────────────────────────────
+// ─── PAGE 5: Fitness goals ────────────────────────────────────────────────────
 
 class _GoalsPage extends StatelessWidget {
   final String? selected;

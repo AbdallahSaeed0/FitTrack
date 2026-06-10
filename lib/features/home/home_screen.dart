@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -5,6 +6,10 @@ import 'package:intl/intl.dart';
 import '../../core/theme/app_theme.dart';
 import '../../core/utils/date_utils.dart';
 import '../../data/models/session_model.dart';
+import '../../data/models/user_profile_model.dart';
+import '../../data/repositories/program_repository.dart';
+import '../../data/repositories/session_repository.dart';
+import '../../shared/providers/shell_tab_provider.dart';
 import '../../shared/providers/user_profile_provider.dart';
 import '../../shared/widgets/stat_card.dart';
 import '../home/home_provider.dart';
@@ -28,7 +33,17 @@ class HomeScreen extends ConsumerWidget {
 
     return Scaffold(
       body: SafeArea(
-        child: CustomScrollView(
+        child: RefreshIndicator(
+          onRefresh: () async {
+            await Future.wait([
+              SessionRepository.instance.fetchFromRemote(),
+              ProgramRepository.instance.fetchFromRemote(),
+            ]);
+            ref.read(homeRefreshProvider.notifier).refresh();
+            ref.read(programsProvider.notifier).refresh();
+          },
+          color: primaryRed,
+          child: CustomScrollView(
           slivers: [
             SliverToBoxAdapter(
               child: Padding(
@@ -36,13 +51,28 @@ class HomeScreen extends ConsumerWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      'Welcome back,',
-                      style: Theme.of(context).textTheme.bodyLarge,
-                    ),
-                    Text(
-                      profile.name,
-                      style: Theme.of(context).textTheme.headlineLarge,
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Welcome back,',
+                                style: Theme.of(context).textTheme.bodyLarge,
+                              ),
+                              Text(
+                                profile.name,
+                                style:
+                                    Theme.of(context).textTheme.headlineLarge,
+                              ),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(width: 12),
+                        _ProfileAvatar(profile: profile),
+                      ],
                     ),
                     const SizedBox(height: 20),
                     Row(
@@ -177,6 +207,51 @@ class HomeScreen extends ConsumerWidget {
             ),
           ],
         ),
+        ),
+      ),
+    );
+  }
+}
+
+class _ProfileAvatar extends ConsumerWidget {
+  final UserProfileModel profile;
+  const _ProfileAvatar({required this.profile});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final path = profile.photoPath;
+    final initial =
+        profile.name.isNotEmpty ? profile.name[0].toUpperCase() : 'U';
+    ImageProvider? bgImage;
+    if (path != null && path.isNotEmpty) {
+      try {
+        if (path.startsWith('http') || path.startsWith('blob:') ||
+            path.startsWith('data:') || path.startsWith('file://')) {
+          bgImage = NetworkImage(path);
+        } else {
+          bgImage = FileImage(File(path));
+        }
+      } catch (_) {
+        bgImage = null;
+      }
+    }
+    return InkWell(
+      onTap: () => ref.read(shellTabProvider.notifier).state = 5,
+      borderRadius: BorderRadius.circular(26),
+      child: CircleAvatar(
+        radius: 26,
+        backgroundColor: primaryRed.withAlpha(30),
+        backgroundImage: bgImage,
+        child: bgImage == null
+            ? Text(
+                initial,
+                style: const TextStyle(
+                  color: primaryRed,
+                  fontWeight: FontWeight.w700,
+                  fontSize: 18,
+                ),
+              )
+            : null,
       ),
     );
   }

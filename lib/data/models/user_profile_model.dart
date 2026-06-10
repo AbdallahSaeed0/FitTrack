@@ -1,35 +1,15 @@
-import 'package:hive/hive.dart';
-
-part 'user_profile_model.g.dart';
-
-@HiveType(typeId: 6)
-class UserProfileModel extends HiveObject {
-  @HiveField(0)
+class UserProfileModel {
   String name;
-
-  @HiveField(1)
   int age;
-
-  @HiveField(2)
   double height;
-
-  @HiveField(3)
   double weight;
-
-  @HiveField(4)
   bool useKg;
-
-  @HiveField(5)
   bool isFirstLaunch;
-
-  @HiveField(6)
   String? photoPath;
-
-  @HiveField(7)
-  String? fitnessGoal; // 'muscle', 'fat_loss', 'recomp', 'maintenance'
+  String? fitnessGoal;
 
   UserProfileModel({
-    this.name = 'Abdallah',
+    this.name = 'User',
     this.age = 25,
     this.height = 175,
     this.weight = 75,
@@ -61,4 +41,48 @@ class UserProfileModel extends HiveObject {
       fitnessGoal: fitnessGoal ?? this.fitnessGoal,
     );
   }
+
+  /// Full serialization — used for **local cache** only.
+  /// Includes `photo_path` (device-local, not pushed to Supabase).
+  Map<String, dynamic> toRow() => {
+        'name': name,
+        'age': age,
+        'height': height,
+        'weight': weight,
+        'use_kg': useKg,
+        'is_first_launch': isFirstLaunch,
+        'fitness_goal': fitnessGoal,
+        'photo_path': photoPath,
+      };
+
+  /// Subset sent to Supabase — includes avatar_url (remote URL), not the
+  /// device-local photo_path field used only for the local cache.
+  Map<String, dynamic> toSupabaseRow() => {
+        'name': name,
+        'age': age,
+        'height': height,
+        'weight': weight,
+        'use_kg': useKg,
+        'is_first_launch': isFirstLaunch,
+        'fitness_goal': fitnessGoal,
+        // Only send to Supabase when it's an actual remote URL.
+        if (photoPath != null && photoPath!.startsWith('http'))
+          'avatar_url': photoPath,
+      };
+
+  factory UserProfileModel.fromRow(Map<String, dynamic> row) =>
+      UserProfileModel(
+        name: row['name'] as String? ?? 'User',
+        age: (row['age'] as num?)?.toInt() ?? 25,
+        height: (row['height'] as num?)?.toDouble() ?? 175,
+        weight: (row['weight'] as num?)?.toDouble() ?? 75,
+        useKg: row['use_kg'] as bool? ?? true,
+        isFirstLaunch: row['is_first_launch'] as bool? ?? true,
+        fitnessGoal: row['fitness_goal'] as String?,
+        // Prefer remote avatar_url (persistent); fall back to local photo_path
+        // (cached from before Supabase Storage was introduced).
+        photoPath: (row['avatar_url'] as String?)?.isNotEmpty == true
+            ? row['avatar_url'] as String
+            : row['photo_path'] as String?,
+      );
 }

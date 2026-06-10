@@ -1,3 +1,5 @@
+import 'dart:convert';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -65,7 +67,8 @@ class _CreateProgramFlowState extends ConsumerState<CreateProgramFlow> {
   Widget _buildStep() {
     switch (_step) {
       case 0:
-        return _StepChooseSplit(onSelect: _onSplitSelected);
+        return _StepChooseSplit(
+            onSelect: _onSplitSelected, onImport: _importFromFile);
       case 1:
         if (_selectedSplit == 'custom') {
           return _CustomSplitBuilder(
@@ -96,6 +99,43 @@ class _CreateProgramFlowState extends ConsumerState<CreateProgramFlow> {
         );
       default:
         return const SizedBox.shrink();
+    }
+  }
+
+  Future<void> _importFromFile() async {
+    try {
+      final result = await FilePicker.platform.pickFiles(
+        type: FileType.custom,
+        allowedExtensions: ['json'],
+        withData: true,
+      );
+      if (result == null || result.files.isEmpty) return;
+      final bytes = result.files.first.bytes;
+      if (bytes == null) return;
+
+      final json = jsonDecode(utf8.decode(bytes)) as Map<String, dynamic>;
+      final program = ProgramModel.fromJson(json);
+
+      // Give it a fresh ID to avoid collision
+      final imported = ProgramModel(
+        id: const Uuid().v4(),
+        name: program.name,
+        splitType: program.splitType,
+        goal: program.goal,
+        days: program.days,
+      );
+
+      await ref.read(programsProvider.notifier).addProgram(imported);
+      if (mounted) {
+        context.pop();
+        context.push('/programs/${imported.id}');
+      }
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Could not import file: $e')),
+        );
+      }
     }
   }
 
@@ -227,7 +267,8 @@ class _CreateProgramFlowState extends ConsumerState<CreateProgramFlow> {
 
 class _StepChooseSplit extends StatelessWidget {
   final void Function(String) onSelect;
-  const _StepChooseSplit({required this.onSelect});
+  final VoidCallback onImport;
+  const _StepChooseSplit({required this.onSelect, required this.onImport});
 
   @override
   Widget build(BuildContext context) {
@@ -268,6 +309,22 @@ class _StepChooseSplit extends StatelessWidget {
           title: 'Custom Split',
           subtitle: 'Build your own · Full control',
           onTap: () => onSelect('custom'),
+        ),
+        const SizedBox(height: 24),
+        const Divider(),
+        const SizedBox(height: 12),
+        Text('Or import an existing program',
+            style: Theme.of(context)
+                .textTheme
+                .bodySmall
+                ?.copyWith(color: const Color(0xFF8899AA))),
+        const SizedBox(height: 10),
+        _SplitCard(
+          icon: Icons.upload_file_rounded,
+          iconColor: tealSuccess,
+          title: 'Import from JSON',
+          subtitle: 'Load a previously exported program file',
+          onTap: onImport,
         ),
       ],
     );

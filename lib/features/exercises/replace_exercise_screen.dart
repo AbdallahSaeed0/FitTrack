@@ -27,6 +27,11 @@ class ReplaceExerciseScreen extends ConsumerStatefulWidget {
   ConsumerState<ReplaceExerciseScreen> createState() => _ReplaceExerciseScreenState();
 }
 
+const _kBodyParts = [
+  'back', 'chest', 'shoulders', 'upper arms',
+  'upper legs', 'lower legs', 'waist', 'lower arms',
+];
+
 class _ReplaceExerciseScreenState extends ConsumerState<ReplaceExerciseScreen> {
   final _searchController = TextEditingController();
   ExerciseModel? _selected;
@@ -37,7 +42,7 @@ class _ReplaceExerciseScreenState extends ConsumerState<ReplaceExerciseScreen> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final bodyPart = widget.currentExercise.bodyParts.isNotEmpty
           ? widget.currentExercise.bodyParts.first
-          : 'chest';
+          : 'back';
       ref.read(exerciseSearchProvider.notifier).loadSimilar(bodyPart);
     });
   }
@@ -48,9 +53,20 @@ class _ReplaceExerciseScreenState extends ConsumerState<ReplaceExerciseScreen> {
     super.dispose();
   }
 
+  String _label(String bp) {
+    const labels = {
+      'upper arms': 'Arms',
+      'upper legs': 'Legs',
+      'lower legs': 'Calves',
+      'lower arms': 'Forearms',
+    };
+    return labels[bp] ?? bp[0].toUpperCase() + bp.substring(1);
+  }
+
   @override
   Widget build(BuildContext context) {
     final searchState = ref.watch(exerciseSearchProvider);
+    final selectedBp = searchState.selectedBodyPart;
 
     return Scaffold(
       appBar: AppBar(
@@ -62,8 +78,9 @@ class _ReplaceExerciseScreenState extends ConsumerState<ReplaceExerciseScreen> {
       ),
       body: Column(
         children: [
+          // ── Search field ────────────────────────────────────────────────
           Padding(
-            padding: const EdgeInsets.all(16),
+            padding: const EdgeInsets.fromLTRB(16, 12, 16, 8),
             child: TextField(
               controller: _searchController,
               decoration: InputDecoration(
@@ -74,37 +91,72 @@ class _ReplaceExerciseScreenState extends ConsumerState<ReplaceExerciseScreen> {
                         icon: const Icon(Icons.clear_rounded),
                         onPressed: () {
                           _searchController.clear();
-                          final bodyPart = widget.currentExercise.bodyParts.isNotEmpty
-                              ? widget.currentExercise.bodyParts.first
-                              : 'chest';
-                          ref.read(exerciseSearchProvider.notifier).loadSimilar(bodyPart);
+                          ref
+                              .read(exerciseSearchProvider.notifier)
+                              .search('', bodyPart: selectedBp);
                         },
                       )
                     : null,
               ),
               onChanged: (q) {
-                if (q.length > 2) {
-                  ref.read(exerciseSearchProvider.notifier).search(q);
-                } else if (q.isEmpty) {
-                  final bodyPart = widget.currentExercise.bodyParts.isNotEmpty
-                      ? widget.currentExercise.bodyParts.first
-                      : 'chest';
-                  ref.read(exerciseSearchProvider.notifier).loadSimilar(bodyPart);
-                }
+                ref.read(exerciseSearchProvider.notifier).search(q);
               },
             ),
           ),
+          // ── Body-part filter chips ───────────────────────────────────────
+          SizedBox(
+            height: 38,
+            child: ListView.separated(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              scrollDirection: Axis.horizontal,
+              itemCount: _kBodyParts.length,
+              separatorBuilder: (_, __) => const SizedBox(width: 8),
+              itemBuilder: (context, i) {
+                final bp = _kBodyParts[i];
+                final active = selectedBp == bp;
+                return FilterChip(
+                  label: Text(_label(bp)),
+                  selected: active,
+                  onSelected: (_) {
+                    final next = active ? null : bp;
+                    ref.read(exerciseSearchProvider.notifier).setBodyPart(
+                          next,
+                          currentQuery: _searchController.text,
+                        );
+                  },
+                  selectedColor: tealSuccess.withAlpha(40),
+                  checkmarkColor: tealSuccess,
+                  labelStyle: TextStyle(
+                    color: active ? tealSuccess : null,
+                    fontWeight:
+                        active ? FontWeight.w700 : FontWeight.normal,
+                    fontSize: 12,
+                  ),
+                  side: BorderSide(
+                    color: active
+                        ? tealSuccess
+                        : Theme.of(context).dividerColor.withAlpha(80),
+                  ),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 4, vertical: 0),
+                  visualDensity: VisualDensity.compact,
+                  showCheckmark: false,
+                );
+              },
+            ),
+          ),
+          const SizedBox(height: 10),
+          // ── Result label ────────────────────────────────────────────────
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Row(
-              children: [
-                Text(
-                  _searchController.text.isEmpty
-                      ? 'Similar Exercises (Same Muscle Group)'
-                      : 'Search Results',
-                  style: Theme.of(context).textTheme.titleMedium,
-                ),
-              ],
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                _searchController.text.isEmpty && selectedBp == null
+                    ? 'Similar Exercises'
+                    : 'Results (${searchState.results.length})',
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
             ),
           ),
           const SizedBox(height: 8),

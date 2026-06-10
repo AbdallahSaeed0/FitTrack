@@ -4,12 +4,13 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 import '../../core/services/update_service.dart';
-import '../../core/utils/photo_utils.dart';
-import '../../data/services/hive_service.dart';
+import '../../core/utils/image_bytes_saver.dart';
 import '../../core/theme/app_colors.dart';
+import '../../shared/screens/crop_image_screen.dart';
 import '../../core/theme/app_theme.dart';
 import '../../data/models/user_profile_model.dart';
-import '../../shared/providers/api_key_provider.dart';
+import 'package:supabase_flutter/supabase_flutter.dart' show FileOptions;
+import '../../core/services/supabase_service.dart';
 import '../../shared/providers/theme_provider.dart';
 import '../../shared/providers/user_profile_provider.dart';
 import '../../shared/widgets/update_dialog.dart';
@@ -17,6 +18,8 @@ import '../nutrition/nutrition_provider.dart';
 import '../../core/services/water_reminder_service.dart';
 import 'progress_photos_screen.dart';
 import 'weight_history_screen.dart';
+import '../achievements/achievements_provider.dart';
+import '../achievements/achievements_screen.dart';
 
 class ProfileScreen extends ConsumerStatefulWidget {
   const ProfileScreen({super.key});
@@ -48,18 +51,135 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
   Future<void> _pickPhoto() async {
     final picked = await _picker.pickImage(
       source: ImageSource.gallery,
-      maxWidth: 512,
-      maxHeight: 512,
-      imageQuality: 85,
+      maxWidth: 1024,
+      maxHeight: 1024,
+      imageQuality: 90,
     );
-    if (picked != null) {
-      // Copy to permanent app storage so the path survives cache clears
-      final permanentPath = await copyToAppDocuments(picked.path);
+    if (picked == null || !mounted) return;
+
+    // Read bytes immediately so crop screen has them ready.
+    final rawBytes = await picked.readAsBytes();
+    if (!mounted) return;
+
+    // Open full-screen crop UI — 1:1 square with circle overlay for the avatar.
+    final croppedBytes = await Navigator.push<Uint8List>(
+      context,
+      MaterialPageRoute(
+        builder: (_) => CropImageScreen(
+          file: picked,
+          preloadedBytes: rawBytes,
+          aspectRatio: 1.0,
+          withCircleUi: true,
+        ),
+      ),
+    );
+    if (croppedBytes == null || !mounted) return;
+
+    // Show uploading indicator
+    if (mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Row(children: [
+            SizedBox(width: 16, height: 16,
+                child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white)),
+            SizedBox(width: 12),
+            Text('Uploading photo…'),
+          ]),
+          duration: Duration(seconds: 10),
+        ),
+      );
+    }
+
+    String photoPath;
+    String? uploadError;
+    try {
+      // Upload to Supabase Storage — gives us a persistent public URL.
+      photoPath = await _uploadAvatarToStorage(croppedBytes);
+    } catch (e) {
+      uploadError = e.toString();
+      debugPrint('[ProfileScreen] Storage upload failed: $e');
+      // Fall back: save locally and use a file path.
+      photoPath = await saveCroppedBytes(croppedBytes);
+    }
+
+    if (!mounted) return;
+    ScaffoldMessenger.of(context).hideCurrentSnackBar();
+
+    if (uploadError != null) {
+      // Show the actual error so we can diagnose it.
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Upload failed: $uploadError'),
+          backgroundColor: Colors.red,
+          duration: const Duration(seconds: 8),
+        ),
+      );
+      return;
+    }
+
+    String? dbError;
+    try {
       final profile = ref.read(userProfileProvider);
       await ref.read(userProfileProvider.notifier).update(
-            profile.copyWith(photoPath: permanentPath),
+            profile.copyWith(photoPath: photoPath),
           );
+    } catch (e) {
+      dbError = e.toString();
+      debugPrint('[ProfileScreen] DB save failed: $e');
     }
+
+    // Evict image cache so the updated avatar shows everywhere immediately.
+    PaintingBinding.instance.imageCache.clear();
+    PaintingBinding.instance.imageCache.clearLiveImages();
+
+    if (!mounted) return;
+    if (dbError != null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('DB save failed: $dbError'),
+          backgroundColor: Colors.red,
+          duration: const Duration(seconds: 8),
+        ),
+      );
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Profile photo updated!')),
+      );
+    }
+  }
+
+  /// Uploads [bytes] to Supabase Storage under `avatars/<userId>.jpg`,
+  /// then writes the public URL directly into `profiles.avatar_url`.
+  /// Returns the public URL (with cache-buster).
+  Future<String> _uploadAvatarToStorage(Uint8List bytes) async {
+    final userId = SupabaseService.userId;
+    const bucket = 'avatars';
+    final storagePath = '$userId.jpg';
+
+    // 1. Upload file (upsert = replace if exists).
+    await SupabaseService.client.storage.from(bucket).uploadBinary(
+      storagePath,
+      bytes,
+      fileOptions: FileOptions(
+        contentType: 'image/jpeg',
+        upsert: true,
+      ),
+    );
+
+    // 2. Build public URL with cache-buster.
+    final publicUrl =
+        SupabaseService.client.storage.from(bucket).getPublicUrl(storagePath);
+    final cacheBust = DateTime.now().millisecondsSinceEpoch;
+    final urlWithBust = '$publicUrl?v=$cacheBust';
+
+    // 3. Persist the URL directly into the profiles table — explicit, no
+    //    silent swallowing.  This throws on failure so the caller sees the error.
+    await SupabaseService.client
+        .from('profiles')
+        .update({'avatar_url': urlWithBust})
+        .eq('id', userId);
+
+    return urlWithBust;
   }
 
   @override
@@ -86,9 +206,18 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
               style: const TextStyle(color: primaryRed, fontWeight: FontWeight.w600),
             ),
           ),
+          IconButton(
+            icon: const Icon(Icons.logout_rounded),
+            tooltip: 'Log out',
+            onPressed: () => _confirmLogout(context),
+          ),
         ],
       ),
-      body: ListView(
+      body: RefreshIndicator(
+        onRefresh: () async => ref.invalidate(userProfileProvider),
+        color: AppColors.primary,
+        child: ListView(
+        physics: const AlwaysScrollableScrollPhysics(),
         padding: const EdgeInsets.all(20),
         children: [
           Center(
@@ -127,7 +256,13 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
           if (_editing) ...[
             TextField(
               controller: _nameController,
-              decoration: const InputDecoration(labelText: 'Name'),
+              textCapitalization: TextCapitalization.words,
+              decoration: const InputDecoration(
+                labelText: 'Name',
+                helperText: 'This is also your login username',
+                helperStyle: TextStyle(fontSize: 11),
+                prefixIcon: Icon(Icons.person_outline_rounded, size: 20),
+              ),
             ),
             const SizedBox(height: 12),
             Row(
@@ -199,6 +334,10 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
           const SizedBox(height: 12),
           _ThemeToggle(),
           const SizedBox(height: 24),
+          _SectionHeader(title: 'Achievements'),
+          const SizedBox(height: 12),
+          _AchievementsCard(),
+          const SizedBox(height: 24),
           _SectionHeader(title: 'Tracking'),
           const SizedBox(height: 12),
           _WaterReminderToggle(),
@@ -249,10 +388,6 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
             ),
           ),
           const SizedBox(height: 24),
-          _SectionHeader(title: 'API Settings'),
-          const SizedBox(height: 12),
-          const _ApiKeyCard(),
-          const SizedBox(height: 24),
           _SectionHeader(title: 'App Updates'),
           const SizedBox(height: 12),
           const _UpdateCard(),
@@ -262,41 +397,82 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
           const _InfoTile(label: 'App', value: 'FitTrack'),
           const _InfoTile(label: 'Developer', value: 'Abdallah Saeed'),
         ],
+        ),
       ),
     );
   }
 
   Widget _buildAvatar(UserProfileModel profile) {
     final hasPhoto = profile.photoPath != null && profile.photoPath!.isNotEmpty;
-    final file = hasPhoto ? File(profile.photoPath!) : null;
-    final fileExists = file != null && file.existsSync();
+
+    ImageProvider? imageProvider;
+    if (hasPhoto) {
+      final p = profile.photoPath!;
+      if (p.startsWith('http') || p.startsWith('blob:') || p.startsWith('data:')) {
+        // Remote URL (Supabase Storage) or web data URL
+        imageProvider = NetworkImage(p);
+      } else if (p.startsWith('file://')) {
+        imageProvider = NetworkImage(p);
+      } else {
+        // Native absolute path fallback (pre-upload era)
+        imageProvider = FileImage(File(p));
+      }
+    }
 
     return Container(
       width: 88,
       height: 88,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        color: fileExists ? null : primaryRed,
-        image: fileExists
-            ? DecorationImage(image: FileImage(file), fit: BoxFit.cover)
+        color: imageProvider == null ? primaryRed : null,
+        image: imageProvider != null
+            ? DecorationImage(image: imageProvider, fit: BoxFit.cover)
             : null,
       ),
-      child: fileExists
-          ? null
-          : Center(
+      child: imageProvider == null
+          ? Center(
               child: Text(
                 profile.name.isNotEmpty ? profile.name[0].toUpperCase() : 'A',
                 style: const TextStyle(color: Colors.white, fontSize: 34, fontWeight: FontWeight.w800),
               ),
-            ),
+            )
+          : null,
     );
+  }
+
+  Future<void> _confirmLogout(BuildContext context) async {
+    final ok = await showDialog<bool>(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: const Text('Log Out?'),
+        content: const Text('You will be returned to the login screen.'),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(ctx, false),
+            child: const Text('Cancel'),
+          ),
+          TextButton(
+            onPressed: () => Navigator.pop(ctx, true),
+            child: const Text('Log Out',
+                style: TextStyle(color: primaryRed)),
+          ),
+        ],
+      ),
+    );
+    if (ok == true) {
+      await SupabaseService.client.auth.signOut();
+    }
   }
 
   Future<void> _saveProfile() async {
     HapticFeedback.selectionClick();
     final current = ref.read(userProfileProvider);
+    final newName = _nameController.text.trim().isNotEmpty
+        ? _nameController.text.trim()
+        : 'User';
+
     final updated = UserProfileModel(
-      name: _nameController.text.trim().isNotEmpty ? _nameController.text.trim() : 'User',
+      name: newName,
       age: int.tryParse(_ageController.text) ?? 25,
       height: double.tryParse(_heightController.text) ?? 175,
       weight: double.tryParse(_weightController.text) ?? 75,
@@ -305,10 +481,25 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
       photoPath: current.photoPath,
     );
     await ref.read(userProfileProvider.notifier).update(updated);
+
+    // Keep login_email in sync so the user can always log in with their
+    // current display name.  Requires the SQL migration:
+    //   ALTER TABLE profiles ADD COLUMN IF NOT EXISTS login_email TEXT;
+    final authEmail = SupabaseService.currentUser?.email;
+    if (authEmail != null) {
+      try {
+        await SupabaseService.client
+            .from('profiles')
+            .update({'login_email': authEmail, 'name': newName})
+            .eq('id', SupabaseService.userId);
+      } catch (_) {}
+    }
+
     setState(() => _editing = false);
     if (mounted) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Profile saved'), backgroundColor: tealSuccess),
+        const SnackBar(
+            content: Text('Profile saved'), backgroundColor: tealSuccess),
       );
     }
   }
@@ -368,141 +559,6 @@ class _SectionHeader extends StatelessWidget {
   }
 }
 
-class _ApiKeyCard extends ConsumerStatefulWidget {
-  const _ApiKeyCard();
-
-  @override
-  ConsumerState<_ApiKeyCard> createState() => _ApiKeyCardState();
-}
-
-class _ApiKeyCardState extends ConsumerState<_ApiKeyCard> {
-  late TextEditingController _controller;
-  bool _editing = false;
-  bool _visible = false;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = TextEditingController(text: ref.read(apiKeyProvider));
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
-  Future<void> _save() async {
-    final messenger = ScaffoldMessenger.of(context);
-    await ref.read(apiKeyProvider.notifier).save(_controller.text);
-    setState(() => _editing = false);
-    messenger.showSnackBar(
-      const SnackBar(content: Text('API key saved'), backgroundColor: tealSuccess),
-    );
-  }
-
-  void _cancel() {
-    _controller.text = ref.read(apiKeyProvider);
-    setState(() => _editing = false);
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final hasKey = ref.watch(apiKeyProvider).isNotEmpty;
-
-    return Card(
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                const Icon(Icons.api_rounded, size: 18, color: steelBlue),
-                const SizedBox(width: 8),
-                Expanded(
-                  child: Text(
-                    'WorkoutX API Key',
-                    style: Theme.of(context)
-                        .textTheme
-                        .titleSmall
-                        ?.copyWith(fontWeight: FontWeight.w700),
-                  ),
-                ),
-                if (hasKey && !_editing)
-                  Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-                    decoration: BoxDecoration(
-                      color: tealSuccess.withAlpha(25),
-                      borderRadius: BorderRadius.circular(8),
-                      border: Border.all(color: tealSuccess.withAlpha(60)),
-                    ),
-                    child: const Text('Active',
-                        style: TextStyle(
-                            color: tealSuccess,
-                            fontSize: 11,
-                            fontWeight: FontWeight.w700)),
-                  ),
-                const SizedBox(width: 8),
-                if (!_editing)
-                  TextButton(
-                    onPressed: () => setState(() => _editing = true),
-                    child: const Text('Edit',
-                        style: TextStyle(color: primaryRed, fontWeight: FontWeight.w700)),
-                  ),
-              ],
-            ),
-            const SizedBox(height: 6),
-            Text(
-              'Optional — enables animated GIFs for exercises. Get a free key at dashboard.workoutxapp.com',
-              style: Theme.of(context).textTheme.bodySmall,
-            ),
-            const SizedBox(height: 14),
-            TextField(
-              controller: _controller,
-              readOnly: !_editing,
-              obscureText: !_visible,
-              decoration: InputDecoration(
-                hintText: 'wx_your_api_key_here',
-                filled: !_editing,
-                fillColor: _editing ? null : Theme.of(context).dividerColor.withAlpha(15),
-                suffixIcon: IconButton(
-                  icon: Icon(
-                    _visible
-                        ? Icons.visibility_off_rounded
-                        : Icons.visibility_rounded,
-                    size: 20,
-                  ),
-                  onPressed: () => setState(() => _visible = !_visible),
-                ),
-              ),
-            ),
-            if (_editing) ...[
-              const SizedBox(height: 12),
-              Row(
-                children: [
-                  Expanded(
-                    child: ElevatedButton(
-                      onPressed: _save,
-                      style: ElevatedButton.styleFrom(backgroundColor: steelBlue),
-                      child: const Text('Save'),
-                    ),
-                  ),
-                  const SizedBox(width: 10),
-                  OutlinedButton(
-                    onPressed: _cancel,
-                    child: const Text('Cancel'),
-                  ),
-                ],
-              ),
-            ],
-          ],
-        ),
-      ),
-    );
-  }
-}
-
 // ── Update card ───────────────────────────────────────────────────────────────
 
 class _UpdateCard extends StatefulWidget {
@@ -526,20 +582,32 @@ class _UpdateCardState extends State<_UpdateCard> {
 
   Future<void> _checkNow() async {
     setState(() => _checking = true);
-    final release = await UpdateService().checkForUpdates();
-    if (!mounted) return;
-    setState(() => _checking = false);
+    try {
+      final release =
+          await UpdateService().checkForUpdates(throwOnError: true);
+      if (!mounted) return;
+      setState(() => _checking = false);
 
-    if (release != null) {
-      showDialog<void>(
-        context: context,
-        builder: (_) => UpdateDialog(release: release),
-      );
-    } else {
+      if (release != null) {
+        showDialog<void>(
+          context: context,
+          builder: (_) => UpdateDialog(release: release),
+        );
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('You\'re on the latest version!'),
+            backgroundColor: AppColors.growthGreen,
+          ),
+        );
+      }
+    } catch (e) {
+      if (!mounted) return;
+      setState(() => _checking = false);
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('You have the latest version!'),
-          backgroundColor: AppColors.growthGreen,
+        SnackBar(
+          content: Text('Update check failed: $e'),
+          backgroundColor: AppColors.error,
         ),
       );
     }
@@ -601,6 +669,38 @@ class _InfoTile extends StatelessWidget {
   }
 }
 
+class _AchievementsCard extends ConsumerWidget {
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final all = ref.watch(achievementsProvider);
+    final unlocked = all.where((a) => a.isUnlocked).length;
+    return Card(
+      child: ListTile(
+        leading: Container(
+          width: 40,
+          height: 40,
+          decoration: BoxDecoration(
+            color: AppColors.success.withAlpha(25),
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: const Icon(Icons.emoji_events_rounded,
+              color: AppColors.success, size: 20),
+        ),
+        title: const Text('Achievements',
+            style: TextStyle(fontWeight: FontWeight.w600)),
+        subtitle: Text('$unlocked / ${all.length} unlocked'),
+        trailing: const Icon(Icons.arrow_forward_ios_rounded,
+            size: 14, color: Color(0xFF8899AA)),
+        onTap: () => Navigator.of(context).push(
+          MaterialPageRoute<void>(
+            builder: (_) => const AchievementsScreen(),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
 class _WaterReminderToggle extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -621,7 +721,6 @@ class _WaterReminderToggle extends ConsumerWidget {
         value: enabled,
         onChanged: (v) {
           ref.read(waterReminderEnabledProvider.notifier).state = v;
-          HiveService.settings.put('waterReminderEnabled', v);
           WaterReminderService().toggleReminders(v);
         },
         activeTrackColor: AppColors.activeDark,

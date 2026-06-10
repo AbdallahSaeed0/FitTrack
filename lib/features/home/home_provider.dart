@@ -2,21 +2,22 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../data/repositories/session_repository.dart';
 import '../../data/models/session_model.dart';
 
-final sessionRepositoryProvider = Provider((_) => SessionRepository());
+final sessionRepositoryProvider =
+    Provider((_) => SessionRepository.instance);
 
 final recentSessionsProvider = Provider<List<WorkoutSessionModel>>((ref) {
-  final repo = ref.read(sessionRepositoryProvider);
-  return repo.getRecent(limit: 5);
+  ref.watch(homeRefreshProvider);
+  return SessionRepository.instance.getRecent(limit: 5);
 });
 
 final thisWeekSessionsProvider = Provider<List<WorkoutSessionModel>>((ref) {
-  final repo = ref.read(sessionRepositoryProvider);
-  return repo.getThisWeek();
+  ref.watch(homeRefreshProvider);
+  return SessionRepository.instance.getThisWeek();
 });
 
 final streakProvider = Provider<int>((ref) {
-  final repo = ref.read(sessionRepositoryProvider);
-  return repo.getConsecutiveWeeks();
+  ref.watch(homeRefreshProvider);
+  return SessionRepository.instance.getConsecutiveWeeks();
 });
 
 class HomeRefreshNotifier extends Notifier<int> {
@@ -25,4 +26,5 @@ class HomeRefreshNotifier extends Notifier<int> {
   void refresh() => state++;
 }
 
-final homeRefreshProvider = NotifierProvider<HomeRefreshNotifier, int>(HomeRefreshNotifier.new);
+final homeRefreshProvider =
+    NotifierProvider<HomeRefreshNotifier, int>(HomeRefreshNotifier.new);

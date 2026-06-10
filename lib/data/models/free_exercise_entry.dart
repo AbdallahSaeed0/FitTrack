@@ -36,9 +36,13 @@ class FreeExerciseEntry {
   List<String> get imageUrls => images.map((p) => '$_base$p').toList();
 
   factory FreeExerciseEntry.fromJson(Map<String, dynamic> json) {
+    final name = json['name'] as String? ?? '';
+    // free-exercise-db has no 'id' field — derive one from the name
+    final id = json['id'] as String? ??
+        name.toLowerCase().trim().replaceAll(RegExp(r'[^a-z0-9]+'), '_');
     return FreeExerciseEntry(
-      id: json['id'] as String? ?? '',
-      name: json['name'] as String? ?? '',
+      id: id,
+      name: name,
       force: json['force'] as String?,
       level: json['level'] as String?,
       mechanic: json['mechanic'] as String?,
@@ -54,7 +58,44 @@ class FreeExerciseEntry {
   static List<String> _strList(dynamic val) =>
       val is List ? val.map((e) => e.toString()).toList() : const [];
 
-  /// Convert to the Hive-persisted [ExerciseModel] used throughout the app.
+  /// Maps free-exercise-db primaryMuscles → canonical body-part names
+  /// used by the rest of the app (matching Kaggle's bodyParts field).
+  static List<String> _muscleToBodyParts(List<String> muscles) {
+    const mapping = <String, String>{
+      'abdominals': 'waist',
+      'obliques': 'waist',
+      'lats': 'back',
+      'middle back': 'back',
+      'lower back': 'back',
+      'traps': 'back',
+      'upper back': 'back',
+      'rhomboids': 'back',
+      'chest': 'chest',
+      'pectorals': 'chest',
+      'shoulders': 'shoulders',
+      'delts': 'shoulders',
+      'biceps': 'upper arms',
+      'triceps': 'upper arms',
+      'forearms': 'lower arms',
+      'quadriceps': 'upper legs',
+      'hamstrings': 'upper legs',
+      'glutes': 'upper legs',
+      'adductors': 'upper legs',
+      'abductors': 'upper legs',
+      'calves': 'lower legs',
+      'neck': 'neck',
+    };
+    final parts = <String>{};
+    for (final m in muscles) {
+      final bp = mapping[m.toLowerCase()];
+      if (bp != null) parts.add(bp);
+    }
+    // Fallback: keep originals so nothing is lost
+    if (parts.isEmpty) parts.addAll(muscles);
+    return parts.toList();
+  }
+
+  /// Convert to the [ExerciseModel] used throughout the app.
   ExerciseModel toExerciseModel({
     int sets = 3,
     String repsFrom = '8',
@@ -65,7 +106,6 @@ class FreeExerciseEntry {
     return ExerciseModel(
       id: id,
       name: name,
-      // First image becomes the thumbnail URL used by ExerciseGifWidget
       gifUrl: imageUrls.isNotEmpty ? imageUrls[0] : '',
       sets: sets,
       repsFrom: repsFrom,
@@ -74,8 +114,8 @@ class FreeExerciseEntry {
       technique: technique,
       targetMuscles: primaryMuscles,
       secondaryMuscles: secondaryMuscles,
-      // Re-use primaryMuscles as bodyParts so ReplaceExerciseScreen filtering works
-      bodyParts: primaryMuscles,
+      // Proper body-part names so filtering by 'back', 'chest', etc. works
+      bodyParts: _muscleToBodyParts(primaryMuscles),
       equipments: equipment != null && equipment!.isNotEmpty ? [equipment!] : [],
       instructions: instructions,
     );

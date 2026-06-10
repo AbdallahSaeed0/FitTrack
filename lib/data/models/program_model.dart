@@ -1,38 +1,15 @@
-import 'package:hive/hive.dart';
 import 'workout_day_model.dart';
 
-part 'program_model.g.dart';
-
-@HiveType(typeId: 2)
-class ProgramModel extends HiveObject {
-  @HiveField(0)
+class ProgramModel {
   String id;
-
-  @HiveField(1)
   String name;
-
-  @HiveField(2)
   bool isActive;
-
-  @HiveField(3)
   List<WorkoutDayModel> days;
-
-  @HiveField(4)
   String splitType;
-
-  @HiveField(5)
   String goal;
-
-  @HiveField(6)
   String experienceLevel;
-
-  @HiveField(7)
   List<String> techniques;
-
-  @HiveField(8)
   int currentDayIndex;
-
-  @HiveField(9)
   DateTime createdAt;
 
   ProgramModel({
@@ -62,6 +39,20 @@ class ProgramModel extends HiveObject {
         'days': days.map((d) => d.toJson()).toList(),
       };
 
+  Map<String, dynamic> toRow(String userId) => {
+        'id': id,
+        'user_id': userId,
+        'name': name,
+        'is_active': isActive,
+        'split_type': splitType,
+        'goal': goal,
+        'experience_level': experienceLevel,
+        'techniques': techniques,
+        'current_day_index': currentDayIndex,
+        'days': days.map((d) => d.toJson()).toList(),
+        'created_at': createdAt.toIso8601String(),
+      };
+
   factory ProgramModel.fromJson(Map<String, dynamic> json) => ProgramModel(
         id: json['id'] as String,
         name: json['name'] as String,
@@ -75,6 +66,24 @@ class ProgramModel extends HiveObject {
             ? DateTime.parse(json['createdAt'] as String)
             : DateTime.now(),
         days: (json['days'] as List?)
+                ?.map((d) => WorkoutDayModel.fromJson(d as Map<String, dynamic>))
+                .toList() ??
+            [],
+      );
+
+  factory ProgramModel.fromRow(Map<String, dynamic> row) => ProgramModel(
+        id: row['id'] as String,
+        name: row['name'] as String,
+        isActive: row['is_active'] as bool? ?? false,
+        splitType: row['split_type'] as String? ?? 'custom',
+        goal: row['goal'] as String? ?? '',
+        experienceLevel: row['experience_level'] as String? ?? '',
+        techniques: List<String>.from(row['techniques'] ?? []),
+        currentDayIndex: (row['current_day_index'] as num?)?.toInt() ?? 0,
+        createdAt: row['created_at'] != null
+            ? DateTime.parse(row['created_at'] as String)
+            : DateTime.now(),
+        days: (row['days'] as List?)
                 ?.map((d) => WorkoutDayModel.fromJson(d as Map<String, dynamic>))
                 .toList() ??
             [],

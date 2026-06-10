@@ -1,23 +1,10 @@
-import 'package:hive/hive.dart';
 import 'exercise_model.dart';
 
-part 'workout_day_model.g.dart';
-
-@HiveType(typeId: 1)
-class WorkoutDayModel extends HiveObject {
-  @HiveField(0)
+class WorkoutDayModel {
   String id;
-
-  @HiveField(1)
   String name;
-
-  @HiveField(2)
   int dayNumber;
-
-  @HiveField(3)
   bool isRestDay;
-
-  @HiveField(4)
   List<ExerciseModel> exercises;
 
   WorkoutDayModel({

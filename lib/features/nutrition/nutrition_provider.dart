@@ -1,28 +1,17 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:hive/hive.dart';
 import '../../data/models/meal_log_model.dart';
+import '../../data/repositories/meal_log_repository.dart';
 
-// Box name constant
-const _mealLogsBox = 'mealLogs';
-
-// All meal logs for today
 final todayMealLogsProvider = Provider<List<MealLog>>((ref) {
-  final box = Hive.box<MealLog>(_mealLogsBox);
-  final today = DateTime.now();
-  return box.values.where((log) {
-    final t = log.timestamp;
-    return t.year == today.year && t.month == today.month && t.day == today.day;
-  }).toList()
-    ..sort((a, b) => a.timestamp.compareTo(b.timestamp));
+  ref.watch(mealLogsRefreshProvider);
+  return MealLogRepository.instance.getToday();
 });
 
-// All meal logs (for history)
 final allMealLogsProvider = Provider<List<MealLog>>((ref) {
-  final box = Hive.box<MealLog>(_mealLogsBox);
-  return box.values.toList()..sort((a, b) => b.timestamp.compareTo(a.timestamp));
+  ref.watch(mealLogsRefreshProvider);
+  return MealLogRepository.instance.getAll();
 });
 
-// Nutrition goals (daily targets)
 class NutritionGoals {
   final double calories;
   final double protein;
@@ -41,32 +30,31 @@ final dailyNutritionGoalsProvider = StateProvider<NutritionGoals>(
   (ref) => const NutritionGoals(),
 );
 
-// Water reminder toggle — persisted to Hive settings
-final waterReminderEnabledProvider = StateProvider<bool>((ref) {
-  final box = Hive.box('settings');
-  return box.get('waterReminderEnabled', defaultValue: true) as bool;
-});
+final waterReminderEnabledProvider = StateProvider<bool>((ref) => true);
 
-// Notifier for adding/removing meal logs
+class MealLogsRefreshNotifier extends Notifier<int> {
+  @override
+  int build() => 0;
+  void refresh() => state++;
+}
+
+final mealLogsRefreshProvider =
+    NotifierProvider<MealLogsRefreshNotifier, int>(MealLogsRefreshNotifier.new);
+
 class MealLogsNotifier extends Notifier<void> {
   @override
   void build() {}
 
   Future<void> addLog(MealLog log) async {
-    final box = Hive.box<MealLog>(_mealLogsBox);
-    await box.put(log.id, log);
-    ref.invalidate(todayMealLogsProvider);
-    ref.invalidate(allMealLogsProvider);
+    await MealLogRepository.instance.add(log);
+    ref.invalidate(mealLogsRefreshProvider);
   }
 
   Future<void> deleteLog(String id) async {
-    final box = Hive.box<MealLog>(_mealLogsBox);
-    await box.delete(id);
-    ref.invalidate(todayMealLogsProvider);
-    ref.invalidate(allMealLogsProvider);
+    await MealLogRepository.instance.delete(id);
+    ref.invalidate(mealLogsRefreshProvider);
   }
 }
 
-final mealLogsNotifierProvider = NotifierProvider<MealLogsNotifier, void>(
-  MealLogsNotifier.new,
-);
+final mealLogsNotifierProvider =
+    NotifierProvider<MealLogsNotifier, void>(MealLogsNotifier.new);

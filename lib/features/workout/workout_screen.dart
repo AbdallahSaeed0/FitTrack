@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../core/theme/app_theme.dart';
+import '../../data/repositories/program_repository.dart';
+import '../../data/repositories/session_repository.dart';
 import '../../shared/widgets/exercise_gif_widget.dart';
 import '../programs/programs_provider.dart';
 import 'workout_provider.dart';
@@ -16,13 +18,26 @@ class WorkoutScreen extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(title: const Text('Workout')),
-      body: activeProgram == null
-          ? _NoProgram(onSetup: () => context.push('/programs/create'))
-          : _ProgramPreview(
-              program: activeProgram,
-              isWorkoutActive: workoutState.isActive,
-              onStart: () => context.push('/workout/active'),
-            ),
+      body: RefreshIndicator(
+        onRefresh: () async {
+          await ProgramRepository.instance.fetchFromRemote();
+          ref.read(programsProvider.notifier).refresh();
+        },
+        color: primaryRed,
+        child: activeProgram == null
+            ? SingleChildScrollView(
+                physics: const AlwaysScrollableScrollPhysics(),
+                child: SizedBox(
+                  height: 500,
+                  child: _NoProgram(onSetup: () => context.push('/programs/create')),
+                ),
+              )
+            : _ProgramPreview(
+                program: activeProgram,
+                isWorkoutActive: workoutState.isActive,
+                onStart: () => context.push('/workout/active'),
+              ),
+      ),
     );
   }
 }
@@ -90,6 +105,12 @@ class _ProgramPreview extends ConsumerWidget {
     final dayIndex = program.currentDayIndex % program.days.length;
     final today = program.days[dayIndex];
 
+    // Detect if this day was already completed in a prior session
+    final alreadyDone = SessionRepository.instance.getAll().any((s) =>
+        s.programId == program.id &&
+        s.dayName == today.name &&
+        s.completed);
+
     return CustomScrollView(
       slivers: [
         SliverToBoxAdapter(
@@ -134,6 +155,15 @@ class _ProgramPreview extends ConsumerWidget {
                     label: const Text('Start Workout'),
                     style: ElevatedButton.styleFrom(backgroundColor: primaryRed),
                   ),
+                if (!isWorkoutActive && alreadyDone) ...[
+                  const SizedBox(height: 10),
+                  _AlreadyDoneBanner(
+                    onSkip: () async {
+                      await ProgramRepository.instance.advanceDay(program.id);
+                      ref.read(programsProvider.notifier).refresh();
+                    },
+                  ),
+                ],
                 const SizedBox(height: 24),
                 Text("Today's Exercises", style: Theme.of(context).textTheme.titleMedium),
                 const SizedBox(height: 12),
@@ -272,6 +302,44 @@ class _ActiveBanner extends StatelessWidget {
               minimumSize: const Size(80, 36),
             ),
             child: const Text('Resume'),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _AlreadyDoneBanner extends StatelessWidget {
+  final VoidCallback onSkip;
+  const _AlreadyDoneBanner({required this.onSkip});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+      decoration: BoxDecoration(
+        color: primaryRed.withAlpha(18),
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: primaryRed.withAlpha(60)),
+      ),
+      child: Row(
+        children: [
+          const Icon(Icons.check_circle_outline_rounded, color: primaryRed, size: 20),
+          const SizedBox(width: 10),
+          const Expanded(
+            child: Text(
+              'Looks like you already did this day.',
+              style: TextStyle(color: primaryRed, fontSize: 13),
+            ),
+          ),
+          TextButton(
+            onPressed: onSkip,
+            style: TextButton.styleFrom(
+              foregroundColor: primaryRed,
+              padding: const EdgeInsets.symmetric(horizontal: 8),
+              minimumSize: const Size(60, 32),
+            ),
+            child: const Text('Next Day →', style: TextStyle(fontWeight: FontWeight.w700, fontSize: 13)),
           ),
         ],
       ),

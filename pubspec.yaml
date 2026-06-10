@@ -1,7 +1,7 @@
 name: fittrack
 description: FitTrack - Your Personal Fitness Companion
 publish_to: 'none'
-version: 1.0.0+1
+version: 1.0.4+5
 
 environment:
   sdk: '>=3.0.0 <4.0.0'
@@ -16,9 +16,14 @@ dependencies:
   # Navigation
   go_router: ^13.2.0
 
-  # Local Database
-  hive: ^2.2.3
-  hive_flutter: ^1.1.0
+  # Cloud Database
+  supabase_flutter: ^2.5.3
+
+  # Local cache (Android only — skipped on web)
+  shared_preferences: ^2.3.2
+
+  # Workout foreground notification
+  flutter_local_notifications: ^18.0.0
 
   # HTTP Client
   dio: ^5.4.3
@@ -42,6 +47,7 @@ dependencies:
   uuid: ^4.4.0
   path_provider: ^2.1.3
   image_picker: ^1.0.7
+  crop_your_image: ^1.1.0
   cupertino_icons: ^1.0.8
   table_calendar: ^3.0.9
   share_plus: ^9.0.0
@@ -54,7 +60,6 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^3.0.0
-  hive_generator: ^2.0.1
   build_runner: ^2.4.9
   flutter_launcher_icons: ^0.13.1
   flutter_native_splash: ^2.4.0
@@ -83,7 +88,10 @@ flutter:
 
   assets:
     - assets/data/exercises.json
+    - assets/data/extra_exercises.json
     - assets/data/usda_foods.json
     - assets/data/openfoodfacts.json
     - assets/images/
     - assets/icons/
+    - assets/exercises/gifs/exercises.json
+    - assets/exercises/gifs/gifs_360x360/

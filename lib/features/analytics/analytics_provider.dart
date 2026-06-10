@@ -1,6 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../data/models/session_model.dart';
+import '../../data/repositories/session_repository.dart';
 import '../home/home_provider.dart';
+import 'widgets/workout_calendar.dart' show detectPRDates;
 
 class LiftData {
   final String exerciseName;
@@ -74,4 +76,30 @@ final weeklySessionsProvider = Provider<Map<int, int>>((ref) {
 final allSessionsProvider = Provider<List<WorkoutSessionModel>>((ref) {
   final repo = ref.read(sessionRepositoryProvider);
   return repo.getAll();
+});
+
+/// All completed sessions keyed by "yyyy-MM-dd".
+/// When multiple sessions fall on the same date the most recent is kept.
+final sessionsByDateProvider =
+    Provider<Map<String, WorkoutSessionModel>>((ref) {
+  ref.watch(homeRefreshProvider);
+  final sessions = SessionRepository.instance
+      .getAll()
+      .where((s) => s.completed)
+      .toList()
+    ..sort((a, b) => a.startTime.compareTo(b.startTime));
+
+  final map = <String, WorkoutSessionModel>{};
+  for (final s in sessions) {
+    final key =
+        '${s.startTime.year}-${s.startTime.month.toString().padLeft(2, '0')}-${s.startTime.day.toString().padLeft(2, '0')}';
+    map[key] = s; // last write wins → most recent session per day
+  }
+  return map;
+});
+
+/// Dates on which at least one personal record was broken.
+final prDatesProvider = Provider<Set<String>>((ref) {
+  final sessions = ref.watch(sessionsByDateProvider);
+  return detectPRDates(sessions);
 });

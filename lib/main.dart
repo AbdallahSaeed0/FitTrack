@@ -1,15 +1,43 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'app.dart';
+import 'core/services/supabase_service.dart';
+import 'core/services/local_cache_service.dart';
 import 'core/services/water_reminder_service.dart';
+import 'core/services/workout_notification_service.dart';
 import 'core/utils/program_seeder.dart';
-import 'data/services/hive_service.dart';
+import 'data/repositories/meal_log_repository.dart';
+import 'data/repositories/program_repository.dart';
+import 'data/repositories/session_repository.dart';
+import 'data/repositories/user_profile_repository.dart';
 
 final scaffoldMessengerKey = GlobalKey<ScaffoldMessengerState>();
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await HiveService.init();
+  await SupabaseService.init();
+  await LocalCacheService.init();
+  await WorkoutNotificationService.instance.init();
+
+  if (SupabaseService.isLoggedIn) {
+    await _loadUserData();
+  }
+
+  runApp(
+    const ProviderScope(
+      child: FitTrackApp(),
+    ),
+  );
+}
+
+Future<void> _loadUserData() async {
+  await Future.wait([
+    UserProfileRepository.instance.init(),
+    ProgramRepository.instance.init(),
+    SessionRepository.instance.init(),
+    MealLogRepository.instance.init(),
+  ]);
+  await ProgramSeeder.seedIfEmpty();
 
   WaterReminderService().initialize(
     onReminder: () {
@@ -29,12 +57,4 @@ void main() async {
     },
   );
   WaterReminderService().startReminders();
-
-  await ProgramSeeder.seedIfEmpty();
-
-  runApp(
-    const ProviderScope(
-      child: FitTrackApp(),
-    ),
-  );
 }

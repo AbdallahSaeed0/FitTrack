@@ -5,42 +5,23 @@ import '../../data/models/program_model.dart';
 import '../../data/models/workout_day_model.dart';
 import '../../data/repositories/exercise_repository.dart';
 import '../../data/repositories/program_repository.dart';
-import '../../data/services/hive_service.dart';
 
-/// Seeds Abdallah's Upper/Lower program from the bundled free-exercise-db JSON.
-/// No network calls — instant, offline, reliable.
 class ProgramSeeder {
   static const _uuid = Uuid();
-  // Bump this when exercise names or gifUrl format changes so Hive data refreshes.
-  static const _seederVersion = 3;
+  static const _seederVersion = 4;
+  static const _programName = "Abdallah's Upper/Lower v3";
 
   static Future<void> seedIfEmpty() async {
-    final settings = HiveService.settings;
-    final storedVersion = settings.get('seederVersion', defaultValue: 0) as int;
-    final repo = ProgramRepository();
+    final repo = ProgramRepository.instance;
+    final programs = repo.getAll();
 
-    if (storedVersion >= _seederVersion && repo.getAll().isNotEmpty) return;
-
-    // Version mismatch — clear the default Abdallah program and re-seed so
-    // gifUrls from old API versions get replaced with free-exercise-db URLs.
-    if (storedVersion < _seederVersion) {
-      final programs = repo.getAll();
-      for (final p in programs) {
-        if (p.name == "Abdallah's Upper/Lower v2") {
-          await repo.delete(p.id);
-          debugPrint('[Seeder] Cleared stale program for re-seed (v$storedVersion → v$_seederVersion)');
-        }
-      }
-    }
+    // Only seed when the user has no programs at all
+    if (programs.isNotEmpty) return;
 
     await _seedAbdallahProgram();
-    await settings.put('seederVersion', _seederVersion);
+    debugPrint('[Seeder] Seed complete (v$_seederVersion)');
   }
 
-  // ---------------------------------------------------------------------------
-  // Helper — look up an exercise from the bundled JSON, apply program params.
-  // Falls back to a placeholder if the name isn't found (never crashes).
-  // ---------------------------------------------------------------------------
   static Future<ExerciseModel> _fetch(
     ExerciseRepository repo,
     String name, {
@@ -67,13 +48,9 @@ class ProgramSeeder {
     );
   }
 
-  // ---------------------------------------------------------------------------
-  // Abdallah's Upper/Lower v2 — 4 days, 28 exercises total
-  // ---------------------------------------------------------------------------
   static Future<void> _seedAbdallahProgram() async {
     final repo = ExerciseRepository();
 
-    // ── Upper A ───────────────────────────────────────────────────────────────
     final upperA = <ExerciseModel>[
       await _fetch(repo, 'Barbell Bench Press - Medium Grip',
           sets: 4, repsFrom: '6', repsTo: '10', rest: '3 min'),
@@ -91,7 +68,6 @@ class ProgramSeeder {
           sets: 3, repsFrom: '10', repsTo: '15', rest: '90 sec'),
     ];
 
-    // ── Lower A ───────────────────────────────────────────────────────────────
     final lowerA = <ExerciseModel>[
       await _fetch(repo, 'Barbell Squat',
           sets: 4, repsFrom: '6', repsTo: '10', rest: '3 min'),
@@ -107,7 +83,6 @@ class ProgramSeeder {
           sets: 4, repsFrom: '12', repsTo: '20', rest: '60 sec'),
     ];
 
-    // ── Upper B ───────────────────────────────────────────────────────────────
     final upperB = <ExerciseModel>[
       await _fetch(repo, 'Dumbbell Shoulder Press',
           sets: 4, repsFrom: '8', repsTo: '12', rest: '2 min'),
@@ -127,7 +102,6 @@ class ProgramSeeder {
           sets: 3, repsFrom: '12', repsTo: '15', rest: '90 sec'),
     ];
 
-    // ── Lower B ───────────────────────────────────────────────────────────────
     final lowerB = <ExerciseModel>[
       await _fetch(repo, 'Romanian Deadlift',
           sets: 4, repsFrom: '8', repsTo: '12', rest: '2-3 min'),
@@ -145,7 +119,7 @@ class ProgramSeeder {
 
     final program = ProgramModel(
       id: _uuid.v4(),
-      name: "Abdallah's Upper/Lower v2",
+      name: _programName,
       isActive: true,
       splitType: 'upper_lower',
       goal: 'Muscle Building',
@@ -162,8 +136,7 @@ class ProgramSeeder {
       ],
     );
 
-    final programRepo = ProgramRepository();
-    await programRepo.save(program);
+    await ProgramRepository.instance.save(program);
     debugPrint(
         '[Seeder] Done — ${program.days.fold(0, (s, d) => s + d.exercises.length)} exercises saved.');
   }

@@ -11,19 +11,24 @@ class UpdateService {
   final Dio _dio = Dio(BaseOptions(connectTimeout: const Duration(seconds: 8)));
 
   /// Returns the latest [GitHubRelease] if it is newer than the installed
-  /// build, or `null` when the app is already up-to-date or the check fails.
-  Future<GitHubRelease?> checkForUpdates() async {
+  /// version, or `null` when the app is already up-to-date.
+  ///
+  /// Set [throwOnError] to `true` when the user manually triggered the check
+  /// so they see a real error message instead of a silent "up-to-date".
+  Future<GitHubRelease?> checkForUpdates({bool throwOnError = false}) async {
     try {
       final info = await PackageInfo.fromPlatform();
-      final currentBuild = int.tryParse(info.buildNumber) ?? 0;
+      // info.version is already "1.0.2" (no build suffix), but strip just in case
+      final currentVersion = info.version.split('+').first;
 
       final response = await _dio.get<Map<String, dynamic>>(_apiUrl);
       if (response.statusCode == 200 && response.data != null) {
         final release = GitHubRelease.fromJson(response.data!);
-        if (release.isNewerThan(currentBuild)) return release;
+        if (release.isNewerThan(currentVersion)) return release;
       }
-    } catch (_) {
-      // Network unavailable or repo not set up — silently ignore
+    } catch (e) {
+      if (throwOnError) rethrow;
+      // Silent failure for the background auto-check on startup
     }
     return null;
   }

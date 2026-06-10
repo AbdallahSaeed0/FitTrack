@@ -6,47 +6,91 @@ import '../../data/models/exercise_model.dart';
 import '../../data/repositories/exercise_repository.dart';
 import '../../data/repositories/program_repository.dart';
 
-final programRepositoryProvider = Provider((_) => ProgramRepository());
+final programRepositoryProvider =
+    Provider((_) => ProgramRepository.instance);
 final exerciseRepositoryProvider = Provider((_) => ExerciseRepository());
 
-final programsProvider = NotifierProvider<ProgramsNotifier, List<ProgramModel>>(
+final programsProvider =
+    NotifierProvider<ProgramsNotifier, List<ProgramModel>>(
   ProgramsNotifier.new,
 );
 
 class ProgramsNotifier extends Notifier<List<ProgramModel>> {
-  late ProgramRepository _repo;
-
   @override
-  List<ProgramModel> build() {
-    _repo = ref.read(programRepositoryProvider);
-    return _repo.getAll();
+  List<ProgramModel> build() => ProgramRepository.instance.getAll();
+
+  void refresh() => state = ProgramRepository.instance.getAll();
+
+  /// Re-looks up every exercise in every program by name and patches
+  /// the stored gifUrl when the repository has a better URL available.
+  ///
+  /// Patching rules:
+  ///  - Current gifUrl is empty → always patch
+  ///  - Current gifUrl starts with 'assets/' (Kaggle local GIF) → keep as-is
+  ///  - Current gifUrl is a network URL but the repo now has a different
+  ///    (fixed/updated) URL → patch
+  Future<int> refreshExerciseImages() async {
+    final repo = ExerciseRepository();
+    final programs = ProgramRepository.instance.getAll();
+    int patched = 0;
+
+    for (final program in programs) {
+      bool programChanged = false;
+      final updatedDays = await Future.wait(program.days.map((day) async {
+        bool dayChanged = false;
+        final updatedExercises =
+            await Future.wait(day.exercises.map((ex) async {
+          // Never touch exercises that already have a local Kaggle GIF.
+          if (ex.gifUrl.startsWith('assets/')) return ex;
+
+          final found = await repo.getByExactName(ex.name);
+          if (found == null || found.gifUrl.isEmpty) return ex;
+
+          // Patch if empty OR if the URL changed (old broken → new fixed).
+          if (ex.gifUrl.isEmpty || ex.gifUrl != found.gifUrl) {
+            dayChanged = true;
+            programChanged = true;
+            patched++;
+            return ex.copyWith(gifUrl: found.gifUrl);
+          }
+          return ex;
+        }));
+        return dayChanged ? day.copyWith(exercises: updatedExercises) : day;
+      }));
+
+      if (programChanged) {
+        await ProgramRepository.instance
+            .save(program.copyWith(days: updatedDays));
+      }
+    }
+
+    state = ProgramRepository.instance.getAll();
+    return patched;
   }
 
-  void refresh() => state = _repo.getAll();
-
   Future<void> addProgram(ProgramModel program) async {
-    await _repo.save(program);
-    state = _repo.getAll();
+    await ProgramRepository.instance.save(program);
+    state = ProgramRepository.instance.getAll();
   }
 
   Future<void> updateProgram(ProgramModel program) async {
-    await _repo.save(program);
-    state = _repo.getAll();
+    await ProgramRepository.instance.save(program);
+    state = ProgramRepository.instance.getAll();
   }
 
   Future<void> deleteProgram(String id) async {
-    await _repo.delete(id);
-    state = _repo.getAll();
+    await ProgramRepository.instance.delete(id);
+    state = ProgramRepository.instance.getAll();
   }
 
   Future<void> setActive(String id) async {
-    await _repo.setActive(id);
-    state = _repo.getAll();
+    await ProgramRepository.instance.setActive(id);
+    state = ProgramRepository.instance.getAll();
   }
 
-  ProgramModel? getActive() => _repo.getActive();
+  ProgramModel? getActive() => ProgramRepository.instance.getActive();
 
-  ProgramModel? getById(String id) => _repo.getById(id);
+  ProgramModel? getById(String id) => ProgramRepository.instance.getById(id);
 }
 
 final activeProgramProvider = Provider<ProgramModel?>((ref) {
@@ -58,9 +102,6 @@ final activeProgramProvider = Provider<ProgramModel?>((ref) {
   }
 });
 
-// ---------------------------------------------------------------------------
-// Program generator — builds template programs from the bundled exercise JSON
-// ---------------------------------------------------------------------------
 class ProgramGeneratorService {
   final ExerciseRepository _repo;
   final _uuid = const Uuid();
@@ -100,8 +141,10 @@ class ProgramGeneratorService {
     final chest = await _repo.getSimilarExercises('chest', limit: 8);
     final back = await _repo.getSimilarExercises('back', limit: 8);
     final shoulders = await _repo.getSimilarExercises('shoulders', limit: 6);
-    final upperLegs = await _repo.getSimilarExercises('upper legs', limit: 10);
-    final lowerLegs = await _repo.getSimilarExercises('lower legs', limit: 4);
+    final upperLegs =
+        await _repo.getSimilarExercises('upper legs', limit: 10);
+    final lowerLegs =
+        await _repo.getSimilarExercises('lower legs', limit: 4);
 
     return [
       _buildDay(0, 'Upper A',
@@ -117,11 +160,15 @@ class ProgramGeneratorService {
 
   Future<List<WorkoutDayModel>> _buildPPL(int daysPerWeek) async {
     final chest = await _repo.getSimilarExercises('chest', limit: 6);
-    final shoulders = await _repo.getSimilarExercises('shoulders', limit: 5);
-    final upperArms = await _repo.getSimilarExercises('upper arms', limit: 8);
+    final shoulders =
+        await _repo.getSimilarExercises('shoulders', limit: 5);
+    final upperArms =
+        await _repo.getSimilarExercises('upper arms', limit: 8);
     final back = await _repo.getSimilarExercises('back', limit: 6);
-    final upperLegs = await _repo.getSimilarExercises('upper legs', limit: 8);
-    final lowerLegs = await _repo.getSimilarExercises('lower legs', limit: 4);
+    final upperLegs =
+        await _repo.getSimilarExercises('upper legs', limit: 8);
+    final lowerLegs =
+        await _repo.getSimilarExercises('lower legs', limit: 4);
 
     final triceps = upperArms
         .where((e) =>
@@ -148,16 +195,18 @@ class ProgramGeneratorService {
         ..._pick(back, 4),
         ..._pick(biceps.isNotEmpty ? biceps : armsRest, 3),
       ]),
-      _buildDay(2, 'Legs',
-          [..._pick(upperLegs, 4), ..._pick(lowerLegs, 2)]),
+      _buildDay(
+          2, 'Legs', [..._pick(upperLegs, 4), ..._pick(lowerLegs, 2)]),
     ];
   }
 
   Future<List<WorkoutDayModel>> _buildFullBody(int daysPerWeek) async {
     final chest = await _repo.getSimilarExercises('chest', limit: 5);
     final back = await _repo.getSimilarExercises('back', limit: 5);
-    final upperLegs = await _repo.getSimilarExercises('upper legs', limit: 5);
-    final shoulders = await _repo.getSimilarExercises('shoulders', limit: 4);
+    final upperLegs =
+        await _repo.getSimilarExercises('upper legs', limit: 5);
+    final shoulders =
+        await _repo.getSimilarExercises('shoulders', limit: 4);
 
     final exercises = [
       ..._pick(chest, 2),

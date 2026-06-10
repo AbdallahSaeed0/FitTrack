@@ -1,49 +1,21 @@
-import 'package:hive/hive.dart';
+const _kSentinel = Object();
 
-part 'exercise_model.g.dart';
-
-@HiveType(typeId: 0)
-class ExerciseModel extends HiveObject {
-  @HiveField(0)
+class ExerciseModel {
   String id;
-
-  @HiveField(1)
   String name;
-
-  @HiveField(2)
   String gifUrl;
-
-  @HiveField(3)
   int sets;
-
-  @HiveField(4)
   String repsFrom;
-
-  @HiveField(5)
   String repsTo;
-
-  @HiveField(6)
   String restTime;
-
-  @HiveField(7)
   String technique;
-
-  @HiveField(8)
+  String? supersetGroupId;
+  int supersetOrder;
   bool isNew;
-
-  @HiveField(9)
   List<String> targetMuscles;
-
-  @HiveField(10)
   List<String> secondaryMuscles;
-
-  @HiveField(11)
   List<String> bodyParts;
-
-  @HiveField(12)
   List<String> equipments;
-
-  @HiveField(13)
   List<String> instructions;
 
   ExerciseModel({
@@ -55,6 +27,8 @@ class ExerciseModel extends HiveObject {
     this.repsTo = '12',
     this.restTime = '2-3 min',
     this.technique = 'standard',
+    this.supersetGroupId,
+    this.supersetOrder = 0,
     this.isNew = false,
     List<String>? targetMuscles,
     List<String>? secondaryMuscles,
@@ -67,6 +41,12 @@ class ExerciseModel extends HiveObject {
         equipments = equipments ?? [],
         instructions = instructions ?? [];
 
+  /// True for exercises logged by duration/distance instead of weight × reps.
+  bool get isCardio =>
+      bodyParts.any((b) => b.toLowerCase() == 'cardio') ||
+      targetMuscles
+          .any((m) => m.toLowerCase().contains('cardiovascular'));
+
   ExerciseModel copyWith({
     String? id,
     String? name,
@@ -76,6 +56,8 @@ class ExerciseModel extends HiveObject {
     String? repsTo,
     String? restTime,
     String? technique,
+    Object? supersetGroupId = _kSentinel,
+    int? supersetOrder,
     bool? isNew,
     List<String>? targetMuscles,
     List<String>? secondaryMuscles,
@@ -92,6 +74,10 @@ class ExerciseModel extends HiveObject {
       repsTo: repsTo ?? this.repsTo,
       restTime: restTime ?? this.restTime,
       technique: technique ?? this.technique,
+      supersetGroupId: identical(supersetGroupId, _kSentinel)
+          ? this.supersetGroupId
+          : supersetGroupId as String?,
+      supersetOrder: supersetOrder ?? this.supersetOrder,
       isNew: isNew ?? this.isNew,
       targetMuscles: targetMuscles ?? this.targetMuscles,
       secondaryMuscles: secondaryMuscles ?? this.secondaryMuscles,
@@ -110,6 +96,8 @@ class ExerciseModel extends HiveObject {
         'repsTo': repsTo,
         'restTime': restTime,
         'technique': technique,
+        'supersetGroupId': supersetGroupId,
+        'supersetOrder': supersetOrder,
         'targetMuscles': targetMuscles,
         'secondaryMuscles': secondaryMuscles,
         'bodyParts': bodyParts,
@@ -126,6 +114,8 @@ class ExerciseModel extends HiveObject {
         repsTo: json['repsTo']?.toString() ?? '12',
         restTime: json['restTime']?.toString() ?? '2-3 min',
         technique: json['technique']?.toString() ?? 'standard',
+        supersetGroupId: json['supersetGroupId']?.toString(),
+        supersetOrder: (json['supersetOrder'] as num?)?.toInt() ?? 0,
         targetMuscles: List<String>.from(json['targetMuscles'] ?? []),
         secondaryMuscles: List<String>.from(json['secondaryMuscles'] ?? []),
         bodyParts: List<String>.from(json['bodyParts'] ?? []),
@@ -134,7 +124,6 @@ class ExerciseModel extends HiveObject {
       );
 
   factory ExerciseModel.fromApi(Map<String, dynamic> json) {
-    // Handle both 'target' (string) and 'targetMuscles' (array) API formats
     List<String> parsedTargetMuscles;
     if (json['targetMuscles'] is List) {
       parsedTargetMuscles = List<String>.from(json['targetMuscles']);
@@ -144,7 +133,6 @@ class ExerciseModel extends HiveObject {
       parsedTargetMuscles = [];
     }
 
-    // Handle both 'bodyPart' (string) and 'bodyParts' (array)
     List<String> parsedBodyParts;
     if (json['bodyParts'] is List) {
       parsedBodyParts = List<String>.from(json['bodyParts']);
@@ -154,7 +142,6 @@ class ExerciseModel extends HiveObject {
       parsedBodyParts = [];
     }
 
-    // Handle both 'equipment' (string) and 'equipments' (array)
     List<String> parsedEquipments;
     if (json['equipments'] is List) {
       parsedEquipments = List<String>.from(json['equipments']);

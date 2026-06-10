@@ -1,0 +1,2825 @@
+[
+  {
+    "name": "Arnold Press",
+    "force": "push",
+    "level": "intermediate",
+    "mechanic": "compound",
+    "equipment": "dumbbell",
+    "primaryMuscles": [
+      "anterior deltoid",
+      "lateral deltoid"
+    ],
+    "secondaryMuscles": [
+      "triceps brachii"
+    ],
+    "instructions": [
+      "Sit on a bench holding dumbbells at shoulder height, palms facing you.",
+      "As you press up, rotate your palms outward until they face forward at the top.",
+      "Reverse the motion on the way down."
+    ],
+    "category": "strength",
+    "images": [
+      "Dumbbell_Shoulder_Press/0.jpg"
+    ]
+  },
+  {
+    "name": "Cable Lateral Raise",
+    "force": "pull",
+    "level": "beginner",
+    "mechanic": "isolation",
+    "equipment": "cable",
+    "primaryMuscles": [
+      "lateral deltoid"
+    ],
+    "secondaryMuscles": [
+      "anterior deltoid",
+      "trapezius"
+    ],
+    "instructions": [
+      "Stand sideways to a low cable pulley holding the handle with the far hand.",
+      "Raise your arm out to the side to shoulder height, keeping a slight bend in the elbow.",
+      "Lower under control."
+    ],
+    "category": "strength",
+    "images": [
+      "Cable_Seated_Lateral_Raise/0.jpg"
+    ]
+  },
+  {
+    "name": "Cable Front Raise",
+    "force": "pull",
+    "level": "beginner",
+    "mechanic": "isolation",
+    "equipment": "cable",
+    "primaryMuscles": [
+      "anterior deltoid"
+    ],
+    "secondaryMuscles": [
+      "lateral deltoid"
+    ],
+    "instructions": [
+      "Stand facing away from a low cable, handle in hand.",
+      "Raise your arm forward to shoulder height.",
+      "Lower under control."
+    ],
+    "category": "strength",
+    "images": [
+      "Side_Laterals_to_Front_Raise/0.jpg"
+    ]
+  },
+  {
+    "name": "Machine Lateral Raise",
+    "force": "pull",
+    "level": "beginner",
+    "mechanic": "isolation",
+    "equipment": "machine",
+    "primaryMuscles": [
+      "lateral deltoid"
+    ],
+    "secondaryMuscles": [
+      "anterior deltoid"
+    ],
+    "instructions": [
+      "Sit in the machine and grip the pads with your elbows.",
+      "Raise the arms out to the side to shoulder height.",
+      "Lower slowly."
+    ],
+    "category": "strength",
+    "images": [
+      "Cable_Seated_Lateral_Raise/0.jpg"
+    ]
+  },
+  {
+    "name": "Cable Rear Delt Fly",
+    "force": "pull",
+    "level": "beginner",
+    "mechanic": "isolation",
+    "equipment": "cable",
+    "primaryMuscles": [
+      "rear deltoid"
+    ],
+    "secondaryMuscles": [
+      "rhomboids",
+      "trapezius"
+    ],
+    "instructions": [
+      "Set cables at head height in a cable cross. Grab the left cable with the right hand and vice versa.",
+      "Pull your hands apart and back in a wide arc.",
+      "Return under control."
+    ],
+    "category": "strength",
+    "images": [
+      "Cable_Rear_Delt_Fly/0.jpg"
+    ]
+  },
+  {
+    "name": "Face Pull",
+    "force": "pull",
+    "level": "beginner",
+    "mechanic": "compound",
+    "equipment": "cable",
+    "primaryMuscles": [
+      "rear deltoid"
+    ],
+    "secondaryMuscles": [
+      "trapezius",
+      "rhomboids"
+    ],
+    "instructions": [
+      "Attach a rope to a high cable pulley.",
+      "Pull the rope towards your face, flaring elbows out.",
+      "Externally rotate at the top."
+    ],
+    "category": "strength",
+    "images": [
+      "Face_Pull/0.jpg"
+    ]
+  },
+  {
+    "name": "Landmine Press",
+    "force": "push",
+    "level": "intermediate",
+    "mechanic": "compound",
+    "equipment": "barbell",
+    "primaryMuscles": [
+      "anterior deltoid",
+      "pectorals"
+    ],
+    "secondaryMuscles": [
+      "triceps brachii",
+      "trapezius"
+    ],
+    "instructions": [
+      "Fix one end of a barbell in a corner or landmine attachment.",
+      "Hold the other end at shoulder height.",
+      "Press it up and forward in an arc."
+    ],
+    "category": "strength",
+    "images": [
+      "Landmine_180s/0.jpg"
+    ]
+  },
+  {
+    "name": "Pec Deck Machine",
+    "force": "push",
+    "level": "beginner",
+    "mechanic": "isolation",
+    "equipment": "machine",
+    "primaryMuscles": [
+      "pectorals"
+    ],
+    "secondaryMuscles": [
+      "anterior deltoid"
+    ],
+    "instructions": [
+      "Sit with your back flat against the pad, elbows on the arm pads.",
+      "Bring the pads together in front of your chest.",
+      "Slowly return to the start."
+    ],
+    "category": "strength",
+    "images": [
+      "Cable_Crossover/0.jpg"
+    ]
+  },
+  {
+    "name": "Cable Incline Fly",
+    "force": "push",
+    "level": "intermediate",
+    "mechanic": "isolation",
+    "equipment": "cable",
+    "primaryMuscles": [
+      "pectorals"
+    ],
+    "secondaryMuscles": [
+      "anterior deltoid"
+    ],
+    "instructions": [
+      "Set cables at the lowest position. Lie on an incline bench between the pulleys.",
+      "Grab both handles and bring them up and together in a wide arc.",
+      "Lower under control."
+    ],
+    "category": "strength",
+    "images": [
+      "Incline_Cable_Flye/0.jpg"
+    ]
+  },
+  {
+    "name": "Cable Crossover",
+    "force": "push",
+    "level": "intermediate",
+    "mechanic": "isolation",
+    "equipment": "cable",
+    "primaryMuscles": [
+      "pectorals"
+    ],
+    "secondaryMuscles": [
+      "anterior deltoid"
+    ],
+    "instructions": [
+      "Stand in the middle of a cable cross machine, cables set high.",
+      "Pull handles down and together in front of your chest.",
+      "Hold briefly then return."
+    ],
+    "category": "strength",
+    "images": [
+      "Cable_Crossover/0.jpg"
+    ]
+  },
+  {
+    "name": "Low to High Cable Fly",
+    "force": "push",
+    "level": "intermediate",
+    "mechanic": "isolation",
+    "equipment": "cable",
+    "primaryMuscles": [
+      "pectorals"
+    ],
+    "secondaryMuscles": [
+      "anterior deltoid"
+    ],
+    "instructions": [
+      "Set cables at the lowest position.",
+      "Pull them up and across your body meeting at chin height.",
+      "Lower under control."
+    ],
+    "category": "strength",
+    "images": [
+      "Cable_Crossover/0.jpg"
+    ]
+  },
+  {
+    "name": "High to Low Cable Fly",
+    "force": "push",
+    "level": "intermediate",
+    "mechanic": "isolation",
+    "equipment": "cable",
+    "primaryMuscles": [
+      "pectorals"
+    ],
+    "secondaryMuscles": [
+      "anterior deltoid"
+    ],
+    "instructions": [
+      "Set cables at the highest position.",
+      "Pull them down and together, crossing at waist height.",
+      "Return under control."
+    ],
+    "category": "strength",
+    "images": [
+      "Cable_Crossover/0.jpg"
+    ]
+  },
+  {
+    "name": "Machine Chest Press",
+    "force": "push",
+    "level": "beginner",
+    "mechanic": "compound",
+    "equipment": "machine",
+    "primaryMuscles": [
+      "pectorals"
+    ],
+    "secondaryMuscles": [
+      "anterior deltoid",
+      "triceps brachii"
+    ],
+    "instructions": [
+      "Sit in the machine with handles at chest height.",
+      "Press forward until arms are extended.",
+      "Return under control."
+    ],
+    "category": "strength",
+    "images": [
+      "Barbell_Bench_Press_-_Medium_Grip/0.jpg"
+    ]
+  },
+  {
+    "name": "Decline Dumbbell Press",
+    "force": "push",
+    "level": "intermediate",
+    "mechanic": "compound",
+    "equipment": "dumbbell",
+    "primaryMuscles": [
+      "pectorals"
+    ],
+    "secondaryMuscles": [
+      "anterior deltoid",
+      "triceps brachii"
+    ],
+    "instructions": [
+      "Lie on a decline bench with a dumbbell in each hand.",
+      "Lower the dumbbells to chest level with elbows at 45\u00c2\u00b0.",
+      "Press back up."
+    ],
+    "category": "strength",
+    "images": [
+      "Decline_Barbell_Bench_Press/0.jpg"
+    ]
+  },
+  {
+    "name": "Incline Cable Fly",
+    "force": "push",
+    "level": "intermediate",
+    "mechanic": "isolation",
+    "equipment": "cable",
+    "primaryMuscles": [
+      "pectorals"
+    ],
+    "secondaryMuscles": [
+      "anterior deltoid"
+    ],
+    "instructions": [
+      "Set cables low. Lie on an incline bench.",
+      "Bring handles up and together above your chest.",
+      "Lower in a wide arc."
+    ],
+    "category": "strength",
+    "images": [
+      "Incline_Cable_Flye/0.jpg"
+    ]
+  },
+  {
+    "name": "EZ-Bar Skull Crusher",
+    "force": "push",
+    "level": "intermediate",
+    "mechanic": "isolation",
+    "equipment": "ez barbell",
+    "primaryMuscles": [
+      "triceps brachii"
+    ],
+    "secondaryMuscles": [],
+    "instructions": [
+      "Lie on a bench with an EZ-bar held directly over your chest.",
+      "Bend at the elbows lowering the bar toward your forehead.",
+      "Extend back to the start."
+    ],
+    "category": "strength",
+    "images": [
+      "EZ-Bar_Skullcrusher/0.jpg"
+    ]
+  },
+  {
+    "name": "Cable Triceps Kickback",
+    "force": "push",
+    "level": "beginner",
+    "mechanic": "isolation",
+    "equipment": "cable",
+    "primaryMuscles": [
+      "triceps brachii"
+    ],
+    "secondaryMuscles": [],
+    "instructions": [
+      "Set a low cable pulley with a single grip handle.",
+      "Hinge forward, upper arm parallel to the floor.",
+      "Extend the arm back fully, squeeze at the top."
+    ],
+    "category": "strength",
+    "images": [
+      "Cable_Incline_Triceps_Extension/0.jpg"
+    ]
+  },
+  {
+    "name": "Overhead Tricep Extension (Rope)",
+    "force": "push",
+    "level": "beginner",
+    "mechanic": "isolation",
+    "equipment": "cable",
+    "primaryMuscles": [
+      "triceps brachii"
+    ],
+    "secondaryMuscles": [],
+    "instructions": [
+      "Attach a rope to a high pulley. Face away from the machine.",
+      "Grip the rope overhead, elbows bent.",
+      "Extend arms forward and down, flaring the rope at the bottom."
+    ],
+    "category": "strength",
+    "images": [
+      "Triceps_Pushdown_-_Rope_Attachment/0.jpg"
+    ]
+  },
+  {
+    "name": "Dumbbell Overhead Tricep Extension",
+    "force": "push",
+    "level": "beginner",
+    "mechanic": "isolation",
+    "equipment": "dumbbell",
+    "primaryMuscles": [
+      "triceps brachii"
+    ],
+    "secondaryMuscles": [],
+    "instructions": [
+      "Hold a dumbbell with both hands overhead.",
+      "Lower behind your head by bending at the elbows.",
+      "Extend back up."
+    ],
+    "category": "strength",
+    "images": [
+      "Overhead_Tricep_Extension_-_Band/0.jpg"
+    ]
+  },
+  {
+    "name": "Single Arm Cable Tricep Extension",
+    "force": "push",
+    "level": "beginner",
+    "mechanic": "isolation",
+    "equipment": "cable",
+    "primaryMuscles": [
+      "triceps brachii"
+    ],
+    "secondaryMuscles": [],
+    "instructions": [
+      "Attach a single handle to a high cable.",
+      "Press down, keeping the upper arm stationary.",
+      "Squeeze at the bottom."
+    ],
+    "category": "strength",
+    "images": [
+      "Triceps_Pushdown_-_Rope_Attachment/0.jpg"
+    ]
+  },
+  {
+    "name": "Close Grip Bench Press",
+    "force": "push",
+    "level": "intermediate",
+    "mechanic": "compound",
+    "equipment": "barbell",
+    "primaryMuscles": [
+      "triceps brachii"
+    ],
+    "secondaryMuscles": [
+      "pectorals",
+      "anterior deltoid"
+    ],
+    "instructions": [
+      "Lie on a flat bench with a shoulder-width or narrower grip.",
+      "Lower the bar to your lower chest.",
+      "Press back up, focusing on the triceps."
+    ],
+    "category": "strength",
+    "images": [
+      "Close-Grip_Barbell_Bench_Press/0.jpg"
+    ]
+  },
+  {
+    "name": "EZ-Bar Preacher Curl",
+    "force": "pull",
+    "level": "beginner",
+    "mechanic": "isolation",
+    "equipment": "ez barbell",
+    "primaryMuscles": [
+      "biceps brachii"
+    ],
+    "secondaryMuscles": [
+      "brachialis"
+    ],
+    "instructions": [
+      "Sit at a preacher bench and drape your arms over the pad holding an EZ-bar.",
+      "Curl up to the top, squeezing the biceps.",
+      "Lower fully."
+    ],
+    "category": "strength",
+    "images": [
+      "Preacher_Curl/0.jpg"
+    ]
+  },
+  {
+    "name": "Cable Hammer Curl",
+    "force": "pull",
+    "level": "beginner",
+    "mechanic": "isolation",
+    "equipment": "cable",
+    "primaryMuscles": [
+      "brachialis",
+      "biceps brachii"
+    ],
+    "secondaryMuscles": [
+      "brachioradialis"
+    ],
+    "instructions": [
+      "Attach a rope to a low cable pulley.",
+      "Curl the rope up with a neutral (hammer) grip.",
+      "Lower under control."
+    ],
+    "category": "strength",
+    "images": [
+      "Cable_Hammer_Curls_-_Rope_Attachment/0.jpg"
+    ]
+  },
+  {
+    "name": "Incline Dumbbell Curl",
+    "force": "pull",
+    "level": "intermediate",
+    "mechanic": "isolation",
+    "equipment": "dumbbell",
+    "primaryMuscles": [
+      "biceps brachii"
+    ],
+    "secondaryMuscles": [
+      "brachialis"
+    ],
+    "instructions": [
+      "Sit on an incline bench with dumbbells hanging at your sides.",
+      "Curl both arms up simultaneously.",
+      "Lower fully to get a deep stretch."
+    ],
+    "category": "strength",
+    "images": [
+      "Incline_Dumbbell_Curl/0.jpg"
+    ]
+  },
+  {
+    "name": "Spider Curl",
+    "force": "pull",
+    "level": "intermediate",
+    "mechanic": "isolation",
+    "equipment": "dumbbell",
+    "primaryMuscles": [
+      "biceps brachii"
+    ],
+    "secondaryMuscles": [],
+    "instructions": [
+      "Lie face-down on an incline bench.",
+      "Let the dumbbells hang and curl up, keeping upper arms perpendicular to the floor.",
+      "Lower fully."
+    ],
+    "category": "strength",
+    "images": [
+      "Spider_Curl/0.jpg"
+    ]
+  },
+  {
+    "name": "Concentration Curl",
+    "force": "pull",
+    "level": "beginner",
+    "mechanic": "isolation",
+    "equipment": "dumbbell",
+    "primaryMuscles": [
+      "biceps brachii"
+    ],
+    "secondaryMuscles": [],
+    "instructions": [
+      "Sit on a bench, lean forward, and brace your elbow against the inside of your thigh.",
+      "Curl up to the shoulder.",
+      "Lower fully."
+    ],
+    "category": "strength",
+    "images": [
+      "Concentration_Curls/0.jpg"
+    ]
+  },
+  {
+    "name": "Machine Curl",
+    "force": "pull",
+    "level": "beginner",
+    "mechanic": "isolation",
+    "equipment": "machine",
+    "primaryMuscles": [
+      "biceps brachii"
+    ],
+    "secondaryMuscles": [],
+    "instructions": [
+      "Sit in a curl machine with arms on the pad.",
+      "Curl up to the top.",
+      "Lower under control."
+    ],
+    "category": "strength",
+    "images": [
+      "Preacher_Curl/0.jpg"
+    ]
+  },
+  {
+    "name": "Cross Body Hammer Curl",
+    "force": "pull",
+    "level": "beginner",
+    "mechanic": "isolation",
+    "equipment": "dumbbell",
+    "primaryMuscles": [
+      "brachialis",
+      "brachioradialis"
+    ],
+    "secondaryMuscles": [
+      "biceps brachii"
+    ],
+    "instructions": [
+      "Stand holding dumbbells.",
+      "Curl one dumbbell across your body toward the opposite shoulder.",
+      "Alternate sides."
+    ],
+    "category": "strength",
+    "images": [
+      "Cross_Body_Hammer_Curl/0.jpg"
+    ]
+  },
+  {
+    "name": "Chest-Supported T-Bar Row",
+    "force": "pull",
+    "level": "intermediate",
+    "mechanic": "compound",
+    "equipment": "barbell",
+    "primaryMuscles": [
+      "latissimus dorsi"
+    ],
+    "secondaryMuscles": [
+      "rhomboids",
+      "biceps brachii",
+      "rear deltoid"
+    ],
+    "instructions": [
+      "Lie face-down on a chest-supported row machine or incline bench.",
+      "Row the bar up toward your chest.",
+      "Squeeze at the top and lower under control."
+    ],
+    "category": "strength",
+    "images": [
+      "T-Bar_Row_with_Handle/0.jpg"
+    ]
+  },
+  {
+    "name": "Dumbbell Seal Row",
+    "force": "pull",
+    "level": "intermediate",
+    "mechanic": "compound",
+    "equipment": "dumbbell",
+    "primaryMuscles": [
+      "latissimus dorsi"
+    ],
+    "secondaryMuscles": [
+      "rhomboids",
+      "biceps brachii"
+    ],
+    "instructions": [
+      "Lie face-down on a flat bench elevated on blocks, dumbbells hanging.",
+      "Row both dumbbells up to the bench, squeezing the shoulder blades.",
+      "Lower fully."
+    ],
+    "category": "strength",
+    "images": [
+      "One-Arm_Dumbbell_Row/0.jpg"
+    ]
+  },
+  {
+    "name": "Single Arm Cable Pulldown",
+    "force": "pull",
+    "level": "beginner",
+    "mechanic": "isolation",
+    "equipment": "cable",
+    "primaryMuscles": [
+      "latissimus dorsi"
+    ],
+    "secondaryMuscles": [
+      "biceps brachii",
+      "rear deltoid"
+    ],
+    "instructions": [
+      "Attach a single handle to a high cable.",
+      "Kneel or stand and pull the handle down to hip level with one arm.",
+      "Control the return."
+    ],
+    "category": "strength",
+    "images": [
+      "One_Arm_Lat_Pulldown/0.jpg"
+    ]
+  },
+  {
+    "name": "Wide Grip Cable Row",
+    "force": "pull",
+    "level": "intermediate",
+    "mechanic": "compound",
+    "equipment": "cable",
+    "primaryMuscles": [
+      "latissimus dorsi"
+    ],
+    "secondaryMuscles": [
+      "rhomboids",
+      "rear deltoid"
+    ],
+    "instructions": [
+      "Sit at a cable row with a wide handle attachment.",
+      "Row the bar into your lower chest, keeping the torso upright.",
+      "Squeeze shoulder blades and return."
+    ],
+    "category": "strength",
+    "images": [
+      "Seated_Cable_Rows/0.jpg"
+    ]
+  },
+  {
+    "name": "Band Pull Apart",
+    "force": "pull",
+    "level": "beginner",
+    "mechanic": "isolation",
+    "equipment": "bands",
+    "primaryMuscles": [
+      "rear deltoid"
+    ],
+    "secondaryMuscles": [
+      "rhomboids",
+      "trapezius"
+    ],
+    "instructions": [
+      "Hold a resistance band in front of you at shoulder height, arms extended.",
+      "Pull the band apart by squeezing the shoulder blades together.",
+      "Return slowly."
+    ],
+    "category": "strength",
+    "images": [
+      "Band_Pull_Apart/0.jpg"
+    ]
+  },
+  {
+    "name": "Straight Arm Pulldown",
+    "force": "pull",
+    "level": "beginner",
+    "mechanic": "isolation",
+    "equipment": "cable",
+    "primaryMuscles": [
+      "latissimus dorsi"
+    ],
+    "secondaryMuscles": [
+      "triceps brachii"
+    ],
+    "instructions": [
+      "Stand at a high cable with both hands on a bar.",
+      "Keeping arms straight, pull the bar down to your thighs.",
+      "Return under control."
+    ],
+    "category": "strength",
+    "images": [
+      "Straight-Arm_Pulldown/0.jpg"
+    ]
+  },
+  {
+    "name": "Meadows Row",
+    "force": "pull",
+    "level": "intermediate",
+    "mechanic": "compound",
+    "equipment": "barbell",
+    "primaryMuscles": [
+      "latissimus dorsi"
+    ],
+    "secondaryMuscles": [
+      "rhomboids",
+      "biceps brachii"
+    ],
+    "instructions": [
+      "Stand to the side of a landmine barbell.",
+      "With a staggered stance, row the bar up to your hip.",
+      "Lower under control."
+    ],
+    "category": "strength",
+    "images": [
+      "One-Arm_Dumbbell_Row/0.jpg"
+    ]
+  },
+  {
+    "name": "Machine Row",
+    "force": "pull",
+    "level": "beginner",
+    "mechanic": "compound",
+    "equipment": "machine",
+    "primaryMuscles": [
+      "latissimus dorsi"
+    ],
+    "secondaryMuscles": [
+      "rhomboids",
+      "biceps brachii"
+    ],
+    "instructions": [
+      "Sit in the machine with chest on the pad.",
+      "Row the handles back squeezing your shoulder blades together.",
+      "Return under control."
+    ],
+    "category": "strength",
+    "images": [
+      "Seated_Cable_Rows/0.jpg"
+    ]
+  },
+  {
+    "name": "Cable Pullover",
+    "force": "pull",
+    "level": "beginner",
+    "mechanic": "isolation",
+    "equipment": "cable",
+    "primaryMuscles": [
+      "latissimus dorsi"
+    ],
+    "secondaryMuscles": [
+      "pectorals",
+      "triceps brachii"
+    ],
+    "instructions": [
+      "Kneel in front of a high cable holding a rope.",
+      "Pull the rope down in an arc, keeping arms straight.",
+      "Return to the start."
+    ],
+    "category": "strength",
+    "images": [
+      "Bent-Arm_Dumbbell_Pullover/0.jpg"
+    ]
+  },
+  {
+    "name": "Pendlay Row",
+    "force": "pull",
+    "level": "intermediate",
+    "mechanic": "compound",
+    "equipment": "barbell",
+    "primaryMuscles": [
+      "latissimus dorsi"
+    ],
+    "secondaryMuscles": [
+      "rhomboids",
+      "trapezius",
+      "biceps brachii"
+    ],
+    "instructions": [
+      "Set a barbell on the floor. Stand over it with feet hip-width apart.",
+      "Hinge to horizontal and explosively row the bar to your lower chest.",
+      "Return the bar to the floor each rep."
+    ],
+    "category": "strength",
+    "images": [
+      "Bent_Over_Barbell_Row/0.jpg"
+    ]
+  },
+  {
+    "name": "Bulgarian Split Squat",
+    "force": "push",
+    "level": "intermediate",
+    "mechanic": "compound",
+    "equipment": "dumbbell",
+    "primaryMuscles": [
+      "quadriceps"
+    ],
+    "secondaryMuscles": [
+      "glutes",
+      "hamstrings"
+    ],
+    "instructions": [
+      "Stand in front of a bench. Place your rear foot on it.",
+      "Lower your back knee toward the floor.",
+      "Drive through the front heel to stand back up."
+    ],
+    "category": "strength",
+    "images": [
+      "Dumbbell_Lunges/0.jpg"
+    ]
+  },
+  {
+    "name": "Hack Squat Machine",
+    "force": "push",
+    "level": "intermediate",
+    "mechanic": "compound",
+    "equipment": "machine",
+    "primaryMuscles": [
+      "quadriceps"
+    ],
+    "secondaryMuscles": [
+      "glutes",
+      "hamstrings",
+      "calves"
+    ],
+    "instructions": [
+      "Stand on the hack squat machine platform with shoulders under the pads.",
+      "Lower until knees are at 90 degrees or deeper.",
+      "Drive back up."
+    ],
+    "category": "strength",
+    "images": [
+      "Hack_Squat/0.jpg"
+    ]
+  },
+  {
+    "name": "Romanian Deadlift",
+    "force": "pull",
+    "level": "intermediate",
+    "mechanic": "compound",
+    "equipment": "barbell",
+    "primaryMuscles": [
+      "hamstrings"
+    ],
+    "secondaryMuscles": [
+      "glutes",
+      "lower back"
+    ],
+    "instructions": [
+      "Hold a barbell at hip height. Keep a slight bend in the knees.",
+      "Hinge at the hips, pushing them back and lowering the bar down the legs.",
+      "Drive the hips forward to return."
+    ],
+    "category": "strength",
+    "images": [
+      "Romanian_Deadlift/0.jpg"
+    ]
+  },
+  {
+    "name": "Stiff Leg Deadlift",
+    "force": "pull",
+    "level": "intermediate",
+    "mechanic": "compound",
+    "equipment": "dumbbell",
+    "primaryMuscles": [
+      "hamstrings"
+    ],
+    "secondaryMuscles": [
+      "glutes",
+      "lower back"
+    ],
+    "instructions": [
+      "Hold dumbbells in front. Keep legs nearly straight.",
+      "Hinge at the hips, lowering the weights along your legs.",
+      "Return by squeezing glutes and hamstrings."
+    ],
+    "category": "strength",
+    "images": [
+      "Stiff-Leg_Deadlift_with_Dumbbells/0.jpg"
+    ]
+  },
+  {
+    "name": "Seated Leg Curl",
+    "force": "pull",
+    "level": "beginner",
+    "mechanic": "isolation",
+    "equipment": "machine",
+    "primaryMuscles": [
+      "hamstrings"
+    ],
+    "secondaryMuscles": [
+      "calves"
+    ],
+    "instructions": [
+      "Sit in the leg curl machine with the pad on the backs of your ankles.",
+      "Curl your legs under the seat as far as possible.",
+      "Return under control."
+    ],
+    "category": "strength",
+    "images": [
+      "Seated_Leg_Curl/0.jpg"
+    ]
+  },
+  {
+    "name": "Step Ups",
+    "force": "push",
+    "level": "beginner",
+    "mechanic": "compound",
+    "equipment": "dumbbell",
+    "primaryMuscles": [
+      "quadriceps"
+    ],
+    "secondaryMuscles": [
+      "glutes",
+      "hamstrings"
+    ],
+    "instructions": [
+      "Stand in front of a bench with dumbbells.",
+      "Step up with one foot, driving through the heel.",
+      "Step down and repeat on the other side."
+    ],
+    "category": "strength",
+    "images": [
+      "Dumbbell_Step_Ups/0.jpg"
+    ]
+  },
+  {
+    "name": "Seated Calf Raise",
+    "force": "push",
+    "level": "beginner",
+    "mechanic": "isolation",
+    "equipment": "machine",
+    "primaryMuscles": [
+      "calves"
+    ],
+    "secondaryMuscles": [],
+    "instructions": [
+      "Sit in the calf raise machine with pads resting on your knees.",
+      "Push up onto your toes as high as possible.",
+      "Lower for a full stretch."
+    ],
+    "category": "strength",
+    "images": [
+      "Seated_Calf_Raise/0.jpg"
+    ]
+  },
+  {
+    "name": "Goblet Squat",
+    "force": "push",
+    "level": "beginner",
+    "mechanic": "compound",
+    "equipment": "dumbbell",
+    "primaryMuscles": [
+      "quadriceps"
+    ],
+    "secondaryMuscles": [
+      "glutes",
+      "hamstrings",
+      "calves"
+    ],
+    "instructions": [
+      "Hold a dumbbell vertically at chest height.",
+      "Squat down keeping your torso upright.",
+      "Drive back up."
+    ],
+    "category": "strength",
+    "images": [
+      "Goblet_Squat/0.jpg"
+    ]
+  },
+  {
+    "name": "Sumo Deadlift",
+    "force": "pull",
+    "level": "intermediate",
+    "mechanic": "compound",
+    "equipment": "barbell",
+    "primaryMuscles": [
+      "glutes"
+    ],
+    "secondaryMuscles": [
+      "quadriceps",
+      "hamstrings",
+      "lower back"
+    ],
+    "instructions": [
+      "Take a wide stance with toes pointed out.",
+      "Grip the bar inside your legs.",
+      "Drive through your heels and lockout at the top."
+    ],
+    "category": "strength",
+    "images": [
+      "Sumo_Deadlift/0.jpg"
+    ]
+  },
+  {
+    "name": "Hip Thrust",
+    "force": "push",
+    "level": "intermediate",
+    "mechanic": "isolation",
+    "equipment": "barbell",
+    "primaryMuscles": [
+      "glutes"
+    ],
+    "secondaryMuscles": [
+      "hamstrings",
+      "quadriceps"
+    ],
+    "instructions": [
+      "Sit with your upper back against a bench, barbell over your hips.",
+      "Drive hips up until body is parallel to the floor.",
+      "Squeeze glutes at the top and lower."
+    ],
+    "category": "strength",
+    "images": [
+      "Barbell_Hip_Thrust/0.jpg"
+    ]
+  },
+  {
+    "name": "Dumbbell Hip Thrust",
+    "force": "push",
+    "level": "beginner",
+    "mechanic": "isolation",
+    "equipment": "dumbbell",
+    "primaryMuscles": [
+      "glutes"
+    ],
+    "secondaryMuscles": [
+      "hamstrings",
+      "quadriceps"
+    ],
+    "instructions": [
+      "Sit with your upper back against a bench, dumbbell on your hips.",
+      "Drive hips up until body is parallel to the floor.",
+      "Squeeze glutes at the top."
+    ],
+    "category": "strength",
+    "images": [
+      "Barbell_Hip_Thrust/0.jpg"
+    ]
+  },
+  {
+    "name": "Smith Machine Squat",
+    "force": "push",
+    "level": "beginner",
+    "mechanic": "compound",
+    "equipment": "machine",
+    "primaryMuscles": [
+      "quadriceps"
+    ],
+    "secondaryMuscles": [
+      "glutes",
+      "hamstrings"
+    ],
+    "instructions": [
+      "Position the barbell on the Smith machine across your upper back.",
+      "Squat down until thighs are parallel.",
+      "Drive back up."
+    ],
+    "category": "strength",
+    "images": [
+      "Smith_Machine_Squat/0.jpg"
+    ]
+  },
+  {
+    "name": "Leg Extension",
+    "force": "push",
+    "level": "beginner",
+    "mechanic": "isolation",
+    "equipment": "machine",
+    "primaryMuscles": [
+      "quadriceps"
+    ],
+    "secondaryMuscles": [],
+    "instructions": [
+      "Sit in the machine with ankles behind the pad.",
+      "Extend your legs to fully straighten the knee.",
+      "Lower under control."
+    ],
+    "category": "strength",
+    "images": [
+      "Leg_Extensions/0.jpg"
+    ]
+  },
+  {
+    "name": "Standing Leg Curl",
+    "force": "pull",
+    "level": "beginner",
+    "mechanic": "isolation",
+    "equipment": "machine",
+    "primaryMuscles": [
+      "hamstrings"
+    ],
+    "secondaryMuscles": [
+      "calves"
+    ],
+    "instructions": [
+      "Stand at the lying/standing curl machine.",
+      "Curl one leg up toward your glutes.",
+      "Lower under control."
+    ],
+    "category": "strength",
+    "images": [
+      "Lying_Leg_Curls/0.jpg"
+    ]
+  },
+  {
+    "name": "Hip Abduction Machine",
+    "force": "push",
+    "level": "beginner",
+    "mechanic": "isolation",
+    "equipment": "machine",
+    "primaryMuscles": [
+      "glutes"
+    ],
+    "secondaryMuscles": [],
+    "instructions": [
+      "Sit in the machine with pads on the outside of your thighs.",
+      "Push your legs apart as wide as possible.",
+      "Return under control."
+    ],
+    "category": "strength",
+    "images": [
+      "Adductor/0.jpg"
+    ]
+  },
+  {
+    "name": "Hip Adduction Machine",
+    "force": "pull",
+    "level": "beginner",
+    "mechanic": "isolation",
+    "equipment": "machine",
+    "primaryMuscles": [
+      "quadriceps"
+    ],
+    "secondaryMuscles": [
+      "glutes"
+    ],
+    "instructions": [
+      "Sit in the machine with pads on the inside of your thighs.",
+      "Squeeze your legs together.",
+      "Return under control."
+    ],
+    "category": "strength",
+    "images": [
+      "Adductor/0.jpg"
+    ]
+  },
+  {
+    "name": "Nordic Hamstring Curl",
+    "force": "pull",
+    "level": "advanced",
+    "mechanic": "isolation",
+    "equipment": "body only",
+    "primaryMuscles": [
+      "hamstrings"
+    ],
+    "secondaryMuscles": [
+      "calves",
+      "glutes"
+    ],
+    "instructions": [
+      "Kneel on a pad with feet secured.",
+      "Lower your torso forward slowly by extending at the knee.",
+      "Catch yourself and push back up."
+    ],
+    "category": "strength",
+    "images": [
+      "Lying_Leg_Curls/0.jpg"
+    ]
+  },
+  {
+    "name": "Cable Pull Through",
+    "force": "pull",
+    "level": "beginner",
+    "mechanic": "compound",
+    "equipment": "cable",
+    "primaryMuscles": [
+      "glutes"
+    ],
+    "secondaryMuscles": [
+      "hamstrings",
+      "lower back"
+    ],
+    "instructions": [
+      "Stand facing away from a low cable, rope between your legs.",
+      "Hinge at the hips letting the cable pull your hips back.",
+      "Drive hips forward to stand."
+    ],
+    "category": "strength",
+    "images": [
+      "Barbell_Hip_Thrust/0.jpg"
+    ]
+  },
+  {
+    "name": "Walking Lunge",
+    "force": "push",
+    "level": "beginner",
+    "mechanic": "compound",
+    "equipment": "dumbbell",
+    "primaryMuscles": [
+      "quadriceps"
+    ],
+    "secondaryMuscles": [
+      "glutes",
+      "hamstrings"
+    ],
+    "instructions": [
+      "Hold dumbbells at your sides.",
+      "Step forward and lower your back knee toward the floor.",
+      "Drive through the front heel and step forward with the other foot."
+    ],
+    "category": "strength",
+    "images": [
+      "Barbell_Walking_Lunge/0.jpg"
+    ]
+  },
+  {
+    "name": "Standing Calf Raise",
+    "force": "push",
+    "level": "beginner",
+    "mechanic": "isolation",
+    "equipment": "machine",
+    "primaryMuscles": [
+      "calves"
+    ],
+    "secondaryMuscles": [],
+    "instructions": [
+      "Stand on the platform with your shoulders under the pads.",
+      "Rise up onto your toes as high as possible.",
+      "Lower for a full stretch."
+    ],
+    "category": "strength",
+    "images": [
+      "Standing_Calf_Raises/0.jpg"
+    ]
+  },
+  {
+    "name": "Donkey Calf Raise",
+    "force": "push",
+    "level": "beginner",
+    "mechanic": "isolation",
+    "equipment": "machine",
+    "primaryMuscles": [
+      "calves"
+    ],
+    "secondaryMuscles": [],
+    "instructions": [
+      "Bend at the hips and place your forearms on a support.",
+      "Rise up on your toes.",
+      "Lower for a full stretch."
+    ],
+    "category": "strength",
+    "images": [
+      "Donkey_Calf_Raises/0.jpg"
+    ]
+  },
+  {
+    "name": "Ab Wheel Rollout",
+    "force": "pull",
+    "level": "intermediate",
+    "mechanic": "compound",
+    "equipment": "other",
+    "primaryMuscles": [
+      "abdominals"
+    ],
+    "secondaryMuscles": [
+      "lower back",
+      "obliques"
+    ],
+    "instructions": [
+      "Kneel on the floor with the ab wheel in front of you.",
+      "Roll forward until your body is nearly parallel to the floor.",
+      "Use your core to roll back."
+    ],
+    "category": "strength",
+    "images": [
+      "Ab_Roller/0.jpg"
+    ]
+  },
+  {
+    "name": "Hanging Leg Raise",
+    "force": "pull",
+    "level": "intermediate",
+    "mechanic": "isolation",
+    "equipment": "body only",
+    "primaryMuscles": [
+      "abdominals"
+    ],
+    "secondaryMuscles": [
+      "obliques",
+      "hip flexors"
+    ],
+    "instructions": [
+      "Hang from a pull-up bar.",
+      "Raise your legs until they are parallel to the floor or higher.",
+      "Lower under control."
+    ],
+    "category": "strength",
+    "images": [
+      "Hanging_Leg_Raise/0.jpg"
+    ]
+  },
+  {
+    "name": "Cable Woodchop",
+    "force": "pull",
+    "level": "beginner",
+    "mechanic": "isolation",
+    "equipment": "cable",
+    "primaryMuscles": [
+      "obliques"
+    ],
+    "secondaryMuscles": [
+      "abdominals"
+    ],
+    "instructions": [
+      "Set cable at one side. Grip the handle with both hands.",
+      "Rotate from the hips, pulling diagonally across your body.",
+      "Return under control."
+    ],
+    "category": "strength",
+    "images": [
+      "Dumbbell_Side_Bend/0.jpg"
+    ]
+  },
+  {
+    "name": "Dead Bug",
+    "force": "static",
+    "level": "beginner",
+    "mechanic": "isolation",
+    "equipment": "body only",
+    "primaryMuscles": [
+      "abdominals"
+    ],
+    "secondaryMuscles": [
+      "lower back"
+    ],
+    "instructions": [
+      "Lie on your back, arms above shoulders, hips and knees at 90\u00c2\u00b0.",
+      "Lower the opposite arm and leg toward the floor.",
+      "Return and switch sides."
+    ],
+    "category": "strength",
+    "images": [
+      "Plank/0.jpg"
+    ]
+  },
+  {
+    "name": "Decline Sit Up",
+    "force": "pull",
+    "level": "beginner",
+    "mechanic": "isolation",
+    "equipment": "body only",
+    "primaryMuscles": [
+      "abdominals"
+    ],
+    "secondaryMuscles": [
+      "hip flexors"
+    ],
+    "instructions": [
+      "Lie on a decline bench with feet secured.",
+      "Sit up, touching your elbows to your knees at the top.",
+      "Lower under control."
+    ],
+    "category": "strength",
+    "images": [
+      "Decline_Crunch/0.jpg"
+    ]
+  },
+  {
+    "name": "Bicycle Crunch",
+    "force": "pull",
+    "level": "beginner",
+    "mechanic": "isolation",
+    "equipment": "body only",
+    "primaryMuscles": [
+      "obliques"
+    ],
+    "secondaryMuscles": [
+      "abdominals"
+    ],
+    "instructions": [
+      "Lie on your back with hands behind your head.",
+      "Bring one knee in and rotate the opposite elbow to meet it.",
+      "Alternate sides in a pedaling motion."
+    ],
+    "category": "strength",
+    "images": [
+      "Bicycle_Crunches/0.jpg"
+    ]
+  },
+  {
+    "name": "Dragon Flag",
+    "force": "pull",
+    "level": "advanced",
+    "mechanic": "isolation",
+    "equipment": "body only",
+    "primaryMuscles": [
+      "abdominals"
+    ],
+    "secondaryMuscles": [
+      "lower back",
+      "obliques"
+    ],
+    "instructions": [
+      "Lie on a bench, gripping the top edge behind you.",
+      "Keep your body straight and raise it up until nearly vertical.",
+      "Lower slowly, keeping the body rigid."
+    ],
+    "category": "strength",
+    "images": [
+      "Hanging_Leg_Raise/0.jpg"
+    ]
+  },
+  {
+    "name": "Pallof Press",
+    "force": "static",
+    "level": "intermediate",
+    "mechanic": "isolation",
+    "equipment": "cable",
+    "primaryMuscles": [
+      "obliques"
+    ],
+    "secondaryMuscles": [
+      "abdominals",
+      "lower back"
+    ],
+    "instructions": [
+      "Stand sideways to a cable set at chest height.",
+      "Hold the handle at your chest, then press straight out.",
+      "Resist rotation throughout."
+    ],
+    "category": "strength",
+    "images": [
+      "Plank/0.jpg"
+    ]
+  },
+  {
+    "name": "L-Sit",
+    "force": "static",
+    "level": "advanced",
+    "mechanic": "isolation",
+    "equipment": "body only",
+    "primaryMuscles": [
+      "abdominals"
+    ],
+    "secondaryMuscles": [
+      "hip flexors",
+      "triceps brachii"
+    ],
+    "instructions": [
+      "Support your weight on parallel bars or the floor.",
+      "Raise your legs until parallel to the ground.",
+      "Hold for time."
+    ],
+    "category": "strength",
+    "images": [
+      "Plank/0.jpg"
+    ]
+  },
+  {
+    "name": "Side Plank",
+    "force": "static",
+    "level": "beginner",
+    "mechanic": "isolation",
+    "equipment": "body only",
+    "primaryMuscles": [
+      "obliques"
+    ],
+    "secondaryMuscles": [
+      "abdominals",
+      "glutes"
+    ],
+    "instructions": [
+      "Lie on your side, propped up on your forearm.",
+      "Raise your hips so your body forms a straight line.",
+      "Hold for time."
+    ],
+    "category": "strength",
+    "images": [
+      "Push_Up_to_Side_Plank/0.jpg"
+    ]
+  },
+  {
+    "name": "Dumbbell Flat Bench Press",
+    "force": "push",
+    "level": "beginner",
+    "mechanic": "compound",
+    "equipment": "dumbbell",
+    "primaryMuscles": [
+      "pectorals"
+    ],
+    "secondaryMuscles": [
+      "anterior deltoid",
+      "triceps brachii"
+    ],
+    "instructions": [
+      "Lie on a flat bench with a dumbbell in each hand at chest level.",
+      "Press up until arms are extended.",
+      "Lower under control."
+    ],
+    "category": "strength",
+    "images": [
+      "Dumbbell_Bench_Press/0.jpg"
+    ]
+  },
+  {
+    "name": "Incline Barbell Bench Press",
+    "force": "push",
+    "level": "intermediate",
+    "mechanic": "compound",
+    "equipment": "barbell",
+    "primaryMuscles": [
+      "pectorals"
+    ],
+    "secondaryMuscles": [
+      "anterior deltoid",
+      "triceps brachii"
+    ],
+    "instructions": [
+      "Lie on an incline bench at about 30\u00e2\u20ac\u201c45\u00c2\u00b0.",
+      "Unrack and lower the bar to your upper chest.",
+      "Press back up."
+    ],
+    "category": "strength",
+    "images": [
+      "Incline_Barbell_Triceps_Extension/0.jpg"
+    ]
+  },
+  {
+    "name": "Decline Barbell Bench Press",
+    "force": "push",
+    "level": "intermediate",
+    "mechanic": "compound",
+    "equipment": "barbell",
+    "primaryMuscles": [
+      "pectorals"
+    ],
+    "secondaryMuscles": [
+      "anterior deltoid",
+      "triceps brachii"
+    ],
+    "instructions": [
+      "Lie on a decline bench, feet secured.",
+      "Lower the bar to your lower chest.",
+      "Press back up."
+    ],
+    "category": "strength",
+    "images": [
+      "Decline_Barbell_Bench_Press/0.jpg"
+    ]
+  },
+  {
+    "name": "Dumbbell Pullover",
+    "force": "pull",
+    "level": "intermediate",
+    "mechanic": "isolation",
+    "equipment": "dumbbell",
+    "primaryMuscles": [
+      "pectorals"
+    ],
+    "secondaryMuscles": [
+      "latissimus dorsi",
+      "triceps brachii"
+    ],
+    "instructions": [
+      "Lie across a bench with a dumbbell held overhead.",
+      "Lower the dumbbell behind your head in an arc.",
+      "Pull back to the starting position."
+    ],
+    "category": "strength",
+    "images": [
+      "Bent-Arm_Dumbbell_Pullover/0.jpg"
+    ]
+  },
+  {
+    "name": "Seated Dumbbell Shoulder Press",
+    "force": "push",
+    "level": "beginner",
+    "mechanic": "compound",
+    "equipment": "dumbbell",
+    "primaryMuscles": [
+      "anterior deltoid",
+      "lateral deltoid"
+    ],
+    "secondaryMuscles": [
+      "triceps brachii",
+      "trapezius"
+    ],
+    "instructions": [
+      "Sit on a bench, dumbbells at shoulder height.",
+      "Press overhead until arms are extended.",
+      "Lower under control."
+    ],
+    "category": "strength",
+    "images": [
+      "Dumbbell_Shoulder_Press/0.jpg"
+    ]
+  },
+  {
+    "name": "Machine Shoulder Press",
+    "force": "push",
+    "level": "beginner",
+    "mechanic": "compound",
+    "equipment": "machine",
+    "primaryMuscles": [
+      "anterior deltoid",
+      "lateral deltoid"
+    ],
+    "secondaryMuscles": [
+      "triceps brachii"
+    ],
+    "instructions": [
+      "Sit in a shoulder press machine.",
+      "Press the handles overhead.",
+      "Lower under control."
+    ],
+    "category": "strength",
+    "images": [
+      "Dumbbell_Shoulder_Press/0.jpg"
+    ]
+  },
+  {
+    "name": "Behind the Neck Press",
+    "force": "push",
+    "level": "advanced",
+    "mechanic": "compound",
+    "equipment": "barbell",
+    "primaryMuscles": [
+      "lateral deltoid"
+    ],
+    "secondaryMuscles": [
+      "anterior deltoid",
+      "triceps brachii",
+      "trapezius"
+    ],
+    "instructions": [
+      "Sit with a barbell across your upper traps.",
+      "Press overhead, lowering behind the head.",
+      "Return under control."
+    ],
+    "category": "strength",
+    "images": [
+      "Barbell_Shoulder_Press/0.jpg"
+    ]
+  },
+  {
+    "name": "Dumbbell Front Raise",
+    "force": "pull",
+    "level": "beginner",
+    "mechanic": "isolation",
+    "equipment": "dumbbell",
+    "primaryMuscles": [
+      "anterior deltoid"
+    ],
+    "secondaryMuscles": [
+      "lateral deltoid"
+    ],
+    "instructions": [
+      "Stand holding dumbbells in front of you.",
+      "Raise both to shoulder height.",
+      "Lower under control."
+    ],
+    "category": "strength",
+    "images": [
+      "Side_Laterals_to_Front_Raise/0.jpg"
+    ]
+  },
+  {
+    "name": "Upright Row",
+    "force": "pull",
+    "level": "intermediate",
+    "mechanic": "compound",
+    "equipment": "barbell",
+    "primaryMuscles": [
+      "lateral deltoid"
+    ],
+    "secondaryMuscles": [
+      "trapezius",
+      "biceps brachii"
+    ],
+    "instructions": [
+      "Hold a barbell with a close grip in front of you.",
+      "Pull it up to chin height, flaring elbows out.",
+      "Lower under control."
+    ],
+    "category": "strength",
+    "images": [
+      "Upright_Barbell_Row/0.jpg"
+    ]
+  },
+  {
+    "name": "Barbell Back Squat",
+    "force": "push",
+    "level": "intermediate",
+    "mechanic": "compound",
+    "equipment": "barbell",
+    "primaryMuscles": [
+      "quadriceps"
+    ],
+    "secondaryMuscles": [
+      "glutes",
+      "hamstrings",
+      "calves",
+      "lower back"
+    ],
+    "instructions": [
+      "Stand with barbell across upper traps.",
+      "Squat down until thighs are parallel or below.",
+      "Drive back up through your heels."
+    ],
+    "category": "strength",
+    "images": [
+      "Barbell_Squat/0.jpg"
+    ]
+  },
+  {
+    "name": "Front Squat",
+    "force": "push",
+    "level": "advanced",
+    "mechanic": "compound",
+    "equipment": "barbell",
+    "primaryMuscles": [
+      "quadriceps"
+    ],
+    "secondaryMuscles": [
+      "glutes",
+      "upper back",
+      "core"
+    ],
+    "instructions": [
+      "Hold the barbell in a front rack position.",
+      "Squat down keeping torso upright.",
+      "Drive back up."
+    ],
+    "category": "strength",
+    "images": [
+      "Front_Squat_Clean_Grip/0.jpg"
+    ]
+  },
+  {
+    "name": "Conventional Deadlift",
+    "force": "pull",
+    "level": "intermediate",
+    "mechanic": "compound",
+    "equipment": "barbell",
+    "primaryMuscles": [
+      "lower back"
+    ],
+    "secondaryMuscles": [
+      "hamstrings",
+      "glutes",
+      "quadriceps",
+      "trapezius"
+    ],
+    "instructions": [
+      "Stand over the bar, feet hip-width.",
+      "Grip the bar, flatten your back.",
+      "Drive through the floor, locking out at the top."
+    ],
+    "category": "strength",
+    "images": [
+      "Barbell_Deadlift/0.jpg"
+    ]
+  },
+  {
+    "name": "Dumbbell Lunge",
+    "force": "push",
+    "level": "beginner",
+    "mechanic": "compound",
+    "equipment": "dumbbell",
+    "primaryMuscles": [
+      "quadriceps"
+    ],
+    "secondaryMuscles": [
+      "glutes",
+      "hamstrings"
+    ],
+    "instructions": [
+      "Stand holding dumbbells.",
+      "Step forward and lower your back knee toward the floor.",
+      "Push back to starting position."
+    ],
+    "category": "strength",
+    "images": [
+      "Dumbbell_Lunges/0.jpg"
+    ]
+  },
+  {
+    "name": "Leg Press",
+    "force": "push",
+    "level": "beginner",
+    "mechanic": "compound",
+    "equipment": "machine",
+    "primaryMuscles": [
+      "quadriceps"
+    ],
+    "secondaryMuscles": [
+      "glutes",
+      "hamstrings",
+      "calves"
+    ],
+    "instructions": [
+      "Sit in the leg press machine and place feet hip-width on the platform.",
+      "Lower the platform by bending knees.",
+      "Press back up without locking knees."
+    ],
+    "category": "strength",
+    "images": [
+      "Leg_Press/0.jpg"
+    ]
+  },
+  {
+    "name": "Pull Up",
+    "force": "pull",
+    "level": "intermediate",
+    "mechanic": "compound",
+    "equipment": "body only",
+    "primaryMuscles": [
+      "latissimus dorsi"
+    ],
+    "secondaryMuscles": [
+      "biceps brachii",
+      "rear deltoid",
+      "rhomboids"
+    ],
+    "instructions": [
+      "Hang from a bar with an overhand grip wider than shoulder width.",
+      "Pull your chest up to the bar.",
+      "Lower under control."
+    ],
+    "category": "strength",
+    "images": [
+      "Pullups/0.jpg"
+    ]
+  },
+  {
+    "name": "Chin Up",
+    "force": "pull",
+    "level": "intermediate",
+    "mechanic": "compound",
+    "equipment": "body only",
+    "primaryMuscles": [
+      "biceps brachii",
+      "latissimus dorsi"
+    ],
+    "secondaryMuscles": [
+      "rhomboids",
+      "rear deltoid"
+    ],
+    "instructions": [
+      "Hang from a bar with an underhand grip.",
+      "Pull your chin above the bar.",
+      "Lower under control."
+    ],
+    "category": "strength",
+    "images": [
+      "Pullups/0.jpg"
+    ]
+  },
+  {
+    "name": "Weighted Pull Up",
+    "force": "pull",
+    "level": "advanced",
+    "mechanic": "compound",
+    "equipment": "other",
+    "primaryMuscles": [
+      "latissimus dorsi"
+    ],
+    "secondaryMuscles": [
+      "biceps brachii",
+      "rear deltoid"
+    ],
+    "instructions": [
+      "Attach a weight belt or hold a dumbbell between your feet.",
+      "Perform a pull-up with the added weight."
+    ],
+    "category": "strength",
+    "images": [
+      "Pullups/0.jpg"
+    ]
+  },
+  {
+    "name": "Dip",
+    "force": "push",
+    "level": "intermediate",
+    "mechanic": "compound",
+    "equipment": "body only",
+    "primaryMuscles": [
+      "triceps brachii"
+    ],
+    "secondaryMuscles": [
+      "pectorals",
+      "anterior deltoid"
+    ],
+    "instructions": [
+      "Grip parallel bars with arms extended.",
+      "Lower by bending the elbows until upper arms are parallel.",
+      "Press back up."
+    ],
+    "category": "strength",
+    "images": [
+      "Dips_-_Chest_Version/0.jpg"
+    ]
+  },
+  {
+    "name": "Inverted Row",
+    "force": "pull",
+    "level": "beginner",
+    "mechanic": "compound",
+    "equipment": "body only",
+    "primaryMuscles": [
+      "latissimus dorsi"
+    ],
+    "secondaryMuscles": [
+      "biceps brachii",
+      "rhomboids",
+      "rear deltoid"
+    ],
+    "instructions": [
+      "Set a bar at hip height. Hang below it with straight arms.",
+      "Pull your chest to the bar.",
+      "Lower under control."
+    ],
+    "category": "strength",
+    "images": [
+      "Bent_Over_Two-Dumbbell_Row/0.jpg"
+    ]
+  },
+  {
+    "name": "Bench Dip",
+    "force": "push",
+    "level": "beginner",
+    "mechanic": "isolation",
+    "equipment": "body only",
+    "primaryMuscles": [
+      "triceps brachii"
+    ],
+    "secondaryMuscles": [
+      "anterior deltoid",
+      "pectorals"
+    ],
+    "instructions": [
+      "Place hands on a bench behind you, feet out in front.",
+      "Lower until elbows are at 90\u00c2\u00b0.",
+      "Press back up."
+    ],
+    "category": "strength",
+    "images": [
+      "Bench_Dips/0.jpg"
+    ]
+  },
+  {
+    "name": "Push Up",
+    "force": "push",
+    "level": "beginner",
+    "mechanic": "compound",
+    "equipment": "body only",
+    "primaryMuscles": [
+      "pectorals"
+    ],
+    "secondaryMuscles": [
+      "anterior deltoid",
+      "triceps brachii"
+    ],
+    "instructions": [
+      "Place hands wider than shoulder width.",
+      "Lower your chest toward the floor.",
+      "Press back up."
+    ],
+    "category": "strength",
+    "images": [
+      "Clock_Push-Up/0.jpg"
+    ]
+  },
+  {
+    "name": "Pike Push Up",
+    "force": "push",
+    "level": "intermediate",
+    "mechanic": "compound",
+    "equipment": "body only",
+    "primaryMuscles": [
+      "anterior deltoid"
+    ],
+    "secondaryMuscles": [
+      "triceps brachii",
+      "pectorals"
+    ],
+    "instructions": [
+      "Start in a downward-dog position with hips high.",
+      "Bend elbows, lowering your head toward the floor.",
+      "Press back up."
+    ],
+    "category": "strength",
+    "images": [
+      "Decline_Push-Up/0.jpg"
+    ]
+  },
+  {
+    "name": "Handstand Push Up",
+    "force": "push",
+    "level": "advanced",
+    "mechanic": "compound",
+    "equipment": "body only",
+    "primaryMuscles": [
+      "anterior deltoid",
+      "lateral deltoid"
+    ],
+    "secondaryMuscles": [
+      "triceps brachii",
+      "trapezius"
+    ],
+    "instructions": [
+      "Kick up into a handstand against a wall.",
+      "Lower your head toward the floor by bending the elbows.",
+      "Press back up."
+    ],
+    "category": "strength",
+    "images": [
+      "Decline_Push-Up/0.jpg"
+    ]
+  },
+  {
+    "name": "Barbell Curl",
+    "force": "pull",
+    "level": "beginner",
+    "mechanic": "isolation",
+    "equipment": "barbell",
+    "primaryMuscles": [
+      "biceps brachii"
+    ],
+    "secondaryMuscles": [
+      "brachialis",
+      "brachioradialis"
+    ],
+    "instructions": [
+      "Stand holding a barbell with underhand grip.",
+      "Curl the bar up to your shoulders.",
+      "Lower under control."
+    ],
+    "category": "strength",
+    "images": [
+      "Barbell_Curl/0.jpg"
+    ]
+  },
+  {
+    "name": "Dumbbell Hammer Curl",
+    "force": "pull",
+    "level": "beginner",
+    "mechanic": "isolation",
+    "equipment": "dumbbell",
+    "primaryMuscles": [
+      "brachialis",
+      "brachioradialis"
+    ],
+    "secondaryMuscles": [
+      "biceps brachii"
+    ],
+    "instructions": [
+      "Stand holding dumbbells with neutral grip.",
+      "Curl both up simultaneously.",
+      "Lower under control."
+    ],
+    "category": "strength",
+    "images": [
+      "Hammer_Curls/0.jpg"
+    ]
+  },
+  {
+    "name": "Reverse Curl",
+    "force": "pull",
+    "level": "beginner",
+    "mechanic": "isolation",
+    "equipment": "barbell",
+    "primaryMuscles": [
+      "brachioradialis"
+    ],
+    "secondaryMuscles": [
+      "biceps brachii",
+      "brachialis"
+    ],
+    "instructions": [
+      "Hold a barbell with overhand grip.",
+      "Curl it up while keeping wrists neutral.",
+      "Lower under control."
+    ],
+    "category": "strength",
+    "images": [
+      "Reverse_Barbell_Curl/0.jpg"
+    ]
+  },
+  {
+    "name": "Barbell Overhead Press",
+    "force": "push",
+    "level": "intermediate",
+    "mechanic": "compound",
+    "equipment": "barbell",
+    "primaryMuscles": [
+      "anterior deltoid",
+      "lateral deltoid"
+    ],
+    "secondaryMuscles": [
+      "triceps brachii",
+      "trapezius",
+      "core"
+    ],
+    "instructions": [
+      "Hold a barbell at shoulder height in front.",
+      "Press overhead until arms are fully extended.",
+      "Lower to the front."
+    ],
+    "category": "strength",
+    "images": [
+      "Barbell_Shoulder_Press/0.jpg"
+    ]
+  },
+  {
+    "name": "Dumbbell Shoulder Press",
+    "force": "push",
+    "level": "beginner",
+    "mechanic": "compound",
+    "equipment": "dumbbell",
+    "primaryMuscles": [
+      "anterior deltoid",
+      "lateral deltoid"
+    ],
+    "secondaryMuscles": [
+      "triceps brachii"
+    ],
+    "instructions": [
+      "Stand or sit holding dumbbells at shoulder height.",
+      "Press overhead.",
+      "Lower under control."
+    ],
+    "category": "strength",
+    "images": [
+      "Dumbbell_Shoulder_Press/0.jpg"
+    ]
+  },
+  {
+    "name": "Shrugs",
+    "force": "static",
+    "level": "beginner",
+    "mechanic": "isolation",
+    "equipment": "dumbbell",
+    "primaryMuscles": [
+      "trapezius"
+    ],
+    "secondaryMuscles": [],
+    "instructions": [
+      "Hold dumbbells or a barbell at your sides.",
+      "Shrug your shoulders straight up as high as possible.",
+      "Lower and repeat."
+    ],
+    "category": "strength",
+    "images": [
+      "Dumbbell_Shrug/0.jpg"
+    ]
+  },
+  {
+    "name": "Barbell Shrug",
+    "force": "static",
+    "level": "beginner",
+    "mechanic": "isolation",
+    "equipment": "barbell",
+    "primaryMuscles": [
+      "trapezius"
+    ],
+    "secondaryMuscles": [],
+    "instructions": [
+      "Hold a barbell in front with shoulder-width grip.",
+      "Shrug your shoulders straight up.",
+      "Hold briefly and lower."
+    ],
+    "category": "strength",
+    "images": [
+      "Barbell_Shrug/0.jpg"
+    ]
+  },
+  {
+    "name": "Plank",
+    "force": "static",
+    "level": "beginner",
+    "mechanic": "isolation",
+    "equipment": "body only",
+    "primaryMuscles": [
+      "abdominals"
+    ],
+    "secondaryMuscles": [
+      "obliques",
+      "lower back",
+      "glutes"
+    ],
+    "instructions": [
+      "Prop yourself up on forearms and toes.",
+      "Keep your body in a straight line from head to heel.",
+      "Hold for time."
+    ],
+    "category": "strength",
+    "images": [
+      "Plank/0.jpg"
+    ]
+  },
+  {
+    "name": "Russian Twist",
+    "force": "pull",
+    "level": "beginner",
+    "mechanic": "isolation",
+    "equipment": "body only",
+    "primaryMuscles": [
+      "obliques"
+    ],
+    "secondaryMuscles": [
+      "abdominals"
+    ],
+    "instructions": [
+      "Sit with knees bent, leaning back slightly.",
+      "Rotate your torso side to side.",
+      "Add a weight or medicine ball for resistance."
+    ],
+    "category": "strength",
+    "images": [
+      "Russian_Twist/0.jpg"
+    ]
+  },
+  {
+    "name": "Toes to Bar",
+    "force": "pull",
+    "level": "intermediate",
+    "mechanic": "isolation",
+    "equipment": "body only",
+    "primaryMuscles": [
+      "abdominals"
+    ],
+    "secondaryMuscles": [
+      "hip flexors",
+      "obliques"
+    ],
+    "instructions": [
+      "Hang from a bar with straight arms.",
+      "Raise your toes up to touch the bar.",
+      "Lower under control."
+    ],
+    "category": "strength",
+    "images": [
+      "Hanging_Leg_Raise/0.jpg"
+    ]
+  },
+  {
+    "name": "V-Up",
+    "force": "pull",
+    "level": "intermediate",
+    "mechanic": "isolation",
+    "equipment": "body only",
+    "primaryMuscles": [
+      "abdominals"
+    ],
+    "secondaryMuscles": [
+      "hip flexors"
+    ],
+    "instructions": [
+      "Lie flat on your back with arms extended overhead.",
+      "Simultaneously raise your legs and torso, reaching for your toes.",
+      "Lower and repeat."
+    ],
+    "category": "strength",
+    "images": [
+      "V_Up/0.jpg"
+    ]
+  },
+  {
+    "name": "Seated Cable Row",
+    "force": "pull",
+    "level": "beginner",
+    "mechanic": "compound",
+    "equipment": "cable",
+    "primaryMuscles": [
+      "latissimus dorsi"
+    ],
+    "secondaryMuscles": [
+      "rhomboids",
+      "biceps brachii",
+      "rear deltoid"
+    ],
+    "instructions": [
+      "Sit at a low cable row with a V-bar handle.",
+      "Row the bar into your lower chest, keeping your back straight.",
+      "Return under control."
+    ],
+    "category": "strength",
+    "images": [
+      "Seated_Cable_Rows/0.jpg"
+    ]
+  },
+  {
+    "name": "Lat Pulldown",
+    "force": "pull",
+    "level": "beginner",
+    "mechanic": "compound",
+    "equipment": "cable",
+    "primaryMuscles": [
+      "latissimus dorsi"
+    ],
+    "secondaryMuscles": [
+      "biceps brachii",
+      "rear deltoid"
+    ],
+    "instructions": [
+      "Sit at a cable pulldown, gripping the bar wider than shoulder width.",
+      "Pull the bar down to your upper chest.",
+      "Return under control."
+    ],
+    "category": "strength",
+    "images": [
+      "Full_Range-Of-Motion_Lat_Pulldown/0.jpg"
+    ]
+  },
+  {
+    "name": "Close Grip Lat Pulldown",
+    "force": "pull",
+    "level": "beginner",
+    "mechanic": "compound",
+    "equipment": "cable",
+    "primaryMuscles": [
+      "latissimus dorsi"
+    ],
+    "secondaryMuscles": [
+      "biceps brachii",
+      "rear deltoid"
+    ],
+    "instructions": [
+      "Use a close or neutral grip attachment on the pulldown machine.",
+      "Pull down to your collarbone.",
+      "Return under control."
+    ],
+    "category": "strength",
+    "images": [
+      "Close-Grip_Front_Lat_Pulldown/0.jpg"
+    ]
+  },
+  {
+    "name": "One Arm Dumbbell Row",
+    "force": "pull",
+    "level": "beginner",
+    "mechanic": "compound",
+    "equipment": "dumbbell",
+    "primaryMuscles": [
+      "latissimus dorsi"
+    ],
+    "secondaryMuscles": [
+      "rhomboids",
+      "biceps brachii",
+      "rear deltoid"
+    ],
+    "instructions": [
+      "Brace one hand and knee on a bench.",
+      "Row a dumbbell up with the other arm.",
+      "Lower and repeat."
+    ],
+    "category": "strength",
+    "images": [
+      "One-Arm_Dumbbell_Row/0.jpg"
+    ]
+  },
+  {
+    "name": "Bent Over Barbell Row",
+    "force": "pull",
+    "level": "intermediate",
+    "mechanic": "compound",
+    "equipment": "barbell",
+    "primaryMuscles": [
+      "latissimus dorsi"
+    ],
+    "secondaryMuscles": [
+      "rhomboids",
+      "biceps brachii",
+      "lower back"
+    ],
+    "instructions": [
+      "Hinge forward to about 45\u00c2\u00b0, grip barbell shoulder-width.",
+      "Row to your lower chest.",
+      "Lower under control."
+    ],
+    "category": "strength",
+    "images": [
+      "Bent_Over_Barbell_Row/0.jpg"
+    ]
+  },
+  {
+    "name": "Triceps Pushdown",
+    "force": "push",
+    "level": "beginner",
+    "mechanic": "isolation",
+    "equipment": "cable",
+    "primaryMuscles": [
+      "triceps brachii"
+    ],
+    "secondaryMuscles": [],
+    "instructions": [
+      "Attach a bar or rope to a high cable.",
+      "Keep upper arms at your sides and push down.",
+      "Return under control."
+    ],
+    "category": "strength",
+    "images": [
+      "Triceps_Pushdown/0.jpg"
+    ]
+  },
+  {
+    "name": "Cable Rope Overhead Extension",
+    "force": "push",
+    "level": "beginner",
+    "mechanic": "isolation",
+    "equipment": "cable",
+    "primaryMuscles": [
+      "triceps brachii"
+    ],
+    "secondaryMuscles": [],
+    "instructions": [
+      "Attach a rope to a low cable behind you.",
+      "Extend arms overhead from behind.",
+      "Return under control."
+    ],
+    "category": "strength",
+    "images": [
+      "Triceps_Pushdown_-_Rope_Attachment/0.jpg"
+    ]
+  },
+  {
+    "name": "Jumping Jack",
+    "force": "push",
+    "level": "beginner",
+    "mechanic": "compound",
+    "equipment": "body only",
+    "primaryMuscles": [
+      "cardiovascular system"
+    ],
+    "secondaryMuscles": [
+      "calves",
+      "shoulders"
+    ],
+    "instructions": [
+      "Stand with feet together.",
+      "Jump feet wide while raising arms overhead.",
+      "Return and repeat."
+    ],
+    "category": "cardio",
+    "images": [
+      "Star_Jump/0.jpg",
+      "Star_Jump/1.jpg"
+    ]
+  },
+  {
+    "name": "Burpee",
+    "force": "push",
+    "level": "intermediate",
+    "mechanic": "compound",
+    "equipment": "body only",
+    "primaryMuscles": [
+      "cardiovascular system"
+    ],
+    "secondaryMuscles": [
+      "pectorals",
+      "quadriceps",
+      "core"
+    ],
+    "instructions": [
+      "Drop to a squat and place hands on the floor.",
+      "Jump feet back to a plank position.",
+      "Do a push-up, jump feet to hands, then jump up."
+    ],
+    "category": "cardio",
+    "images": [
+      "Bench_Jump/0.jpg",
+      "Bench_Jump/1.jpg"
+    ]
+  },
+  {
+    "name": "Mountain Climber",
+    "force": "push",
+    "level": "beginner",
+    "mechanic": "compound",
+    "equipment": "body only",
+    "primaryMuscles": [
+      "cardiovascular system"
+    ],
+    "secondaryMuscles": [
+      "abdominals",
+      "hip flexors"
+    ],
+    "instructions": [
+      "Start in a plank position.",
+      "Drive one knee toward your chest, then switch rapidly."
+    ],
+    "category": "cardio",
+    "images": [
+      "Mountain_Climbers/0.jpg",
+      "Mountain_Climbers/1.jpg"
+    ]
+  },
+  {
+    "name": "Box Jump",
+    "force": "push",
+    "level": "intermediate",
+    "mechanic": "compound",
+    "equipment": "body only",
+    "primaryMuscles": [
+      "quadriceps"
+    ],
+    "secondaryMuscles": [
+      "glutes",
+      "calves",
+      "hamstrings"
+    ],
+    "instructions": [
+      "Stand in front of a box.",
+      "Explode up, landing softly on top.",
+      "Step down and repeat."
+    ],
+    "category": "plyometrics",
+    "images": [
+      "Box_Jump_Multiple_Response/0.jpg"
+    ]
+  },
+  {
+    "name": "Jump Rope",
+    "force": "push",
+    "level": "beginner",
+    "mechanic": "compound",
+    "equipment": "other",
+    "primaryMuscles": [
+      "cardiovascular system"
+    ],
+    "secondaryMuscles": [
+      "calves",
+      "shoulders",
+      "core"
+    ],
+    "instructions": [
+      "Hold the rope handles at your sides.",
+      "Swing the rope over your head and jump as it passes under your feet."
+    ],
+    "category": "cardio",
+    "images": [
+      "Rope_Jumping/0.jpg",
+      "Rope_Jumping/1.jpg"
+    ]
+  },
+  {
+    "name": "Rowing Machine",
+    "force": "pull",
+    "level": "beginner",
+    "mechanic": "compound",
+    "equipment": "machine",
+    "primaryMuscles": [
+      "cardiovascular system"
+    ],
+    "secondaryMuscles": [
+      "latissimus dorsi",
+      "hamstrings",
+      "glutes",
+      "biceps brachii"
+    ],
+    "instructions": [
+      "Sit on the rowing machine, feet secured.",
+      "Drive back with the legs, lean back, then pull the handle to your chest.",
+      "Reverse the motion."
+    ],
+    "category": "cardio",
+    "images": [
+      "Rowing_Stationary/0.jpg",
+      "Rowing_Stationary/1.jpg"
+    ]
+  },
+  {
+    "name": "Treadmill Running",
+    "force": "push",
+    "level": "beginner",
+    "mechanic": "compound",
+    "equipment": "machine",
+    "primaryMuscles": [
+      "cardiovascular system"
+    ],
+    "secondaryMuscles": [
+      "quadriceps",
+      "hamstrings",
+      "calves"
+    ],
+    "instructions": [
+      "Set the treadmill to a comfortable running pace.",
+      "Maintain an upright posture and steady stride.",
+      "Adjust speed and incline as needed."
+    ],
+    "category": "cardio",
+    "images": [
+      "Running_Treadmill/0.jpg",
+      "Running_Treadmill/1.jpg"
+    ]
+  },
+  {
+    "name": "Treadmill Walking",
+    "force": "push",
+    "level": "beginner",
+    "mechanic": "compound",
+    "equipment": "machine",
+    "primaryMuscles": [
+      "cardiovascular system"
+    ],
+    "secondaryMuscles": [
+      "quadriceps",
+      "hamstrings",
+      "calves"
+    ],
+    "instructions": [
+      "Set the treadmill to a brisk walking pace.",
+      "Maintain an upright posture with a natural arm swing.",
+      "Adjust speed and incline as needed."
+    ],
+    "category": "cardio",
+    "images": [
+      "Walking_Treadmill/0.jpg",
+      "Walking_Treadmill/1.jpg"
+    ]
+  },
+  {
+    "name": "Jogging",
+    "force": "push",
+    "level": "beginner",
+    "mechanic": "compound",
+    "equipment": "body only",
+    "primaryMuscles": [
+      "cardiovascular system"
+    ],
+    "secondaryMuscles": [
+      "quadriceps",
+      "hamstrings",
+      "calves"
+    ],
+    "instructions": [
+      "Maintain a relaxed, steady running pace.",
+      "Land lightly and keep your breathing controlled."
+    ],
+    "category": "cardio",
+    "images": [
+      "Jogging_Treadmill/0.jpg",
+      "Jogging_Treadmill/1.jpg"
+    ]
+  },
+  {
+    "name": "Stationary Bike",
+    "force": "push",
+    "level": "beginner",
+    "mechanic": "compound",
+    "equipment": "machine",
+    "primaryMuscles": [
+      "cardiovascular system"
+    ],
+    "secondaryMuscles": [
+      "quadriceps",
+      "hamstrings",
+      "glutes"
+    ],
+    "instructions": [
+      "Adjust the seat height and resistance.",
+      "Pedal at a steady pace, keeping your core engaged."
+    ],
+    "category": "cardio",
+    "images": [
+      "Bicycling_Stationary/0.jpg",
+      "Bicycling_Stationary/1.jpg"
+    ]
+  },
+  {
+    "name": "Outdoor Cycling",
+    "force": "push",
+    "level": "beginner",
+    "mechanic": "compound",
+    "equipment": "other",
+    "primaryMuscles": [
+      "cardiovascular system"
+    ],
+    "secondaryMuscles": [
+      "quadriceps",
+      "hamstrings",
+      "glutes"
+    ],
+    "instructions": [
+      "Maintain a steady cadence and posture.",
+      "Shift gears as needed for terrain."
+    ],
+    "category": "cardio",
+    "images": [
+      "Bicycling/0.jpg",
+      "Bicycling/1.jpg"
+    ]
+  },
+  {
+    "name": "Elliptical Trainer",
+    "force": "push",
+    "level": "beginner",
+    "mechanic": "compound",
+    "equipment": "machine",
+    "primaryMuscles": [
+      "cardiovascular system"
+    ],
+    "secondaryMuscles": [
+      "quadriceps",
+      "hamstrings",
+      "glutes",
+      "calves"
+    ],
+    "instructions": [
+      "Step onto the pedals and grip the handles.",
+      "Move in a smooth elliptical motion, pushing and pulling with arms and legs."
+    ],
+    "category": "cardio",
+    "images": [
+      "Elliptical_Trainer/0.jpg",
+      "Elliptical_Trainer/1.jpg"
+    ]
+  },
+  {
+    "name": "Stair Climber",
+    "force": "push",
+    "level": "beginner",
+    "mechanic": "compound",
+    "equipment": "machine",
+    "primaryMuscles": [
+      "cardiovascular system"
+    ],
+    "secondaryMuscles": [
+      "quadriceps",
+      "glutes",
+      "calves"
+    ],
+    "instructions": [
+      "Step onto the machine and hold the side rails lightly.",
+      "Step at a steady pace, keeping your posture upright."
+    ],
+    "category": "cardio",
+    "images": [
+      "Stairmaster/0.jpg",
+      "Stairmaster/1.jpg"
+    ]
+  },
+  {
+    "name": "Sprints",
+    "force": "push",
+    "level": "intermediate",
+    "mechanic": "compound",
+    "equipment": "body only",
+    "primaryMuscles": [
+      "cardiovascular system"
+    ],
+    "secondaryMuscles": [
+      "quadriceps",
+      "hamstrings",
+      "glutes",
+      "calves"
+    ],
+    "instructions": [
+      "Run at maximum effort for a short distance.",
+      "Recover with a walk or light jog, then repeat."
+    ],
+    "category": "cardio",
+    "images": [
+      "Prowler_Sprint/0.jpg",
+      "Prowler_Sprint/1.jpg"
+    ]
+  }
+]

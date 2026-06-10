@@ -1,88 +1,21 @@
-import 'dart:convert';
-import 'dart:io';
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:uuid/uuid.dart';
 import '../../core/theme/app_colors.dart';
 import '../../data/models/program_model.dart';
 import 'programs_provider.dart';
 
-class ProgramsScreen extends ConsumerStatefulWidget {
+class ProgramsScreen extends ConsumerWidget {
   const ProgramsScreen({super.key});
 
   @override
-  ConsumerState<ProgramsScreen> createState() => _ProgramsScreenState();
-}
-
-class _ProgramsScreenState extends ConsumerState<ProgramsScreen> {
-  bool _importing = false;
-
-  Future<void> _importProgram() async {
-    setState(() => _importing = true);
-    try {
-      final result = await FilePicker.platform.pickFiles(
-        type: FileType.custom,
-        allowedExtensions: ['json'],
-        withData: true,
-      );
-      if (result == null || result.files.isEmpty) return;
-
-      final bytes = result.files.first.bytes;
-      final path = result.files.first.path;
-      final raw = bytes != null
-          ? utf8.decode(bytes)
-          : await File(path!).readAsString();
-
-      final json = jsonDecode(raw) as Map<String, dynamic>;
-      final program = ProgramModel.fromJson(json).copyWith(
-        id: const Uuid().v4(),
-        isActive: false,
-      );
-      await ref.read(programsProvider.notifier).addProgram(program);
-
-      if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text('Imported "${program.name}"'),
-            backgroundColor: AppColors.growthGreen,
-          ),
-        );
-      }
-    } catch (e) {
-      if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text('Import failed — make sure it is a valid FitTrack JSON file'),
-            backgroundColor: AppColors.error,
-          ),
-        );
-      }
-    } finally {
-      if (mounted) setState(() => _importing = false);
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final programs = ref.watch(programsProvider);
 
     return Scaffold(
       appBar: AppBar(
         title: const Text('Programs'),
         actions: [
-          IconButton(
-            icon: _importing
-                ? const SizedBox(
-                    width: 18,
-                    height: 18,
-                    child: CircularProgressIndicator(strokeWidth: 2, color: AppColors.activeDark),
-                  )
-                : const Icon(Icons.file_download_outlined, color: AppColors.activeDark),
-            tooltip: 'Import Program',
-            onPressed: _importing ? null : _importProgram,
-          ),
           Padding(
             padding: const EdgeInsets.only(right: 12),
             child: TextButton.icon(
@@ -96,16 +29,27 @@ class _ProgramsScreenState extends ConsumerState<ProgramsScreen> {
           ),
         ],
       ),
-      body: programs.isEmpty
-          ? _EmptyState(onTap: () => context.push('/programs/create'))
-          : ListView.separated(
-              padding: const EdgeInsets.all(20),
-              itemCount: programs.length,
-              separatorBuilder: (_, __) => const SizedBox(height: 12),
-              itemBuilder: (context, index) {
-                return _ProgramCard(program: programs[index]);
-              },
-            ),
+      body: RefreshIndicator(
+        onRefresh: () async => ref.read(programsProvider.notifier).refresh(),
+        color: AppColors.activeDark,
+        child: programs.isEmpty
+            ? SingleChildScrollView(
+                physics: const AlwaysScrollableScrollPhysics(),
+                child: SizedBox(
+                  height: 500,
+                  child: _EmptyState(onTap: () => context.push('/programs/create')),
+                ),
+              )
+            : ListView.separated(
+                physics: const AlwaysScrollableScrollPhysics(),
+                padding: const EdgeInsets.all(20),
+                itemCount: programs.length,
+                separatorBuilder: (_, __) => const SizedBox(height: 12),
+                itemBuilder: (context, index) {
+                  return _ProgramCard(program: programs[index]);
+                },
+              ),
+      ),
     );
   }
 }

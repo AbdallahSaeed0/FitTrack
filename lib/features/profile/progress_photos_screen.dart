@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:uuid/uuid.dart';
 import '../../core/theme/app_theme.dart';
+import '../../core/utils/image_bytes_saver.dart';
 import '../../data/models/progress_photo_model.dart';
-import '../../data/services/hive_service.dart';
+import '../../shared/screens/crop_image_screen.dart';
 
 class ProgressPhotosScreen extends StatefulWidget {
   const ProgressPhotosScreen({super.key});
@@ -27,31 +27,49 @@ class _ProgressPhotosScreenState extends State<ProgressPhotosScreen> {
   }
 
   void _loadPhotos() {
-    final box = HiveService.progressPhotos;
-    final photos = box.values.toList()
-      ..sort((a, b) => b.dateTaken.compareTo(a.dateTaken));
-    setState(() => _photos = photos);
+    // photos are kept in _photos list directly; nothing to reload from persistent store
   }
 
   Future<void> _addPhoto(ImageSource source) async {
-    final picked = await _picker.pickImage(
-      source: source,
-      maxWidth: 1920,
-      maxHeight: 1920,
-      imageQuality: 85,
-    );
-    if (picked == null || !mounted) return;
+    try {
+      final picked = await _picker.pickImage(
+        source: source,
+        maxWidth: 1920,
+        maxHeight: 1920,
+        imageQuality: 90,
+      );
+      if (picked == null || !mounted) return;
 
-    // Copy to app documents directory so it persists
-    final appDir = await getApplicationDocumentsDirectory();
-    final photoDir = Directory('${appDir.path}/progress_photos');
-    if (!await photoDir.exists()) await photoDir.create(recursive: true);
+      // Read bytes immediately — fixes camera black screen where file isn't ready yet
+      final rawBytes = await picked.readAsBytes();
+      if (!mounted) return;
 
-    final savedPath = '${photoDir.path}/${const Uuid().v4()}.jpg';
-    await File(picked.path).copy(savedPath);
+      final croppedBytes = await Navigator.push<Uint8List>(
+        context,
+        MaterialPageRoute(
+          builder: (_) => CropImageScreen(
+            file: picked,
+            preloadedBytes: rawBytes,
+          ),
+        ),
+      );
 
-    if (!mounted) return;
-    await _showDetailsDialog(savedPath);
+      // Guard: user cancelled crop
+      if (!mounted || croppedBytes == null) return;
+
+      final savedPath = await saveCroppedBytes(
+        croppedBytes,
+        subfolder: 'progress_photos',
+      );
+
+      if (!mounted) return;
+      await _showDetailsDialog(savedPath);
+    } catch (e) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Could not load photo: $e')),
+      );
+    }
   }
 
   Future<void> _showDetailsDialog(String photoPath) async {
@@ -70,7 +88,9 @@ class _ProgressPhotosScreenState extends State<ProgressPhotosScreen> {
           left: 20,
           right: 20,
           top: 20,
-          bottom: MediaQuery.of(ctx).viewInsets.bottom + 24,
+          bottom: MediaQuery.of(ctx).viewInsets.bottom +
+              MediaQuery.of(ctx).padding.bottom +
+              24,
         ),
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -110,9 +130,9 @@ class _ProgressPhotosScreenState extends State<ProgressPhotosScreen> {
                         ? null
                         : notesCtrl.text.trim(),
                   );
-                  await HiveService.progressPhotos.put(photo.id, photo);
                   if (ctx.mounted) {
-                    _loadPhotos();
+                    setState(() => _photos = [photo, ..._photos]
+                      ..sort((a, b) => b.dateTaken.compareTo(a.dateTaken)));
                     Navigator.pop(ctx);
                   }
                 },
@@ -146,7 +166,8 @@ class _ProgressPhotosScreenState extends State<ProgressPhotosScreen> {
               },
             ),
             ListTile(
-              leading: const Icon(Icons.photo_library_rounded, color: steelBlue),
+              leading:
+                  const Icon(Icons.photo_library_rounded, color: steelBlue),
               title: const Text('Choose from Gallery'),
               onTap: () {
                 Navigator.pop(ctx);
@@ -165,8 +186,7 @@ class _ProgressPhotosScreenState extends State<ProgressPhotosScreen> {
       builder: (_) => _PhotoDetailScreen(
         photo: photo,
         onDeleted: () {
-          HiveService.progressPhotos.delete(photo.id);
-          _loadPhotos();
+          setState(() => _photos.removeWhere((p) => p.id == photo.id));
         },
       ),
     ));
@@ -190,7 +210,8 @@ class _ProgressPhotosScreenState extends State<ProgressPhotosScreen> {
           ? FloatingActionButton(
               onPressed: _showAddOptions,
               backgroundColor: primaryRed,
-              child: const Icon(Icons.add_a_photo_rounded, color: Colors.white),
+              child:
+                  const Icon(Icons.add_a_photo_rounded, color: Colors.white),
             )
           : null,
     );
@@ -226,20 +247,75 @@ class _ProgressPhotosScreenState extends State<ProgressPhotosScreen> {
         ),
       );
 
-  Widget _grid() => GridView.builder(
-        padding: const EdgeInsets.all(12),
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          crossAxisSpacing: 10,
-          mainAxisSpacing: 10,
-          childAspectRatio: 0.72,
-        ),
-        itemCount: _photos.length,
-        itemBuilder: (_, i) => _PhotoTile(
-          photo: _photos[i],
-          onTap: () => _showFullPhoto(_photos[i]),
-        ),
-      );
+  /// Groups photos by calendar day (newest group first).
+  Map<String, List<ProgressPhotoModel>> _groupByDate() {
+    final map = <String, List<ProgressPhotoModel>>{};
+    for (final p in _photos) {
+      final key = DateFormat('yyyy-MM-dd').format(p.dateTaken);
+      map.putIfAbsent(key, () => []).add(p);
+    }
+    final sorted = map.entries.toList()
+      ..sort((a, b) => b.key.compareTo(a.key));
+    return Map.fromEntries(sorted);
+  }
+
+  Widget _grid() {
+    final groups = _groupByDate();
+    final keys = groups.keys.toList();
+    final bottomPad = MediaQuery.of(context).padding.bottom;
+
+    return ListView.builder(
+      padding: EdgeInsets.fromLTRB(12, 12, 12, 12 + bottomPad + 72),
+      itemCount: keys.length,
+      itemBuilder: (_, gi) {
+        final dateKey = keys[gi];
+        final date = DateTime.parse(dateKey);
+        final headerLabel = DateFormat('MMM d, yyyy').format(date).toUpperCase();
+        final photos = groups[dateKey]!;
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(top: 8, bottom: 8),
+              child: Row(
+                children: [
+                  Text(
+                    headerLabel,
+                    style: const TextStyle(
+                      color: Color(0xFF94A3B8),
+                      fontSize: 11,
+                      fontWeight: FontWeight.w700,
+                      letterSpacing: 1.0,
+                    ),
+                  ),
+                  const SizedBox(width: 10),
+                  const Expanded(
+                    child: Divider(color: Color(0xFF334155), height: 1),
+                  ),
+                ],
+              ),
+            ),
+            GridView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                crossAxisSpacing: 10,
+                mainAxisSpacing: 10,
+                childAspectRatio: 0.72,
+              ),
+              itemCount: photos.length,
+              itemBuilder: (_, i) => _PhotoTile(
+                photo: photos[i],
+                onTap: () => _showFullPhoto(photos[i]),
+              ),
+            ),
+            const SizedBox(height: 8),
+          ],
+        );
+      },
+    );
+  }
 }
 
 // ── Photo tile ────────────────────────────────────────────────────────────────
@@ -252,9 +328,7 @@ class _PhotoTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final dateLabel =
-        DateFormat('d MMM yyyy').format(photo.dateTaken);
-    final file = File(photo.photoPath);
+    final dateLabel = DateFormat('d MMM yyyy').format(photo.dateTaken);
 
     return GestureDetector(
       onTap: onTap,
@@ -263,15 +337,7 @@ class _PhotoTile extends StatelessWidget {
         child: Stack(
           fit: StackFit.expand,
           children: [
-            // Photo
-            file.existsSync()
-                ? Image.file(file, fit: BoxFit.cover)
-                : Container(
-                    color: steelBlue.withAlpha(20),
-                    child: const Icon(Icons.broken_image_rounded,
-                        size: 48, color: steelBlue),
-                  ),
-            // Gradient overlay
+            _nativePhoto(photo.photoPath, BoxFit.cover),
             Positioned(
               left: 0,
               right: 0,
@@ -307,6 +373,39 @@ class _PhotoTile extends StatelessWidget {
   }
 }
 
+// ── Platform-aware image builder ─────────────────────────────────────────────
+// Handles: http(s)://, blob:, data: (web data URL), file:// and bare native paths.
+Widget _nativePhoto(String path, BoxFit fit) {
+  if (path.startsWith('http') ||
+      path.startsWith('blob:') ||
+      path.startsWith('data:') ||
+      path.startsWith('file://')) {
+    return Image.network(path, fit: fit,
+        errorBuilder: (_, __, ___) => Container(
+              color: steelBlue.withAlpha(20),
+              child: const Icon(Icons.broken_image_rounded,
+                  size: 48, color: steelBlue),
+            ));
+  }
+  // Native path — use File image (more reliable than file:// URI on Android)
+  try {
+    return Image.file(
+      File(path),
+      fit: fit,
+      errorBuilder: (_, __, ___) => Container(
+            color: steelBlue.withAlpha(20),
+            child: const Icon(Icons.broken_image_rounded,
+                size: 48, color: steelBlue),
+          ),
+    );
+  } catch (_) {
+    return Container(
+      color: steelBlue.withAlpha(20),
+      child: const Icon(Icons.broken_image_rounded, size: 48, color: steelBlue),
+    );
+  }
+}
+
 // ── Full-screen detail ────────────────────────────────────────────────────────
 
 class _PhotoDetailScreen extends StatelessWidget {
@@ -317,9 +416,7 @@ class _PhotoDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final dateLabel =
-        DateFormat('EEEE, d MMMM yyyy').format(photo.dateTaken);
-    final file = File(photo.photoPath);
+    final dateLabel = DateFormat('EEEE, d MMMM yyyy').format(photo.dateTaken);
 
     return Scaffold(
       backgroundColor: Colors.black,
@@ -339,54 +436,54 @@ class _PhotoDetailScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: Column(
-        children: [
-          Expanded(
-            child: file.existsSync()
-                ? Image.file(file, fit: BoxFit.contain, width: double.infinity)
-                : const Center(
-                    child: Icon(Icons.broken_image_rounded,
-                        size: 64, color: Colors.white38)),
-          ),
-          if (photo.weightKg != null || photo.notes != null)
-            Container(
-              width: double.infinity,
-              padding: const EdgeInsets.all(20),
-              color: const Color(0xFF1A1A2E),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  if (photo.weightKg != null) ...[
-                    Row(children: [
-                      const Icon(Icons.monitor_weight_outlined,
-                          size: 16, color: steelBlue),
-                      const SizedBox(width: 8),
-                      Text(
-                        '${photo.weightKg!.toStringAsFixed(1)} kg',
-                        style: const TextStyle(
-                            color: Colors.white, fontWeight: FontWeight.w600),
-                      ),
-                    ]),
-                    if (photo.notes != null) const SizedBox(height: 8),
-                  ],
-                  if (photo.notes != null)
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Icon(Icons.notes_rounded,
+      body: SafeArea(
+        top: false,
+        child: Column(
+          children: [
+            Expanded(
+              child: _nativePhoto(photo.photoPath, BoxFit.contain),
+            ),
+            if (photo.weightKg != null || photo.notes != null)
+              Container(
+                width: double.infinity,
+                padding: const EdgeInsets.fromLTRB(20, 16, 20, 16),
+                color: const Color(0xFF1A1A2E),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    if (photo.weightKg != null) ...[
+                      Row(children: [
+                        const Icon(Icons.monitor_weight_outlined,
                             size: 16, color: steelBlue),
                         const SizedBox(width: 8),
-                        Expanded(
-                          child: Text(photo.notes!,
-                              style: const TextStyle(
-                                  color: Colors.white70, fontSize: 13)),
+                        Text(
+                          '${photo.weightKg!.toStringAsFixed(1)} kg',
+                          style: const TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w600),
                         ),
-                      ],
-                    ),
-                ],
+                      ]),
+                      if (photo.notes != null) const SizedBox(height: 8),
+                    ],
+                    if (photo.notes != null)
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Icon(Icons.notes_rounded,
+                              size: 16, color: steelBlue),
+                          const SizedBox(width: 8),
+                          Expanded(
+                            child: Text(photo.notes!,
+                                style: const TextStyle(
+                                    color: Colors.white70, fontSize: 13)),
+                          ),
+                        ],
+                      ),
+                  ],
+                ),
               ),
-            ),
-        ],
+          ],
+        ),
       ),
     );
   }

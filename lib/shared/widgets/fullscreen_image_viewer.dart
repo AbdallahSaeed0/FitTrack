@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class FullScreenImageViewer extends StatelessWidget {
@@ -12,6 +13,8 @@ class FullScreenImageViewer extends StatelessWidget {
     this.title = '',
     this.httpHeaders,
   });
+
+  bool get _isLocal => imageUrl.startsWith('assets/');
 
   @override
   Widget build(BuildContext context) {
@@ -30,18 +33,45 @@ class FullScreenImageViewer extends StatelessWidget {
         child: InteractiveViewer(
           minScale: 0.5,
           maxScale: 5.0,
-          child: CachedNetworkImage(
-            imageUrl: imageUrl,
-            httpHeaders: httpHeaders,
-            fit: BoxFit.contain,
-            placeholder: (_, __) => const Center(
-              child: CircularProgressIndicator(color: Colors.white),
-            ),
-            errorWidget: (_, __, ___) => const Center(
-              child: Icon(Icons.broken_image_rounded, size: 64, color: Colors.white38),
-            ),
-          ),
+          child: _isLocal ? _localImage() : _networkImage(),
         ),
+      ),
+    );
+  }
+
+  Widget _localImage() => Image.asset(
+        imageUrl,
+        fit: BoxFit.contain,
+        errorBuilder: (_, __, ___) => const Center(
+          child: Icon(Icons.broken_image_rounded,
+              size: 64, color: Colors.white38),
+        ),
+      );
+
+  Widget _networkImage() {
+    if (kIsWeb) {
+      return Image.network(
+        imageUrl,
+        fit: BoxFit.contain,
+        loadingBuilder: (_, child, progress) => progress == null
+            ? child
+            : const Center(
+                child: CircularProgressIndicator(color: Colors.white)),
+        errorBuilder: (_, __, ___) => const Center(
+          child: Icon(Icons.broken_image_rounded,
+              size: 64, color: Colors.white38),
+        ),
+      );
+    }
+    return CachedNetworkImage(
+      imageUrl: imageUrl,
+      httpHeaders: httpHeaders,
+      fit: BoxFit.contain,
+      placeholder: (_, __) =>
+          const Center(child: CircularProgressIndicator(color: Colors.white)),
+      errorWidget: (_, __, ___) => const Center(
+        child: Icon(Icons.broken_image_rounded,
+            size: 64, color: Colors.white38),
       ),
     );
   }

@@ -19,15 +19,21 @@ subprojects {
     project.evaluationDependsOn(":app")
 }
 
-// Force all Flutter plugin subprojects to compile against SDK 34.
-// Fixes "android:attr/lStar not found" from plugins with a stale compileSdkVersion.
+// Force all Flutter plugin subprojects to compile against the app compileSdk.
+// Fixes stale compileSdkVersion on older plugins (e.g. android:attr/lStar not found).
 subprojects {
-    afterEvaluate {
-        if (project.plugins.hasPlugin("com.android.library")) {
-            extensions.getByType<com.android.build.gradle.LibraryExtension>().apply {
-                compileSdk = 34
-            }
+    fun configureLibraryCompileSdk() {
+        extensions.findByType<com.android.build.gradle.LibraryExtension>()?.apply {
+            compileSdk = 36
         }
+    }
+    pluginManager.withPlugin("com.android.library") {
+        configureLibraryCompileSdk()
+    }
+    if (state.executed) {
+        configureLibraryCompileSdk()
+    } else {
+        afterEvaluate { configureLibraryCompileSdk() }
     }
 }
 

@@ -82,7 +82,7 @@ class _WeightHistoryScreenState extends State<WeightHistoryScreen> {
   }
 
   void _load() {
-    final sessions = SessionRepository().getAll();
+    final sessions = SessionRepository.instance.getAll();
     final history = _buildHistory(sessions);
     setState(() {
       _all = history;

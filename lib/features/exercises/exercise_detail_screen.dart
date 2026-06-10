@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/theme/app_theme.dart';
 import '../../data/models/exercise_model.dart';
-import '../../data/services/workoutx_service.dart';
-import '../../shared/providers/api_key_provider.dart';
+import '../../data/repositories/exercise_repository.dart';
 import '../../shared/widgets/animated_exercise_image.dart';
 import '../../shared/widgets/technique_badge.dart';
 
-class ExerciseDetailScreen extends ConsumerStatefulWidget {
+class ExerciseDetailScreen extends StatefulWidget {
   final String exerciseId;
   final ExerciseModel? exercise;
 
@@ -18,53 +16,44 @@ class ExerciseDetailScreen extends ConsumerStatefulWidget {
   });
 
   @override
-  ConsumerState<ExerciseDetailScreen> createState() =>
-      _ExerciseDetailScreenState();
+  State<ExerciseDetailScreen> createState() => _ExerciseDetailScreenState();
 }
 
-class _ExerciseDetailScreenState extends ConsumerState<ExerciseDetailScreen> {
-  String? _workoutXGif;
-  bool _loadingGif = false;
+class _ExerciseDetailScreenState extends State<ExerciseDetailScreen> {
+  String? _enrichedGifUrl;
+  bool _gifLoading = false;
 
   @override
   void initState() {
     super.initState();
-    _tryLoadWorkoutXGif();
+    _tryEnrichGifUrl();
   }
 
-  Future<void> _tryLoadWorkoutXGif() async {
-    final key = ref.read(apiKeyProvider);
-    if (key.isEmpty || widget.exercise == null) return;
-    setState(() => _loadingGif = true);
-    final gif =
-        await WorkoutXService(apiKey: key).getExerciseGif(widget.exercise!.name);
-    if (mounted) {
-      setState(() {
-        _workoutXGif = gif;
-        _loadingGif = false;
-      });
+  Future<void> _tryEnrichGifUrl({bool force = false}) async {
+    final ex = widget.exercise;
+    if (ex == null) return;
+    // Skip if already has a gif and not forced refresh
+    if (!force && ex.gifUrl.isNotEmpty && _enrichedGifUrl == null) {
+      return;
+    }
+    if (force) setState(() => _gifLoading = true);
+    try {
+      final found = await ExerciseRepository().getByExactName(ex.name);
+      if (mounted && found != null && found.gifUrl.isNotEmpty) {
+        setState(() => _enrichedGifUrl = found.gifUrl);
+      }
+    } finally {
+      if (mounted) setState(() => _gifLoading = false);
     }
   }
 
   List<String> _imageUrls(ExerciseModel ex) {
-    // Build the static frames from free-exercise-db
-    final url = ex.gifUrl;
-    final staticFrames = <String>[];
-    if (url.isNotEmpty) {
-      if (url.contains('/0.jpg')) {
-        staticFrames
-          ..add(url)
-          ..add(url.replaceFirst('/0.jpg', '/1.jpg'));
-      } else {
-        staticFrames.add(url);
-      }
+    final url = _enrichedGifUrl ?? ex.gifUrl;
+    if (url.isEmpty) return [];
+    if (url.contains('/0.jpg')) {
+      return [url, url.replaceFirst('/0.jpg', '/1.jpg')];
     }
-
-    // Prepend the WorkoutX animated GIF when available — keep static frames too
-    if (_workoutXGif != null && _workoutXGif!.isNotEmpty) {
-      return [_workoutXGif!, ...staticFrames];
-    }
-    return staticFrames;
+    return [url];
   }
 
   @override
@@ -84,70 +73,62 @@ class _ExerciseDetailScreenState extends ConsumerState<ExerciseDetailScreen> {
         slivers: [
           // ── Hero image / animated frames ─────────────────────────────────────
           SliverAppBar(
-            expandedHeight: 300,
+            expandedHeight: 320,
             pinned: true,
+            actions: [
+              if (_gifLoading)
+                const Padding(
+                  padding: EdgeInsets.all(16),
+                  child: SizedBox(
+                      width: 20,
+                      height: 20,
+                      child: CircularProgressIndicator(
+                          strokeWidth: 2, color: Colors.white70)),
+                )
+              else
+                IconButton(
+                  icon: const Icon(Icons.refresh_rounded),
+                  tooltip: 'Refresh GIF',
+                  onPressed: () => _tryEnrichGifUrl(force: true),
+                ),
+            ],
             flexibleSpace: FlexibleSpaceBar(
-              background: Padding(
-                padding: const EdgeInsets.only(top: 56, left: 8, right: 8),
-                child: Stack(
-                  children: [
-                    AnimatedExerciseImage(
+              background: ClipRect(
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 56, left: 8, right: 8),
+                  child: GestureDetector(
+                    onDoubleTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                        builder: (_) => Scaffold(
+                          backgroundColor: Colors.black,
+                          appBar: AppBar(
+                            backgroundColor: Colors.black,
+                            iconTheme:
+                                const IconThemeData(color: Colors.white),
+                            title: Text(widget.exercise?.name ?? '',
+                                style:
+                                    const TextStyle(color: Colors.white)),
+                          ),
+                          body: Center(
+                            child: AnimatedExerciseImage(
+                              imageUrls: imageUrls,
+                              height: double.infinity,
+                              fit: BoxFit.contain,
+                              enableFullScreen: false,
+                              fullScreenTitle: '',
+                            ),
+                          ),
+                        ),
+                      ));
+                    },
+                    child: AnimatedExerciseImage(
                       imageUrls: imageUrls,
                       height: 240,
                       fit: BoxFit.contain,
                       enableFullScreen: true,
                       fullScreenTitle: widget.exercise?.name ?? '',
                     ),
-                    // Loading badge while fetching from WorkoutX
-                    if (_loadingGif)
-                      Positioned(
-                        top: 8,
-                        right: 8,
-                        child: Container(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 8, vertical: 4),
-                          decoration: BoxDecoration(
-                            color: steelBlue.withAlpha(200),
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          child: const Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              SizedBox(
-                                width: 10,
-                                height: 10,
-                                child: CircularProgressIndicator(
-                                    strokeWidth: 2,
-                                    color: Colors.white),
-                              ),
-                              SizedBox(width: 6),
-                              Text('Loading GIF…',
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 11)),
-                            ],
-                          ),
-                        ),
-                      ),
-                    // Badge once WorkoutX GIF loaded
-                    if (_workoutXGif != null)
-                      Positioned(
-                        top: 8,
-                        right: 8,
-                        child: Container(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 8, vertical: 4),
-                          decoration: BoxDecoration(
-                            color: tealSuccess.withAlpha(200),
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          child: const Text('WorkoutX GIF',
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 11,
-                                  fontWeight: FontWeight.w700)),
-                        ),
-                      ),
-                  ],
+                  ),
                 ),
               ),
             ),

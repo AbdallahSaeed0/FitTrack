@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:uuid/uuid.dart';
 import '../../core/theme/app_theme.dart';
 import '../../data/models/exercise_model.dart';
 import '../../data/models/program_model.dart';
@@ -31,6 +32,7 @@ class _EditExerciseSheetState extends ConsumerState<EditExerciseSheet> {
   late TextEditingController _repsToController;
   late TextEditingController _restController;
   late String _technique;
+  late bool _linkWithPrevious;
 
   static const _techniques = [
     ('Standard', 'standard'),
@@ -62,6 +64,14 @@ class _EditExerciseSheetState extends ConsumerState<EditExerciseSheet> {
     _repsToController = TextEditingController(text: e.repsTo);
     _restController = TextEditingController(text: e.restTime);
     _technique = e.technique;
+    // Pre-tick if this exercise is already linked to the previous one.
+    final exercises = widget.program.days[widget.dayIndex].exercises;
+    if (widget.exerciseIndex > 0 && e.supersetGroupId != null) {
+      final prev = exercises[widget.exerciseIndex - 1];
+      _linkWithPrevious = prev.supersetGroupId == e.supersetGroupId;
+    } else {
+      _linkWithPrevious = false;
+    }
   }
 
   @override
@@ -76,7 +86,7 @@ class _EditExerciseSheetState extends ConsumerState<EditExerciseSheet> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.fromLTRB(20, 20, 20, MediaQuery.of(context).viewInsets.bottom + 20),
+      padding: EdgeInsets.fromLTRB(20, 20, 20, MediaQuery.of(context).viewInsets.bottom + MediaQuery.of(context).viewPadding.bottom + 20),
       decoration: BoxDecoration(
         color: Theme.of(context).scaffoldBackgroundColor,
         borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
@@ -169,6 +179,9 @@ class _EditExerciseSheetState extends ConsumerState<EditExerciseSheet> {
             const SizedBox(height: 20),
             const Divider(),
             const SizedBox(height: 8),
+            // Superset linking
+            _buildSupersetSection(),
+            const SizedBox(height: 12),
             Row(
               children: [
                 Expanded(
@@ -206,6 +219,59 @@ class _EditExerciseSheetState extends ConsumerState<EditExerciseSheet> {
     );
   }
 
+  Widget _buildSupersetSection() {
+    final exercises = widget.program.days[widget.dayIndex].exercises;
+    final canLink = widget.exerciseIndex > 0;
+    final prev = canLink ? exercises[widget.exerciseIndex - 1] : null;
+    return Container(
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        color: steelBlue.withAlpha(12),
+        borderRadius: BorderRadius.circular(10),
+        border: Border.all(color: steelBlue.withAlpha(40)),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              const Icon(Icons.link_rounded, size: 16, color: steelBlue),
+              const SizedBox(width: 6),
+              Text('Superset',
+                  style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                      color: steelBlue, fontWeight: FontWeight.w700)),
+            ],
+          ),
+          const SizedBox(height: 6),
+          if (!canLink)
+            const Text(
+              'First exercise of the day. Move another exercise above it to link.',
+              style: TextStyle(fontSize: 12, color: Colors.grey),
+            )
+          else ...[
+            CheckboxListTile(
+              value: _linkWithPrevious,
+              onChanged: (v) =>
+                  setState(() => _linkWithPrevious = v ?? false),
+              activeColor: steelBlue,
+              dense: true,
+              contentPadding: EdgeInsets.zero,
+              controlAffinity: ListTileControlAffinity.leading,
+              title: Text(
+                'Link with previous: ${prev!.name}',
+                style: const TextStyle(fontSize: 13),
+              ),
+              subtitle: const Text(
+                'Perform back-to-back with no rest between.',
+                style: TextStyle(fontSize: 11, color: Colors.grey),
+              ),
+            ),
+          ],
+        ],
+      ),
+    );
+  }
+
   void _saveChanges() {
     final updated = widget.exercise.copyWith(
       sets: int.tryParse(_setsController.text) ?? widget.exercise.sets,
@@ -214,9 +280,51 @@ class _EditExerciseSheetState extends ConsumerState<EditExerciseSheet> {
       restTime: _restController.text,
       technique: _technique,
     );
-    _updateExercise(updated);
+    _applyChanges(updated);
     Navigator.pop(context);
     HapticFeedback.selectionClick();
+  }
+
+  // Applies field changes + superset link state.
+  void _applyChanges(ExerciseModel updated) {
+    final days = List.of(widget.program.days);
+    final exercises = List.of(days[widget.dayIndex].exercises);
+    final idx = widget.exerciseIndex;
+
+    if (idx > 0 && _linkWithPrevious) {
+      // Link with previous.
+      final prev = exercises[idx - 1];
+      String groupId = prev.supersetGroupId ?? const Uuid().v4();
+      // Ensure prev is part of the group.
+      if (prev.supersetGroupId == null) {
+        exercises[idx - 1] = prev.copyWith(
+          supersetGroupId: groupId,
+          supersetOrder: 0,
+        );
+      }
+      // Find max order among current members of groupId, assign next.
+      int maxOrder = 0;
+      for (final ex in exercises) {
+        if (ex.supersetGroupId == groupId && ex.supersetOrder > maxOrder) {
+          maxOrder = ex.supersetOrder;
+        }
+      }
+      exercises[idx] = updated.copyWith(
+        supersetGroupId: groupId,
+        supersetOrder: maxOrder + 1,
+      );
+    } else {
+      // Unlink: this exercise becomes standalone.
+      exercises[idx] = updated.copyWith(
+        supersetGroupId: null,
+        supersetOrder: 0,
+      );
+    }
+
+    days[widget.dayIndex] =
+        days[widget.dayIndex].copyWith(exercises: exercises);
+    final updatedProgram = widget.program.copyWith(days: days);
+    ref.read(programsProvider.notifier).updateProgram(updatedProgram);
   }
 
   Future<void> _confirmRemove(BuildContext context) async {
@@ -239,16 +347,6 @@ class _EditExerciseSheetState extends ConsumerState<EditExerciseSheet> {
       _removeExercise();
       navigator.pop();
     }
-  }
-
-  void _updateExercise(ExerciseModel updated) {
-    final days = List.of(widget.program.days);
-    final exercises = List.of(days[widget.dayIndex].exercises);
-    exercises[widget.exerciseIndex] = updated;
-    final updatedDay = days[widget.dayIndex].copyWith(exercises: exercises);
-    days[widget.dayIndex] = updatedDay;
-    final updatedProgram = widget.program.copyWith(days: days);
-    ref.read(programsProvider.notifier).updateProgram(updatedProgram);
   }
 
   void _removeExercise() {

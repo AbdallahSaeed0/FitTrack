@@ -1,14 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/theme/app_colors.dart';
-import '../../shared/providers/api_key_provider.dart';
 import 'fullscreen_image_viewer.dart';
 
-/// Displays exercise images as a swipeable PageView.
-/// Tap any image to open a full-screen pinch-to-zoom viewer.
-class AnimatedExerciseImage extends ConsumerStatefulWidget {
+class AnimatedExerciseImage extends StatefulWidget {
   final List<String> imageUrls;
   final double height;
   final BoxFit fit;
@@ -25,11 +23,10 @@ class AnimatedExerciseImage extends ConsumerStatefulWidget {
   });
 
   @override
-  ConsumerState<AnimatedExerciseImage> createState() =>
-      _AnimatedExerciseImageState();
+  State<AnimatedExerciseImage> createState() => _AnimatedExerciseImageState();
 }
 
-class _AnimatedExerciseImageState extends ConsumerState<AnimatedExerciseImage> {
+class _AnimatedExerciseImageState extends State<AnimatedExerciseImage> {
   late final PageController _pageController;
   int _index = 0;
 
@@ -45,12 +42,7 @@ class _AnimatedExerciseImageState extends ConsumerState<AnimatedExerciseImage> {
     super.dispose();
   }
 
-  Map<String, String>? _headersFor(String url) {
-    if (!url.contains('workoutxapp.com')) return null;
-    final key = ref.read(apiKeyProvider);
-    if (key.isEmpty) return null;
-    return {'X-WorkoutX-Key': key};
-  }
+  bool _isLocal(String url) => url.startsWith('assets/');
 
   void _openFullScreen(BuildContext context, String url) {
     if (!widget.enableFullScreen) return;
@@ -60,9 +52,39 @@ class _AnimatedExerciseImageState extends ConsumerState<AnimatedExerciseImage> {
         builder: (_) => FullScreenImageViewer(
           imageUrl: url,
           title: widget.fullScreenTitle,
-          httpHeaders: _headersFor(url),
         ),
       ),
+    );
+  }
+
+  Widget _buildItem(String url) {
+    if (_isLocal(url)) {
+      return Image.asset(
+        url,
+        height: widget.height,
+        width: double.infinity,
+        fit: widget.fit,
+        errorBuilder: (_, __, ___) => _placeholder(),
+      );
+    }
+    if (kIsWeb) {
+      return Image.network(
+        url,
+        height: widget.height,
+        width: double.infinity,
+        fit: widget.fit,
+        loadingBuilder: (_, child, progress) =>
+            progress == null ? child : _shimmer(),
+        errorBuilder: (_, __, ___) => _placeholder(),
+      );
+    }
+    return CachedNetworkImage(
+      imageUrl: url,
+      height: widget.height,
+      width: double.infinity,
+      fit: widget.fit,
+      placeholder: (_, __) => _shimmer(),
+      errorWidget: (_, __, ___) => _placeholder(),
     );
   }
 
@@ -77,46 +99,46 @@ class _AnimatedExerciseImageState extends ConsumerState<AnimatedExerciseImage> {
           borderRadius: BorderRadius.circular(12),
           child: SizedBox(
             height: widget.height,
-            child: PageView.builder(
-              controller: _pageController,
-              onPageChanged: (i) => setState(() => _index = i),
-              itemCount: widget.imageUrls.length,
-              itemBuilder: (_, i) {
-                final url = widget.imageUrls[i];
-                return GestureDetector(
-                  onTap: () => _openFullScreen(context, url),
-                  child: Stack(
-                    children: [
-                      CachedNetworkImage(
-                        imageUrl: url,
-                        httpHeaders: _headersFor(url),
-                        height: widget.height,
-                        width: double.infinity,
-                        fit: widget.fit,
-                        placeholder: (_, __) => _shimmer(),
-                        errorWidget: (_, __, ___) => _placeholder(),
-                      ),
-                      if (widget.enableFullScreen)
-                        Positioned(
-                          top: 8,
-                          right: 8,
-                          child: Container(
-                            padding: const EdgeInsets.all(4),
-                            decoration: BoxDecoration(
-                              color: Colors.black.withAlpha(100),
-                              borderRadius: BorderRadius.circular(6),
-                            ),
-                            child: const Icon(
-                              Icons.fullscreen_rounded,
-                              color: Colors.white,
-                              size: 18,
+            child: ScrollConfiguration(
+              behavior: ScrollConfiguration.of(context).copyWith(
+                dragDevices: {
+                  PointerDeviceKind.touch,
+                  PointerDeviceKind.mouse,
+                },
+              ),
+              child: PageView.builder(
+                controller: _pageController,
+                onPageChanged: (i) => setState(() => _index = i),
+                itemCount: widget.imageUrls.length,
+                itemBuilder: (_, i) {
+                  final url = widget.imageUrls[i];
+                  return GestureDetector(
+                    onTap: () => _openFullScreen(context, url),
+                    child: Stack(
+                      children: [
+                        _buildItem(url),
+                        if (widget.enableFullScreen)
+                          Positioned(
+                            top: 8,
+                            right: 8,
+                            child: Container(
+                              padding: const EdgeInsets.all(4),
+                              decoration: BoxDecoration(
+                                color: Colors.black.withAlpha(100),
+                                borderRadius: BorderRadius.circular(6),
+                              ),
+                              child: const Icon(
+                                Icons.fullscreen_rounded,
+                                color: Colors.white,
+                                size: 18,
+                              ),
                             ),
                           ),
-                        ),
-                    ],
-                  ),
-                );
-              },
+                      ],
+                    ),
+                  );
+                },
+              ),
             ),
           ),
         ),

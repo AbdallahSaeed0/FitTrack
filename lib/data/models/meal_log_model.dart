@@ -1,36 +1,15 @@
-import 'package:hive/hive.dart';
 import 'food_item_model.dart';
 
-part 'meal_log_model.g.dart';
-
-@HiveType(typeId: 8)
-class MealLog extends HiveObject {
-  @HiveField(0)
+class MealLog {
   final String id;
-
-  @HiveField(1)
   final DateTime timestamp;
-
-  @HiveField(2)
   final String foodName;
-
-  @HiveField(3)
   final double quantity;
-
-  @HiveField(4)
   final double calories;
-
-  @HiveField(5)
   final double protein;
-
-  @HiveField(6)
   final double carbs;
-
-  @HiveField(7)
   final double fat;
-
-  @HiveField(8)
-  final String mealType; // breakfast, lunch, dinner, snack
+  final String mealType;
 
   MealLog({
     required this.id,
@@ -62,4 +41,29 @@ class MealLog extends HiveObject {
       mealType: mealType,
     );
   }
+
+  Map<String, dynamic> toRow(String userId) => {
+        'id': id,
+        'user_id': userId,
+        'timestamp': timestamp.toIso8601String(),
+        'food_name': foodName,
+        'quantity': quantity,
+        'calories': calories,
+        'protein': protein,
+        'carbs': carbs,
+        'fat': fat,
+        'meal_type': mealType,
+      };
+
+  factory MealLog.fromRow(Map<String, dynamic> row) => MealLog(
+        id: row['id'] as String,
+        timestamp: DateTime.parse(row['timestamp'] as String),
+        foodName: row['food_name'] as String,
+        quantity: (row['quantity'] as num).toDouble(),
+        calories: (row['calories'] as num).toDouble(),
+        protein: (row['protein'] as num).toDouble(),
+        carbs: (row['carbs'] as num).toDouble(),
+        fat: (row['fat'] as num).toDouble(),
+        mealType: row['meal_type'] as String,
+      );
 }
